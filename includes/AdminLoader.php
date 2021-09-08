@@ -1,5 +1,5 @@
 <?php
-namespace Baseapp;
+namespace Slsgrid;
 
 /**
  * Admin pages loader
@@ -27,24 +27,24 @@ class AdminLoader
         $slug       = 'vue-app';
 
         $hook = add_menu_page(
-        	__('Vue App', \Baseapp\Main::PREFIX),
-        	__('Vue App', \Baseapp\Main::PREFIX),
+        	__('Vue App', \Slsgrid\Main::PREFIX),
+        	__('Vue App', \Slsgrid\Main::PREFIX),
         	$capability,
         	$slug,
         	[ $this, 'plugin_page' ],
         	'dashicons-text'  // tip: https://developer.wordpress.org/resource/dashicons
         );
 
-        if ( current_user_can( $capability ) ) {
+        if (current_user_can( $capability )) {
            add_submenu_page( $slug,
-            	__('Dashboard',  \Baseapp\Main::PREFIX),
-            	__('Dashboard',  \Baseapp\Main::PREFIX),
+            	__('Dashboard',  \Slsgrid\Main::PREFIX),
+            	__('Dashboard',  \Slsgrid\Main::PREFIX),
             	$capability,
             	'admin.php?page=' . $slug . '#/'
             );
             add_submenu_page( $slug,
-            	__('Settings',  \Baseapp\Main::PREFIX),
-            	__('Settings',  \Baseapp\Main::PREFIX),
+            	__('Settings',  \Slsgrid\Main::PREFIX),
+            	__('Settings',  \Slsgrid\Main::PREFIX),
             	$capability,
             	'admin.php?page=' . $slug . '#/settings'
             );
@@ -70,8 +70,8 @@ class AdminLoader
      */
     public function enqueue_scripts()
     {
-        wp_enqueue_style(\Baseapp\Main::PREFIX . '-admin');
-        wp_enqueue_script(\Baseapp\Main::PREFIX . '-admin');
+        wp_enqueue_style(\Slsgrid\Main::PREFIX . '-admin');
+        wp_enqueue_script(\Slsgrid\Main::PREFIX . '-admin');
     }
 
     /**
@@ -85,7 +85,7 @@ class AdminLoader
 
     	// output data for use on client-side
     	// https://wordpress.stackexchange.com/questions/344537/authenticating-with-rest-api
-    	wp_localize_script( \Baseapp\Main::PREFIX . '-data', 'vue_wp_plugin_config', [
+    	wp_localize_script( \Slsgrid\Main::PREFIX . '-data', 'vue_wp_plugin_config', [
 		    'rest' => [
 		        'endpoints' => [
 		            'settings' => esc_url_raw( rest_url( $settingController->get_endpoint() ) ),

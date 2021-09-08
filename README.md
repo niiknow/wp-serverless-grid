@@ -2,7 +2,7 @@
 Vue Wordpress Plugin Starter with Vue3, Typescript, and Laravel Mix (Webpack wrapper)
 
 # to get started
-* Decide your plugin `name`, `prefix`, and `namespace`; then search & replace all `Baseapp` namespace
+* Decide your plugin `name`, `prefix`, and `namespace`; then search & replace all `Slsgrid` namespace
     * Remember to update `composer.json` and `package.json`
 * Update **all appropriate values** in `vue-wp-plugin-starter.php` and rename with `YOUR_PLUGIN_NAME.php`
 * Update `VERSION` and `PREFIX` constants in `includes/Main.php`

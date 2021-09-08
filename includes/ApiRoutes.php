@@ -1,5 +1,5 @@
 <?php
-namespace Baseapp;
+namespace Slsgrid;
 
 /**
  * API routes loader

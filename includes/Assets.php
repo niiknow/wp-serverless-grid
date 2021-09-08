@@ -1,5 +1,5 @@
 <?php
-namespace Baseapp;
+namespace Slsgrid;
 
 /**
  * Scripts and styles helper
@@ -41,7 +41,7 @@ class Assets
         foreach ($scripts as $handle => $script) {
             $deps      = isset($script['deps']) ? $script['deps'] : false;
             $in_footer = isset($script['in_footer']) ? $script['in_footer'] : false;
-            $version   = isset($script['version']) ? $script['version'] : \Baseapp\Main::VERSION;
+            $version   = isset($script['version']) ? $script['version'] : \Slsgrid\Main::VERSION;
 
             wp_register_script($handle, $script['src'], $deps, $version, $in_footer);
         }
@@ -59,7 +59,7 @@ class Assets
         foreach ($styles as $handle => $style) {
             $deps = isset($style['deps']) ? $style['deps'] : false;
 
-            wp_register_style($handle, $style['src'], $deps, \Baseapp\Main::VERSION);
+            wp_register_style($handle, $style['src'], $deps, \Slsgrid\Main::VERSION);
         }
     }
 
@@ -70,7 +70,7 @@ class Assets
      */
     public function get_scripts()
     {
-    	$assets_url = \Baseapp\Main::$BASEURL . '/public';
+    	$assets_url = \Slsgrid\Main::$BASEURL . '/public';
         $prefix     = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.min' : '';
 
         $scripts = [
@@ -79,26 +79,26 @@ class Assets
                 'version'   => '3.1.4',
                 'in_footer' => true
             ],
-            \Baseapp\Main::PREFIX . '-manifest' => [
+            \Slsgrid\Main::PREFIX . '-manifest' => [
                 'src'       => $assets_url . '/js/manifest.js',
                 'version'   => filemtime($assets_url . '/js/manifest.js'),
                 'in_footer' => true
             ],
-            \Baseapp\Main::PREFIX . '-vendor' => [
+            \Slsgrid\Main::PREFIX . '-vendor' => [
                 'src'       => $assets_url . '/js/vendors.js',
-                'deps'      => [ 'vuejs', \Baseapp\Main::PREFIX . '-manifest' ],
+                'deps'      => [ 'vuejs', \Slsgrid\Main::PREFIX . '-manifest' ],
                 'version'   => filemtime($assets_url . '/js/vendors.js'),
                 'in_footer' => true
             ],
-            \Baseapp\Main::PREFIX . '-frontend' => [
+            \Slsgrid\Main::PREFIX . '-frontend' => [
                 'src'       => $assets_url . '/js/frontend.js',
-                'deps'      => [ \Baseapp\Main::PREFIX . '-vendor' ],
+                'deps'      => [ \Slsgrid\Main::PREFIX . '-vendor' ],
                 'version'   => filemtime($assets_url . '/js/frontend.js'),
                 'in_footer' => true
             ],
-            \Baseapp\Main::PREFIX . '-admin' => [
+            \Slsgrid\Main::PREFIX . '-admin' => [
                 'src'       => $assets_url . '/js/admin.js',
-                'deps'      => [ \Baseapp\Main::PREFIX . '-vendor' ],
+                'deps'      => [ \Slsgrid\Main::PREFIX . '-vendor' ],
                 'version'   => filemtime($assets_url . '/js/admin.js'),
                 'in_footer' => true
             ]
@@ -114,13 +114,13 @@ class Assets
      */
     public function get_styles()
     {
-        $assets_url = \Baseapp\Main::$BASEURL . '/public';
+        $assets_url = \Slsgrid\Main::$BASEURL . '/public';
 
         $styles = [
-            \Baseapp\Main::PREFIX . '-frontend' => [
+            \Slsgrid\Main::PREFIX . '-frontend' => [
                 'src' =>  $assets_url . '/css/frontend.css'
             ],
-            \Baseapp\Main::PREFIX . '-admin' => [
+            \Slsgrid\Main::PREFIX . '-admin' => [
                 'src' =>  $assets_url . '/css/admin.css'
             ],
         ];

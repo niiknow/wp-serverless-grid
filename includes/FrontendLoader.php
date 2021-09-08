@@ -1,5 +1,5 @@
 <?php
-namespace Baseapp;
+namespace Slsgrid;
 
 /**
  * Frontend pages loader
@@ -13,7 +13,7 @@ class FrontendLoader
     public function __construct()
     {
     	// let say your prefix is wp-awesome-plugin, then it will be wp-awesome-plugin-vue-app
-        add_shortcode(\Baseapp\Main::PREFIX . '-vue-app', [ $this, 'render_frontend' ]);
+        add_shortcode(\Slsgrid\Main::PREFIX . '-vue-app', [ $this, 'render_frontend' ]);
     }
 
     /**
@@ -34,8 +34,8 @@ class FrontendLoader
 	    ), $atts );
 
 		$postfix = esc_attr($a['postfix']);
-        wp_enqueue_style(\Baseapp\Main::PREFIX . '-' . $postfix);
-        wp_enqueue_script(\Baseapp\Main::PREFIX . '-' . $postfix);
+        wp_enqueue_style(\Slsgrid\Main::PREFIX . '-' . $postfix);
+        wp_enqueue_script(\Slsgrid\Main::PREFIX . '-' . $postfix);
 
         $content .= '<div id="' . esc_attr($a['id']) . '" ></div>';
 

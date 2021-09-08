@@ -10,11 +10,11 @@ class AssetsTests extends PluginTestCase {
 
     public function test_construct() {
         //echo PLUGIN_DIR;
-        //$plug = new \Baseapp\MyPlugin();
+        //$plug = new \Slsgrid\MyPlugin();
 
         //$this->assertTrue(true);
 
-        //$isthere = has_action( 'admin_menu', ['Baseapp\MyPlugin', 'createMenuItem'] );
+        //$isthere = has_action( 'admin_menu', ['Slsgrid\MyPlugin', 'createMenuItem'] );
         //echo $isthere;
 
         $this->assertTrue(true);

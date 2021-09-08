@@ -1,19 +1,19 @@
 <?php
 /*
-Plugin Name: Vue Starter Plugin
-Plugin URI: https://example.com/
-Description: A WordPress Vue.js starter plugin
+Plugin Name: Wordpress Serverless Grid
+Plugin URI: https://github.com/niiknow/wp-sls-grid
+Description: A WordPress Plugin for static site searching
 Version: 0.1
-Author: Your Name
-Author URI: https://example.com/
+Author: Tom Noogen
+Author URI: https://github.com/niiknow/wp-sls-grid
 License: GPL3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
-Text Domain: baseplugin
+Text Domain: slsgrid
 Domain Path: /languages
 */
 
 /**
- * Copyright (c) YEAR Your Name (email: Email). All rights reserved.
+ * Copyright (c) YEAR Tom Noogen (email: tommywhen@yahoo.com). All rights reserved.
  *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
@@ -55,4 +55,4 @@ if (! defined( 'ABSPATH' )) exit;
 require __DIR__ . '/vendor/autoload.php';
 
 // instantiate and run the plugin
-\Baseapp\Main::get_instance( __FILE__ )->run();
+\Slsgrid\Main::get_instance( __FILE__ )->run();

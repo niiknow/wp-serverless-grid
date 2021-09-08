@@ -1,5 +1,5 @@
 <?php
-namespace Baseapp;
+namespace Slsgrid;
 
 /**
  * Main class
@@ -20,7 +20,7 @@ final class Main
 	 *
 	 * @var string
 	 */
-	const PREFIX = 'my_unique_plugin_prefix';
+	const PREFIX = 'slsgrid';
 
 	/**
 	 * Holds various class instances
@@ -49,7 +49,7 @@ final class Main
 	public static $BASEURL = '.';
 
 	/**
-	 * The plugin dir
+	 * The plugin dir, default ''
 	 * @var string
 	 */
 	public static $PLUGINDIR = '';
@@ -97,12 +97,13 @@ final class Main
 
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
+		register_uninstall_hook( __FILE__, array( $this, 'uninstall_plugin') );
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 
 		// setup cli
-		if ( defined( 'WP_CLI' ) && WP_CLI ) {
-			$this->container['cli'] = new \Baseapp\CliLoader();
+		if (defined( 'WP_CLI' ) && WP_CLI) {
+			$this->container['cli'] = new \Slsgrid\CliLoader();
 		}
 	}
 
@@ -152,25 +153,10 @@ final class Main
 	 */
 	public function activate_plugin()
 	{
-		$installed = get_option( self::PREFIX . '_installed' );
+		(new \Slsgrid\Migration())->run( self::PREFIX, self::VERSION );
 
-		if (! $installed)
-		{
-			update_option( self::PREFIX . '_installed', time() );
-
-			// TIP: this is where you can add your database init
-			// create tables etc...
-			// update_option( self::PREFIX . '_dbmigrate', 1 );
-		}
-
+		// set the current version to activate plugin
 		update_option( self::PREFIX . '_version', self::VERSION );
-
-		// TIP: this is where you can add your database migrate script
-		// based on version in the _dbmigrate version
-		//
-		// $version = get_option( self::PREFIX . '_dbmigrate');
-		// for: $version ... current_dbversion, run sql migrate ($version)
-		// $update_option( self::PREFIX . '_dbmigrate', current_dbversion);
 	}
 
 	/**
@@ -181,8 +167,24 @@ final class Main
 	{
 		flush_rewrite_rules();
 
-		// TIP: check settings if need to remove data upon plugin deactivation
-		// remove data from options table and database
+		// do stuff such as: shut off cron tasks, etc...
+
+		// remove version number to deactivate plugin
+		delete( self::PREFIX . '_version' );
+	}
+
+
+	/**
+	 * Do stuff during plugin uninstall
+	 *
+	 */
+	public function uninstall_plugin()
+	{
+		flush_rewrite_rules();
+
+		$setting_key = \Slsgrid\Main::PREFIX . '_settings';
+		$settings    = get_option($setting_key, []);
+		(new \Slsgrid\Migration())->cleanUp( self::PREFIX, $settings);
 	}
 
 	/**
@@ -193,26 +195,26 @@ final class Main
 	public function init_hook_handler()
 	{
 		// initialize assets
-		$this->container['assets'] = new \Baseapp\Assets();
+		$this->container['assets'] = new \Slsgrid\Assets();
 
 		// initialize the various loader classes
 		if ($this->is_request( 'admin' ))
 		{
-			$this->container['admin'] = new \Baseapp\AdminLoader();
+			$this->container['admin'] = new \Slsgrid\AdminLoader();
 		}
 
 		if ($this->is_request( 'frontend' ))
 		{
-			$this->container['frontend'] = new \Baseapp\FrontendLoader();
+			$this->container['frontend'] = new \Slsgrid\FrontendLoader();
 		}
 
 		if ($this->is_request( 'ajax' ))
 		{
-			// $this->container['ajax'] =  new \BaseApp\AjaxLoader();
+			// $this->container['ajax'] =  new \Slsgrid\AjaxLoader();
 		}
 
 		// finally load api routes
-		$this->container['api'] = new \Baseapp\ApiRoutes();
+		$this->container['api'] = new \Slsgrid\ApiRoutes();
 	}
 
 	/**

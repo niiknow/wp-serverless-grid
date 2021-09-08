@@ -2,12 +2,12 @@
 namespace Slsgrid;
 
 /**
- * Implements example command.
+ * For CLI indexing
  */
-class ExampleCommand {
+class IndexerCommand {
 
     /**
-     * Prints a greeting.
+     * Create index
      *
      * ## OPTIONS
      *
@@ -25,15 +25,14 @@ class ExampleCommand {
      *
      * ## EXAMPLES
      *
-     *     wp example hello Newman
+     *     wp slsgrid index create size
      *
      * @when after_wp_load
      */
-    function hello( $args, $assoc_args ) {
+    function create( $args, $assoc_args ) {
         list( $name ) = $args;
-
-        // Print the message with type
-        $type = $assoc_args['type'];
-        WP_CLI::$type( "Hello, $name!" );
+        if ($args[0] == 'create') {
+        	(new SearchIndexer())->createIndex($args[1] || -1);
+        }
     }
 }

@@ -1,6 +1,6 @@
 {
-    "name": "niiknow/vue-wp-plugin-starter",
-    "description": "A WordPress Vue.js starter plugin",
+    "name": "niiknow/wp-sls-grid",
+    "description": "A WordPress Plugin for static site searching",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",
     "require": {
@@ -17,7 +17,7 @@
     },
     "autoload": {
         "psr-4": {
-            "Baseapp\\": "includes/"
+            "Slsgrid\\": "includes/"
         }
     },
     "autoload-dev": {
