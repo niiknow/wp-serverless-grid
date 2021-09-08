@@ -6,9 +6,9 @@ namespace Slsgrid\Api;
  */
 class SettingController extends \WP_REST_Controller
 {
-	/**
-	 * Initialize this class
-	 */
+    /**
+     * Initialize this class
+     */
     public function __construct()
     {
         $this->namespace = \Slsgrid\Main::PREFIX . '/v1';
@@ -22,8 +22,8 @@ class SettingController extends \WP_REST_Controller
      */
     public function get_endpoint()
     {
-    	// example: myplugin/v1/settings
-    	return  $this->namespace . '/' . $this->rest_base;
+        // example: myplugin/v1/settings
+        return  $this->namespace . '/' . $this->rest_base;
     }
 
     /**
@@ -158,7 +158,7 @@ class SettingController extends \WP_REST_Controller
      * @param  object $value
      * @return void
      */
-    private function sanitize_value($details, $sanitized_settings, $id, $value) {
+    private function sanitize_value($details, &$sanitized_settings, $id, $value) {
     	$sanitized_value = NULL;
 
 		// Check for custom sanitization function.
@@ -236,7 +236,7 @@ class SettingController extends \WP_REST_Controller
 		foreach ($settings_details as $id => $details) {
 			$value = isset($settings[$id]) ? $settings[$id] : $details['default'];
 
-			$this->sanitized_value($details, $sanitized_settings, $id, $value);
+			$this->sanitize_value($details, $sanitized_settings, $id, $value);
 		}
 
 		return $sanitized_settings;

@@ -7,6 +7,7 @@ class SearchIndexer
     protected $indexFileName = 'search-index.json';
     protected $indexFileUrl;
     protected $settings;
+    protected $users;
 
     public function __construct($settings)
     {
@@ -15,6 +16,7 @@ class SearchIndexer
         $this->indexFile = $wpContentDir . $this->indexFileName;
         $this->indexFileUrl = content_url($this->indexFileName);
         $this->settings = $settings;
+        $this->users = array_column(get_users(), 'data', 'ID');
     }
 
     public function registerHooks()
@@ -36,38 +38,39 @@ class SearchIndexer
     }
 
     /**
-     * get post types to include for indexing
-     *
-     * @return Array array of post types
-     */
-    public function getPostTypes()
-    {
-        return $this->settings['include_post_types'];
-    }
+    * get custom fields for post, ignoring special fields (which start with '_')
+    * @param int $post_id optional, will assume current post
+    * @return array simple key=>value associative array
+    */
+    function getPostCustom($post_id = 0) {
+        // get all custom field values for post
+        $custom = get_post_custom($post_id);
 
-	/**
-	* get custom fields for post, ignoring special fields (which start with '_')
-	* @param int $post_id optional, will assume current post
-	* @return array simple key=>value associative array
-	*/
-	function getPostCustom($post_id = 0) {
-	    // get all custom field values for post
-	    $custom = get_post_custom($post_id);
+        // values are arrays each with a single element;
+        // reduce value arrays to strings
+        $custom = array_map('implode', $custom);
 
-	    // values are arrays each with a single element;
-	    // reduce value arrays to strings
-	    $custom = array_map('implode', $custom);
+        // we only want regular custom fields, not special fields
+        // e.g. fields used by plugins to store other data;
+        // get list of fields with keys that don't start with '_'
+        $matches = preg_grep('/^[^_]/', array_keys($custom));
 
-	    // we only want regular custom fields, not special fields
-	    // e.g. fields used by plugins to store other data;
-	    // get list of fields with keys that don't start with '_'
-	    $matches = preg_grep('/^[^_]/', array_keys($custom));
+        // flip the array to get the field names as keys again
+        $matches = array_flip($matches);
 
-	    // flip the array to get the field names as keys again
-	    $matches = array_flip($matches);
+        // return only the elements with matching field names
+        $data =  array_intersect_key($custom, $matches);
 
-	    // return only the elements with matching field names
-	    return array_intersect_key($custom, $matches);
+        $result = [];
+
+        foreach($data as $key => $value) {
+        	// exclude custom fields
+        	if (! in_array($key, $this->settings['exclude_custom_fields'])) {
+	    		$result[$key] = maybe_unserialize($value);
+	    	}
+	    }
+
+	    return $result;
 	}
 
     public function createIndex($size = -1)
@@ -80,8 +83,8 @@ class SearchIndexer
             'posts_per_page'   => $size,
             'offset'           => 0,
             'orderby'          => 'ID',
-            'order'            => 'ASC',
-            'post_type'        => $this->getPostTypes,
+            'order'            => 'DESC',
+            'post_type'        => $this->settings['include_post_types'],
             'post_status'      => 'publish',
             'suppress_filters' => true,
         );
@@ -92,6 +95,7 @@ class SearchIndexer
             $the_query->the_post();
             global $post;
 
+
             $index[$post->ID] = $this->parseRecord($post);
         }
 
@@ -99,8 +103,7 @@ class SearchIndexer
 	    wp_reset_query();
 	    wp_reset_postdata();
 
-
-        file_put_contents($this->indexFile, json_encode($index));
+        file_put_contents($this->indexFile, json_encode($index, JSON_PRETTY_PRINT));
     }
 
     public function refreshIndex()
@@ -145,18 +148,29 @@ class SearchIndexer
 
     public function parseRecord($post)
     {
+    	$image_url = get_the_post_thumbnail_url($post->ID, 'full');
 		$json = [
-            'id' => $post->ID,
-            'title' => $post->post_title,
-            'name' => $post->post_name,
-            'content' => $post->post_content,
-            'excerpt' => $post->post_excerpt,
-            'author' => $post->post_author,
-            'url' => get_permalink($post->ID),
-            'image' => get_the_post_thumbnail_url($post->ID, 'full'),
-            'meta' => $this->getPostCustom($post->ID)
+            'post_id' => $post->ID,
+            'post_title' => $post->post_title,
+            'post_name' => $post->post_name,
+            'post_content' => strip_tags(apply_filters('the_content', $post->post_content)),
+            'post_excerpt' => strip_tags($post->post_excerpt),
+            'post_author_id' => $post->post_author,
+            'post_author' => $this->users[$post->post_author],
+            'post_url' => get_permalink($post->ID),
+            'post_image_url' => $image_url === false ? '' : $image_url,
+            'post_guid' => $post->guid,
         ];
 
-		return $post;
+        $terms = [];
+        $taxonomies = get_object_taxonomies( $post );
+        foreach($taxonomies as $tax_slug) {
+            $terms[$tax_slug] = wp_get_object_terms($post->ID, $tax_slug);
+        }
+
+		$record = array_merge($json, $this->getPostCustom($post->ID), $terms);
+
+		$result = apply_filters( \Slsgrid\Main::PREFIX . '_indexer_parserecord', $record, $post );
+		return $result;
     }
 }

@@ -9,13 +9,6 @@ class IndexerCommand {
     /**
      * Create index
      *
-     * ## OPTIONS
-     *
-     * <name>
-     * : The name of the person to greet.
-     *
-     * [--type=<type>]
-     * : Whether or not to greet the person with success or error.
      * ---
      * default: success
      * options:
@@ -25,14 +18,15 @@ class IndexerCommand {
      *
      * ## EXAMPLES
      *
-     *     wp slsgrid index create size
+     *     wp slsgrid index size
      *
      * @when after_wp_load
      */
-    function create( $args, $assoc_args ) {
+    function index( $args, $assoc_args ) {
         list( $name ) = $args;
-        if ($args[0] == 'create') {
-        	(new SearchIndexer())->createIndex($args[1] || -1);
-        }
+        $sc = new Api\SettingController();
+        $settings = $sc->sanitize_settings([]);
+        // \WP_CLI::line($args[0]);
+        (new SearchIndexer($settings))->createIndex(empty($args[0]) ? -1 : $args[0]);
     }
 }

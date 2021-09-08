@@ -81,7 +81,7 @@ class AdminLoader
      */
     public function plugin_page()
     {
-    	$settingController = new SettingController();
+    	$settingController = new Api\SettingController();
 
     	// output data for use on client-side
     	// https://wordpress.stackexchange.com/questions/344537/authenticating-with-rest-api
