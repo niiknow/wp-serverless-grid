@@ -211,17 +211,17 @@ class SearchIndexer
     public function parseRecord($post)
     {
     	$image_url = get_the_post_thumbnail_url($post->ID, 'full');
+    	$home_url  = home_url( '/' );
 		$json = [
-            'post_id' => $post->ID,
-            'post_title' => $post->post_title,
-            'post_name' => $post->post_name,
-            'post_content' => strip_tags(apply_filters('the_content', $post->post_content)),
-            'post_excerpt' => strip_tags($post->post_excerpt),
-            'post_author_id' => $post->post_author,
-            'post_author' => $this->users[$post->post_author],
-            'post_url' => get_permalink($post->ID),
-            'post_image_url' => $image_url === false ? '' : $image_url,
-            'post_guid' => $post->guid,
+            'id' => $post->ID,
+            'title' => $post->post_title,
+            'slug' => $post->post_name,
+            'cnt' => strip_tags(apply_filters('the_content', $post->post_content)),
+            'excerpt' => strip_tags($post->post_excerpt),
+            'author_id' => $post->post_author,
+            'author' => $this->users[$post->post_author],
+            'url' => str_replace( $home_url, '', get_permalink($post->ID) ),
+            'image_url' => $image_url === false ? '' : str_replace( $home_url, '', $image_url ),
         ];
 
         $terms = [];
