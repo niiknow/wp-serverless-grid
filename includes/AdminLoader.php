@@ -50,7 +50,7 @@ class AdminLoader
             	esc_html__('Settings',  $this->prefix),
             	esc_html__('Settings',  $this->prefix),
             	$capability,
-            	'#/settings'
+            	'admin.php?page=vue-app#/settings'
             );
         }
     }

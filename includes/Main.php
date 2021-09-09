@@ -105,6 +105,9 @@ final class Main
 		if (defined( 'WP_CLI' ) && \WP_CLI) {
 			$this->container['cli'] = new \Slsgrid\CliLoader( self::PREFIX );
 		}
+
+        $plugin = plugin_basename(self::$PLUGINFILE);
+		add_filter("plugin_action_links_$plugin", array( $this, 'register_settings_link' ));
 	}
 
 	/**
@@ -173,6 +176,14 @@ final class Main
 		delete_option( self::PREFIX . '_version' );
 	}
 
+	public function register_settings_link($links)
+	{
+		$settings_link = '<a href="admin.php?page=vue-app#/settings"">Settings</a>';
+    	array_unshift($links, $settings_link);
+
+    	return $links;
+	}
+
 
 	/**
 	 * Do stuff during plugin uninstall
@@ -200,7 +211,9 @@ final class Main
 		// initialize the various loader classes
 		if ($this->is_request( 'admin' ))
 		{
-			$this->container['admin'] = new \Slsgrid\AdminLoader( self::PREFIX );
+			$ctx = new \Slsgrid\AdminLoader( self::PREFIX );
+			$this->container['admin'] = $ctx;
+
 		}
 
 		if ($this->is_request( 'frontend' ))
