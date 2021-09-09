@@ -79,6 +79,11 @@ class Assets
                 'version'   => '3.2.11',
                 'in_footer' => true
             ],
+            'bootstrap' => [
+                'src'       => 'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.min.js',
+                'version'   => 'latest',
+                'in_footer' => true
+            ],
             \Slsgrid\Main::PREFIX . '-manifest' => [
                 'src'       => $assets_url . '/js/manifest.js',
                 'version'   => filemtime($assets_url . '/js/manifest.js'),
@@ -98,7 +103,7 @@ class Assets
             ],
             \Slsgrid\Main::PREFIX . '-admin' => [
                 'src'       => $assets_url . '/js/admin.js',
-                'deps'      => [ \Slsgrid\Main::PREFIX . '-vendor' ],
+                'deps'      => [ 'bootstrap', \Slsgrid\Main::PREFIX . '-vendor' ],
                 'version'   => filemtime($assets_url . '/js/admin.js'),
                 'in_footer' => true
             ]
