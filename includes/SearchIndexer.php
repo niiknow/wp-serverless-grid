@@ -78,16 +78,18 @@ class SearchIndexer
     	global $wpdb;
 
         $index = [];
-        $args =  array(
-            'posts_per_page'   => $size,
-            'post_type'        => $this->settings['include_post_types'],
-            'post_status'      => 'publish',
-            'suppress_filters' => true,
-        );
+        $total = $size;
+        if ($size <= -1) {
+	        $args =  array(
+	            'post_type'        => $this->settings['include_post_types'],
+	            'post_status'      => 'publish',
+	            'suppress_filters' => true,
+	        );
 
-		$query = new \WP_Query( $args );
+			$query = new \WP_Query( $args );
 
-		$total = $query->found_posts;
+			$total = $query->found_posts;
+		}
 
 		$args = array(
             'posts_per_page'   => $size,

@@ -12,9 +12,9 @@ class Assets
     function __construct()
     {
         if (is_admin()) {
-            add_action('admin_enqueue_scripts', [ $this, 'register' ], 5);
+            add_action('admin_enqueue_scripts', [ $this, 'register' ]);
         } else {
-            add_action('wp_enqueue_scripts', [ $this, 'register' ], 5);
+            add_action('wp_enqueue_scripts', [ $this, 'register' ]);
         }
     }
 
@@ -71,12 +71,12 @@ class Assets
     public function get_scripts()
     {
     	$assets_url = \Slsgrid\Main::$BASEURL . '/public';
-        $prefix     = defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.min' : '';
+        $prefix     = ''; // defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.min' : '';
 
         $scripts = [
             'vuejs' => [
-                'src'       => 'https://cdn.jsdelivr.net/npm/vue@3.1.4/dist/vue.global.prod.js',
-                'version'   => '3.1.4',
+                'src'       => 'https://cdn.jsdelivr.net/npm/vue@3.2.11/dist/vue.global.prod.js',
+                'version'   => '3.2.11',
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-manifest' => [
@@ -85,9 +85,9 @@ class Assets
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-vendor' => [
-                'src'       => $assets_url . '/js/vendors.js',
+                'src'       => $assets_url . '/js/vendor.js',
                 'deps'      => [ 'vuejs', \Slsgrid\Main::PREFIX . '-manifest' ],
-                'version'   => filemtime($assets_url . '/js/vendors.js'),
+                'version'   => filemtime($assets_url . '/js/vendor.js'),
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-frontend' => [
@@ -117,6 +117,9 @@ class Assets
         $assets_url = \Slsgrid\Main::$BASEURL . '/public';
 
         $styles = [
+            \Slsgrid\Main::PREFIX . '-bootstrap' => [
+                'src' =>  'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css'
+            ],
             \Slsgrid\Main::PREFIX . '-frontend' => [
                 'src' =>  $assets_url . '/css/frontend.css'
             ],

@@ -27,8 +27,8 @@ class AdminLoader
         $slug       = 'vue-app';
 
         $hook = add_menu_page(
-        	__('Vue App', \Slsgrid\Main::PREFIX),
-        	__('Vue App', \Slsgrid\Main::PREFIX),
+        	esc_html__('SLS Grid', \Slsgrid\Main::PREFIX),
+        	esc_html__('SLS Grid', \Slsgrid\Main::PREFIX),
         	$capability,
         	$slug,
         	[ $this, 'plugin_page' ],
@@ -37,20 +37,21 @@ class AdminLoader
 
         if (current_user_can( $capability )) {
            add_submenu_page( $slug,
-            	__('Dashboard',  \Slsgrid\Main::PREFIX),
-            	__('Dashboard',  \Slsgrid\Main::PREFIX),
+            	esc_html__('Dashboard',  \Slsgrid\Main::PREFIX),
+            	esc_html__('Dashboard',  \Slsgrid\Main::PREFIX),
             	$capability,
-            	'admin.php?page=' . $slug . '#/'
+            	$slug,
+            	[ $this, 'plugin_page' ]
             );
             add_submenu_page( $slug,
-            	__('Settings',  \Slsgrid\Main::PREFIX),
-            	__('Settings',  \Slsgrid\Main::PREFIX),
+            	esc_html__('Settings',  \Slsgrid\Main::PREFIX),
+            	esc_html__('Settings',  \Slsgrid\Main::PREFIX),
             	$capability,
-            	'admin.php?page=' . $slug . '#/settings'
+            	'#/settings'
             );
         }
 
-        add_action('load-' . $hook, [ $this, 'init_hooks']);
+        $this->init_hooks();
     }
 
     /**
@@ -70,6 +71,7 @@ class AdminLoader
      */
     public function enqueue_scripts()
     {
+        wp_enqueue_style(\Slsgrid\Main::PREFIX . '-bootstrap');
         wp_enqueue_style(\Slsgrid\Main::PREFIX . '-admin');
         wp_enqueue_script(\Slsgrid\Main::PREFIX . '-admin');
     }
@@ -95,6 +97,7 @@ class AdminLoader
 		    ],
 		] );
 
-        echo '<div class="admin-app-wrapper"><div id="vue-admin-app"></div></div>';
+		echo '<div class="admin-app-wrapper"><div id="vue-admin-app"></div></div>';
+        return '<div class="admin-app-wrapper"><div id="vue-admin-app"></div></div>';
     }
 }
