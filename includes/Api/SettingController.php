@@ -2,19 +2,26 @@
 namespace Slsgrid\Api;
 
 /**
- * Backend controller
+ * Backend settings controller
+ *
  */
 class SettingController extends \WP_REST_Controller
 {
+	/**
+	 * The application domain
+	 *
+	 * @var string
+	 */
 	private $prefix;
 
     /**
-     * Initialize this class
+     * Initialize this class.
+     *
      */
     public function __construct()
     {
         $this->prefix = \Slsgrid\Main::PREFIX;
-        $this->namespace = $orefix . '/v1';
+        $this->namespace = $this->prefix . '/v1';
         $this->rest_base = 'settings';
     }
 

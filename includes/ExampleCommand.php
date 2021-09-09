@@ -3,6 +3,7 @@ namespace Slsgrid;
 
 /**
  * Implements example command.
+ *
  */
 class ExampleCommand {
 

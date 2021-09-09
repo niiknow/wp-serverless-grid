@@ -3,6 +3,7 @@ namespace Slsgrid;
 
 /**
  * API routes loader
+ *
  */
 class ApiRoutes
 {
