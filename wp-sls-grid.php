@@ -1,6 +1,6 @@
 <?php
 /*
-Plugin Name: Wordpress Serverless Grid
+Plugin Name: Serverless Grid
 Plugin URI: https://github.com/niiknow/wp-sls-grid
 Description: A WordPress Plugin for static site searching
 Version: 0.1

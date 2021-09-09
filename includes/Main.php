@@ -95,9 +95,9 @@ final class Main
 		// set base url from plugin file name
         self::$BASEURL = plugins_url('', self::$PLUGINFILE);
 
-		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
-		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
-		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall_plugin') );
+		register_activation_hook( self::$PLUGINFILE, array( $this, 'activate_plugin' ) );
+		register_deactivation_hook( self::$PLUGINFILE, array( $this, 'deactivate_plugin' ) );
+		register_uninstall_hook( self::$PLUGINFILE, array( __CLASS__, 'uninstall_plugin') );
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 
@@ -153,7 +153,7 @@ final class Main
 	 */
 	public function activate_plugin()
 	{
-		(new \Slsgrid\Migration())->run( self::PREFIX, self::VERSION );
+		(new \Slsgrid\Migrations())->run( self::PREFIX, self::VERSION );
 
 		// set the current version to activate plugin
 		update_option( self::PREFIX . '_version', self::VERSION );
@@ -170,7 +170,7 @@ final class Main
 		// do stuff such as: shut off cron tasks, etc...
 
 		// remove version number to deactivate plugin
-		delete( self::PREFIX . '_version' );
+		delete_option( self::PREFIX . '_version' );
 	}
 
 
@@ -184,7 +184,7 @@ final class Main
 
 		$setting_key = self::PREFIX . '_settings';
 		$settings    = get_option($setting_key, []);
-		(new \Slsgrid\Migration())->cleanUp( self::PREFIX, $settings);
+		(new \Slsgrid\Migrations())->cleanUp( self::PREFIX, $settings);
 	}
 
 	/**

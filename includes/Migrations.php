@@ -98,8 +98,8 @@ final class Migrations
 		           `modified` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
 		           `created` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
 		           PRIMARY KEY (id),
-		           UNIQUE KEY `name` (`name`),
-		        ) DEFAULT CHARACTER SET {$this->db_charset} COLLATE {$this->db_collate};
+		           UNIQUE KEY `name` (`name`)
+		        ) CHARACTER SET '{$this->db_charset}' COLLATE '{$this->db_collate}';
 	    ";
 
 	    dbDelta($sqlQuery);

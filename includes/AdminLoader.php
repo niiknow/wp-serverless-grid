@@ -63,7 +63,7 @@ class AdminLoader
     public function enqueue_scripts()
     {
         wp_enqueue_style($this->prefix . '-bootstrap');
-        wp_enqueue_style($this->prefixX . '-admin');
+        wp_enqueue_style($this->prefix . '-admin');
         wp_enqueue_script($this->prefix . '-admin');
     }
 
