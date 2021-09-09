@@ -24,11 +24,9 @@ class IndexerCommand {
      */
     function index( $args, $assoc_args ) {
         list( $name ) = $args;
-        $sc = new Api\SettingController();
-        $settings = $sc->sanitize_settings([]);
 
         \WP_CLI::line('Starting index ' . $args[0]);
-        (new SearchIndexer($settings))->createIndex(empty($args[0]) ? -1 : $args[0], true);
+        (new SearchIndexer(\Slsgrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0], true);
         \WP_CLI::line('Index completed!');
     }
 }

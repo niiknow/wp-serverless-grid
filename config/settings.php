@@ -21,12 +21,5 @@ return array(
 		'type' => 'dropdownMultiselect',
 		'optionsCallback' => function() { return get_post_types( '', 'names' ); },
 		'default' => array( 'post', 'page' ),
-	),
-	'exclude_custom_fields' => array(
-		'name' => __( 'Exclude Custom Fields', \Slsgrid\Main::PREFIX ),
-		'description' => __( 'Which custom fields do you want to exclude from index?', \Slsgrid\Main::PREFIX ),
-		'type' => 'text',
-		'sanitize' => function($value) { return explode('/(\s*,*\s*)*,+(\s*,*\s*)*/', $value ); },
-		'default' => 'wprm_import_backup',
-	),
+	)
 );

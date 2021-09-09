@@ -5,7 +5,8 @@
 </template>
 
 <script>
-import { defineComponent } from "vue"
+import { defineComponent } from 'vue'
+import { filter } from 'smart-array-filter'
 
 export default defineComponent({
   name: 'Home',

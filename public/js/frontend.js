@@ -199,6 +199,8 @@ exports["default"] = void 0;
 
 var _vue = __webpack_require__(/*! vue */ "vue");
 
+var _smartArrayFilter = __webpack_require__(/*! smart-array-filter */ "./node_modules/smart-array-filter/src/index.js");
+
 var _default = (0, _vue.defineComponent)({
   name: 'Home',
   data: function data() {

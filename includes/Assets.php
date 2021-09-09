@@ -71,6 +71,7 @@ class Assets
     public function get_scripts()
     {
     	$assets_url = \Slsgrid\Main::$BASEURL . '/public';
+    	$plugin_dir =\Slsgrid\Main::$PLUGINDIR .  '/public';
         $prefix     = ''; // defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.min' : '';
 
         $scripts = [
@@ -86,25 +87,25 @@ class Assets
             ],
             \Slsgrid\Main::PREFIX . '-manifest' => [
                 'src'       => $assets_url . '/js/manifest.js',
-                'version'   => filemtime($assets_url . '/js/manifest.js'),
+                'version'   => filemtime($plugin_dir . '/js/manifest.js'),
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-vendor' => [
                 'src'       => $assets_url . '/js/vendor.js',
                 'deps'      => [ 'vuejs', \Slsgrid\Main::PREFIX . '-manifest' ],
-                'version'   => filemtime($assets_url . '/js/vendor.js'),
+                'version'   => filemtime($plugin_dir . '/js/vendor.js'),
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-frontend' => [
                 'src'       => $assets_url . '/js/frontend.js',
                 'deps'      => [ \Slsgrid\Main::PREFIX . '-vendor' ],
-                'version'   => filemtime($assets_url . '/js/frontend.js'),
+                'version'   => filemtime($plugin_dir . '/js/frontend.js'),
                 'in_footer' => true
             ],
             \Slsgrid\Main::PREFIX . '-admin' => [
                 'src'       => $assets_url . '/js/admin.js',
                 'deps'      => [ 'bootstrap', \Slsgrid\Main::PREFIX . '-vendor' ],
-                'version'   => filemtime($assets_url . '/js/admin.js'),
+                'version'   => filemtime($plugin_dir . '/js/admin.js'),
                 'in_footer' => true
             ]
         ];

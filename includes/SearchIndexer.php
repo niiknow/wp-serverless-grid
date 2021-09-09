@@ -3,20 +3,28 @@ namespace Slsgrid;
 
 class SearchIndexer
 {
+    public $indexFileUrl;
+    public $taxonomies;
+
     protected $indexFile;
-    protected $indexFileName = 'search-index.json';
-    protected $indexFileUrl;
     protected $settings;
     protected $users;
+    protected $prefix;
 
-    public function __construct($settings)
+    public function __construct($prefix)
     {
         $wpContentDir = rtrim(WP_CONTENT_DIR, '/') . '/';
 
-        $this->indexFile = $wpContentDir . $this->indexFileName;
-        $this->indexFileUrl = content_url($this->indexFileName);
+        $this->indexFile = $wpContentDir . 'search-index.json';
+        $this->indexFileUrl = content_url('search-index.json');
+        $this->taxonomies = $this->getTaxonomies();
+
+		$sc = new Api\SettingController();
+        $settings = $sc->sanitize_settings([]);
+
         $this->settings = $settings;
         $this->users = array_column(get_users(), 'data', 'ID');
+        $this->prefix = $prefix;
     }
 
     public function registerHooks()
@@ -64,18 +72,44 @@ class SearchIndexer
         $result = [];
 
         foreach($data as $key => $value) {
-        	// exclude custom fields
-        	if (! in_array($key, $this->settings['exclude_custom_fields'])) {
-	    		$result[$key] = maybe_unserialize($value);
-	    	}
+            $result[$key] = maybe_unserialize($value);
 	    }
 
 	    return $result;
 	}
 
+	public function getTaxonomies()
+	{
+		$taxonomies = get_taxonomies( '', 'names' );
+
+		$tax = [];
+        foreach($taxonomies as $tax_slug) {
+        	$terms = [];
+        	$myTerms = get_terms([
+            	'taxonomy' => $tax_slug,
+    			'hide_empty' => true,
+            ]);
+
+            foreach($myTerms as $term) {
+            	$terms[] = array(
+            		'value' => $term->slug,
+            		'text' => $term->name
+            	);
+            }
+
+            $tax[$tax_slug] = $terms;
+        }
+
+		$result = apply_filters( $this->prefix . '_indexer_taxonomies', $tax );
+
+        return $result;
+	}
+
     public function createIndex($size = -1)
     {
     	global $wpdb;
+
+		wp_suspend_cache_addition( true );
 
         $index = [];
         $total = $size;
@@ -125,11 +159,13 @@ class SearchIndexer
 	    wp_reset_query();
 	    wp_reset_postdata();
 
-        file_put_contents($this->indexFile, json_encode($index, JSON_PRETTY_PRINT));
+        file_put_contents($this->indexFile, json_encode($index));
 
 		if (! is_null($progress)) {
         	$progress->finish();
         }
+
+        wp_suspend_cache_addition( false );
     }
 
     public function refreshIndex()
@@ -196,7 +232,8 @@ class SearchIndexer
 
 		$record = array_merge($json, $this->getPostCustom($post->ID), $terms);
 
-		$result = apply_filters( \Slsgrid\Main::PREFIX . '_indexer_parserecord', $record, $post );
+		$result = apply_filters( $this->prefix . '_indexer_record', $record, $post );
+
 		return $result;
     }
 }

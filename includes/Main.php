@@ -97,7 +97,7 @@ final class Main
 
 		register_activation_hook( __FILE__, array( $this, 'activate_plugin' ) );
 		register_deactivation_hook( __FILE__, array( $this, 'deactivate_plugin' ) );
-		register_uninstall_hook( __FILE__, array( $this, 'uninstall_plugin') );
+		register_uninstall_hook( __FILE__, array( __CLASS__, 'uninstall_plugin') );
 
 		add_action( 'plugins_loaded', array( $this, 'plugins_loaded' ) );
 
@@ -178,7 +178,7 @@ final class Main
 	 * Do stuff during plugin uninstall
 	 *
 	 */
-	public function uninstall_plugin()
+	public static function uninstall_plugin()
 	{
 		flush_rewrite_rules();
 
@@ -200,7 +200,7 @@ final class Main
 		// initialize the various loader classes
 		if ($this->is_request( 'admin' ))
 		{
-			$this->container['admin'] = new \Slsgrid\AdminLoader();
+			$this->container['admin'] = new \Slsgrid\AdminLoader( self::PREFIX );
 		}
 
 		if ($this->is_request( 'frontend' ))
