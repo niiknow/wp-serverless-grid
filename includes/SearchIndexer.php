@@ -78,6 +78,16 @@ class SearchIndexer
     	global $wpdb;
 
         $index = [];
+        $args =  array(
+            'posts_per_page'   => $size,
+            'post_type'        => $this->settings['include_post_types'],
+            'post_status'      => 'publish',
+            'suppress_filters' => true,
+        );
+
+		$query = new \WP_Query( $args );
+
+		$total = $query->found_posts;
 
 		$args = array(
             'posts_per_page'   => $size,
@@ -91,10 +101,20 @@ class SearchIndexer
 
         $the_query = new \WP_Query($args);
 
+        $progress = NULL;
+
+		if (defined( 'WP_CLI' ) && \WP_CLI) {
+			\WP_CLI::line('Post count: ' . $total);
+			$progress = \WP_CLI\Utils\make_progress_bar( 'Progress Bar', $total );
+		}
+
         while ($the_query->have_posts()) {
             $the_query->the_post();
             global $post;
 
+			if (! is_null($progress)) {
+            	$progress->tick();
+            }
 
             $index[$post->ID] = $this->parseRecord($post);
         }
@@ -104,6 +124,10 @@ class SearchIndexer
 	    wp_reset_postdata();
 
         file_put_contents($this->indexFile, json_encode($index, JSON_PRETTY_PRINT));
+
+		if (! is_null($progress)) {
+        	$progress->finish();
+        }
     }
 
     public function refreshIndex()
@@ -115,7 +139,7 @@ class SearchIndexer
         $this->createIndex();
     }
 
-    public function updateIndex($ID = 0, $post = null)
+    public function updateIndex($ID = 0, $post = NULL)
     {
         if (! file_exists($this->indexFile)) {
             $this->createIndex();

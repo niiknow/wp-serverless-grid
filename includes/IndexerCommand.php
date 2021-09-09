@@ -26,7 +26,9 @@ class IndexerCommand {
         list( $name ) = $args;
         $sc = new Api\SettingController();
         $settings = $sc->sanitize_settings([]);
-        // \WP_CLI::line($args[0]);
-        (new SearchIndexer($settings))->createIndex(empty($args[0]) ? -1 : $args[0]);
+
+        \WP_CLI::line('Starting index ' . $args[0]);
+        (new SearchIndexer($settings))->createIndex(empty($args[0]) ? -1 : $args[0], true);
+        \WP_CLI::line('Index completed!');
     }
 }
