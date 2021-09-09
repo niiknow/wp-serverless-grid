@@ -6,11 +6,14 @@ namespace Slsgrid;
  */
 class Assets
 {
+	private $prefix;
+
 	/**
 	 * Initialize this class
 	 */
-    function __construct()
+    function __construct($prefix)
     {
+    	$this->prefix = $prefix;
         if (is_admin()) {
             add_action('admin_enqueue_scripts', [ $this, 'register' ]);
         } else {
@@ -85,26 +88,26 @@ class Assets
                 'version'   => 'latest',
                 'in_footer' => true
             ],
-            \Slsgrid\Main::PREFIX . '-manifest' => [
+            $this->prefix . '-manifest' => [
                 'src'       => $assets_url . '/js/manifest.js',
                 'version'   => filemtime($plugin_dir . '/js/manifest.js'),
                 'in_footer' => true
             ],
-            \Slsgrid\Main::PREFIX . '-vendor' => [
+            $this->prefix . '-vendor' => [
                 'src'       => $assets_url . '/js/vendor.js',
-                'deps'      => [ 'vuejs', \Slsgrid\Main::PREFIX . '-manifest' ],
+                'deps'      => [ 'vuejs', $this->prefix . '-manifest' ],
                 'version'   => filemtime($plugin_dir . '/js/vendor.js'),
                 'in_footer' => true
             ],
-            \Slsgrid\Main::PREFIX . '-frontend' => [
+            $this->prefix . '-frontend' => [
                 'src'       => $assets_url . '/js/frontend.js',
-                'deps'      => [ \Slsgrid\Main::PREFIX . '-vendor' ],
+                'deps'      => [ $this->prefix . '-vendor' ],
                 'version'   => filemtime($plugin_dir . '/js/frontend.js'),
                 'in_footer' => true
             ],
-            \Slsgrid\Main::PREFIX . '-admin' => [
+            $this->prefix . '-admin' => [
                 'src'       => $assets_url . '/js/admin.js',
-                'deps'      => [ 'bootstrap', \Slsgrid\Main::PREFIX . '-vendor' ],
+                'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
                 'version'   => filemtime($plugin_dir . '/js/admin.js'),
                 'in_footer' => true
             ]
@@ -123,13 +126,13 @@ class Assets
         $assets_url = \Slsgrid\Main::$BASEURL . '/public';
 
         $styles = [
-            \Slsgrid\Main::PREFIX . '-bootstrap' => [
+            $this->prefix . '-bootstrap' => [
                 'src' =>  'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css'
             ],
-            \Slsgrid\Main::PREFIX . '-frontend' => [
+            $this->prefix . '-frontend' => [
                 'src' =>  $assets_url . '/css/frontend.css'
             ],
-            \Slsgrid\Main::PREFIX . '-admin' => [
+            $this->prefix . '-admin' => [
                 'src' =>  $assets_url . '/css/admin.css'
             ],
         ];

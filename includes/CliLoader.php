@@ -9,10 +9,10 @@ class CliLoader
 	/**
 	 * Initialize this class
 	 */
-    public function __construct()
+    public function __construct($prefix)
     {
     	// this is where you can load Cli
-    	\WP_CLI::add_command( \Slsgrid\Main::PREFIX, \Slsgrid\ExampleCommand::class );
-    	\WP_CLI::add_command( \Slsgrid\Main::PREFIX, \Slsgrid\IndexerCommand::class );
+    	\WP_CLI::add_command( $prefix, \Slsgrid\ExampleCommand::class );
+    	\WP_CLI::add_command( $prefix, \Slsgrid\IndexerCommand::class );
     }
 }

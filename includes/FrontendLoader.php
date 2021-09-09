@@ -12,9 +12,9 @@ class FrontendLoader
     /**
      * Initialize this class
      */
-    public function __construct()
+    public function __construct($prefix)
     {
-        $this->prefix = \Slsgrid\Main::PREFIX;
+        $this->prefix = $prefix;
 
     	// let say your prefix is wp-awesome-plugin, then it will be wp-awesome-plugin-vue-app
         add_shortcode( $this->prefix . '-vue-app', [ $this, 'render_frontend' ]);

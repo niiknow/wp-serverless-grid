@@ -103,7 +103,7 @@ final class Main
 
 		// setup cli
 		if (defined( 'WP_CLI' ) && \WP_CLI) {
-			$this->container['cli'] = new \Slsgrid\CliLoader();
+			$this->container['cli'] = new \Slsgrid\CliLoader( self::PREFIX );
 		}
 	}
 
@@ -182,7 +182,7 @@ final class Main
 	{
 		flush_rewrite_rules();
 
-		$setting_key = \Slsgrid\Main::PREFIX . '_settings';
+		$setting_key = self::PREFIX . '_settings';
 		$settings    = get_option($setting_key, []);
 		(new \Slsgrid\Migration())->cleanUp( self::PREFIX, $settings);
 	}
@@ -195,7 +195,7 @@ final class Main
 	public function init_hook_handler()
 	{
 		// initialize assets
-		$this->container['assets'] = new \Slsgrid\Assets();
+		$this->container['assets'] = new \Slsgrid\Assets( self::PREFIX );
 
 		// initialize the various loader classes
 		if ($this->is_request( 'admin' ))
@@ -205,16 +205,16 @@ final class Main
 
 		if ($this->is_request( 'frontend' ))
 		{
-			$this->container['frontend'] = new \Slsgrid\FrontendLoader();
+			$this->container['frontend'] = new \Slsgrid\FrontendLoader( self::PREFIX );
 		}
 
 		if ($this->is_request( 'ajax' ))
 		{
-			// $this->container['ajax'] =  new \Slsgrid\AjaxLoader();
+			// $this->container['ajax'] =  new \Slsgrid\AjaxLoader( self::PREFIX );
 		}
 
 		// finally load api routes
-		$this->container['api'] = new \Slsgrid\ApiRoutes();
+		$this->container['api'] = new \Slsgrid\ApiRoutes( self::PREFIX );
 	}
 
 	/**

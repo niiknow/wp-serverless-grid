@@ -6,12 +6,15 @@ namespace Slsgrid\Api;
  */
 class SettingController extends \WP_REST_Controller
 {
+	private $prefix;
+
     /**
      * Initialize this class
      */
     public function __construct()
     {
-        $this->namespace = \Slsgrid\Main::PREFIX . '/v1';
+        $this->prefix = \Slsgrid\Main::PREFIX;
+        $this->namespace = $orefix . '/v1';
         $this->rest_base = 'settings';
     }
 
@@ -63,7 +66,7 @@ class SettingController extends \WP_REST_Controller
      */
     public function get_settings($request)
     {
-        $data = get_option( \Slsgrid\Main::PREFIX . '_settings', false );
+        $data = get_option(  $this->prefix . '_settings', false );
 
 		$response = array(
 			'data'  => array('settings' => $data ),
@@ -88,11 +91,11 @@ class SettingController extends \WP_REST_Controller
     	if (true === $rsp) {
     		$params       = $request->params['JSON'];
     		$settings     = isset( $params['settings'] ) ? $params['settings'] : array();
-    		$setting_key  = \Slsgrid\Main::PREFIX . '_settings';
+    		$setting_key  = $this->prefix . '_settings';
     		$new_settings = $this->sanitized_settings($settings);
     		$old_settings = get_option($setting_key);
 
-    		$data = apply_filters( \Slsgrid\Main::PREFIX . '_settings_update', $new_settings, $old_settings );
+    		$data = apply_filters( $this->prefix . '_settings_update', $new_settings, $old_settings );
     		update_option( $setting_key, $data );
 
 			$response = array(
@@ -215,7 +218,7 @@ class SettingController extends \WP_REST_Controller
 			}
 		}
 
-		$sanitized_value = apply_filters( \Slsgrid\Main::PREFIX . '_settings_sanitized', $sanitized_value, $value, $id, $details );
+		$sanitized_value = apply_filters( $this->prefix . '_settings_sanitized', $sanitized_value, $value, $id, $details );
 
 		if (is_null( $sanitized_value )) {
 			$sanitized_settings[ $id ] = $details[ $id ][ 'default' ];
