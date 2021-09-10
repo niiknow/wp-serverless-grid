@@ -99,7 +99,7 @@ final class Main
 
 		$setting_key = self::PREFIX . '_settings';
 		$settings    = get_option($setting_key, []);
-		(new \Baseapp\Migrations())->cleanUp( self::PREFIX, $settings);
+		(new \Slsgrid\Migrations())->cleanUp( self::PREFIX, $settings);
 	}
 
 	/**
@@ -119,7 +119,7 @@ final class Main
 
 		// setup cli
 		if ( defined( 'WP_CLI' ) && \WP_CLI ) {
-			$this->container['cli'] = new \Baseapp\CliLoader( self::PREFIX );
+			$this->container['cli'] = new \Slsgrid\CliLoader( self::PREFIX );
 		}
 
         $plugin = plugin_basename(self::$PLUGINFILE);

@@ -1,17 +1,60 @@
 <?php
 namespace Slsgrid;
 
-class SearchIndexer
+/**
+ * To index for searching
+ *
+ */
+final class SearchIndexer
 {
+    /**
+     * The index file system location
+     *
+     * @var string
+     */
+    private $indexFile;
+
+    /**
+     * The settings object.
+     *
+     * @var array
+     */
+    private $settings;
+
+    /**
+     * Hold users info
+     *
+     * @var array
+     */
+    private $users;
+
+	/**
+	 * The application domain
+	 *
+	 * @var string
+	 */
+    private $prefix;
+
+	/**
+	 * URL of index file
+	 *
+	 * @var string
+	 */
     public $indexFileUrl;
+
+    /**
+     * Hold cache of taxonomies.
+     *
+     * @var array
+     */
     public $taxonomies;
 
-    protected $indexFile;
-    protected $settings;
-    protected $users;
-    protected $prefix;
-
-    public function __construct($prefix)
+    /**
+     * The constructor
+     *
+     * @param string $prefix application domain or prefix
+     */
+    public function __construct( $prefix )
     {
         $wpContentDir = rtrim(WP_CONTENT_DIR, '/') . '/';
 
@@ -27,6 +70,11 @@ class SearchIndexer
         $this->prefix = $prefix;
     }
 
+    /**
+     * Help register hooks.
+     *
+     * @return void
+     */
     public function registerHooks()
     {
         // cf. https://codex.wordpress.org/Post_Status_Transitions
@@ -40,17 +88,13 @@ class SearchIndexer
         add_action('untrash_post', [$this, 'updateIndex']);
     }
 
-    public function activationHook()
-    {
-        $this->createIndex();
-    }
-
     /**
     * get custom fields for post, ignoring special fields (which start with '_')
+    *
     * @param int $post_id optional, will assume current post
     * @return array simple key=>value associative array
     */
-    function getPostCustom($post_id = 0) {
+    function getPostCustom( $post_id = 0 ) {
         // get all custom field values for post
         $custom = get_post_custom($post_id);
 
@@ -71,19 +115,26 @@ class SearchIndexer
 
         $result = [];
 
-        foreach($data as $key => $value) {
+        foreach($data as $key => $value)
+        {
             $result[$key] = maybe_unserialize($value);
 	    }
 
 	    return $result;
 	}
 
+	/**
+	 * Get all taxonomies.
+	 *
+	 * @return array
+	 */
 	public function getTaxonomies()
 	{
 		$taxonomies = get_taxonomies( '', 'names' );
 
 		$tax = [];
-        foreach($taxonomies as $tax_slug) {
+        foreach($taxonomies as $tax_slug)
+        {
         	$terms = [];
         	$myTerms = get_terms([
             	'taxonomy' => $tax_slug,
@@ -105,7 +156,13 @@ class SearchIndexer
         return $result;
 	}
 
-    public function createIndex($size = -1)
+	/**
+	 * Help to create index
+	 *
+	 * @param  integer $size the number of records
+	 * @return void
+	 */
+    public function createIndex( $size = -1 )
     {
     	global $wpdb;
 
@@ -168,8 +225,14 @@ class SearchIndexer
         wp_suspend_cache_addition( false );
     }
 
+    /**
+     * Helper method to refresh index.
+     *
+     * @return void
+     */
     public function refreshIndex()
     {
+    	// make sure to delete file before re-creation
         if (file_exists($this->indexFile)) {
             unlink($this->indexFile);
         }
@@ -177,7 +240,14 @@ class SearchIndexer
         $this->createIndex();
     }
 
-    public function updateIndex($ID = 0, $post = NULL)
+    /**
+     * Helper method to update index
+     *
+     * @param  integer $ID   the post id
+     * @param  object  $post wordpress post
+     * @return void
+     */
+    public function updateIndex( $ID = 0, $post = NULL )
     {
         if (! file_exists($this->indexFile)) {
             $this->createIndex();
@@ -195,7 +265,12 @@ class SearchIndexer
         }
     }
 
-    public function removePostFromIndex($ID)
+    /**
+     * [removePostFromIndex description]
+     * @param  integer $ID the post id
+     * @return void
+     */
+    public function removePostFromIndex( $ID )
     {
         if (! file_exists($this->indexFile)) {
             $this->createIndex();
@@ -208,7 +283,13 @@ class SearchIndexer
         }
     }
 
-    public function parseRecord($post)
+    /**
+     * Helper method to parse record.
+     *
+     * @param  object $post the wordpress post
+     * @return array       convert post to index record
+     */
+    public function parseRecord( $post )
     {
     	$image_url = get_the_post_thumbnail_url($post->ID, 'full');
     	$home_url  = home_url( '/' );
@@ -231,7 +312,6 @@ class SearchIndexer
         }
 
 		$record = array_merge($json, $this->getPostCustom($post->ID), $terms);
-
 		$result = apply_filters( $this->prefix . '_indexer_record', $record, $post );
 
 		return $result;
