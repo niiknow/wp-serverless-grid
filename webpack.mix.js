@@ -8,10 +8,6 @@ const webpackConfig = {
     'vue': 'Vue'
   },
   plugins: [
-    new webpack.ProvidePlugin({
-      $: 'jquery',
-      jQuery: 'jquery'
-    })
   ],
   resolve: {
     extensions: ['.js', '.json', '.vue', '.sass', '.scss', '.ts'],
