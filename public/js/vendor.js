@@ -1,113 +1,5 @@
 (self["webpackChunkvue_wp_plugin_starter"] = self["webpackChunkvue_wp_plugin_starter"] || []).push([["/js/vendor"],{
 
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/api.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/api.js ***!
-  \***********************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/app.js":
-/*!***********************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/app.js ***!
-  \***********************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/component.js":
-/*!*****************************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/component.js ***!
-  \*****************************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/context.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/context.js ***!
-  \***************************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/hooks.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/hooks.js ***!
-  \*************************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/index.js":
-/*!*************************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/index.js ***!
-  \*************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./node_modules/@vue/devtools-api/lib/esm/api/api.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_api__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _api__WEBPACK_IMPORTED_MODULE_0__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _api__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./app */ "./node_modules/@vue/devtools-api/lib/esm/api/app.js");
-/* harmony import */ var _app__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_app__WEBPACK_IMPORTED_MODULE_1__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _app__WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _app__WEBPACK_IMPORTED_MODULE_1__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./component */ "./node_modules/@vue/devtools-api/lib/esm/api/component.js");
-/* harmony import */ var _component__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(_component__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _component__WEBPACK_IMPORTED_MODULE_2__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _component__WEBPACK_IMPORTED_MODULE_2__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./context */ "./node_modules/@vue/devtools-api/lib/esm/api/context.js");
-/* harmony import */ var _context__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(_context__WEBPACK_IMPORTED_MODULE_3__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _context__WEBPACK_IMPORTED_MODULE_3__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _context__WEBPACK_IMPORTED_MODULE_3__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./hooks */ "./node_modules/@vue/devtools-api/lib/esm/api/hooks.js");
-/* harmony import */ var _hooks__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(_hooks__WEBPACK_IMPORTED_MODULE_4__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _hooks__WEBPACK_IMPORTED_MODULE_4__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _hooks__WEBPACK_IMPORTED_MODULE_4__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./util */ "./node_modules/@vue/devtools-api/lib/esm/api/util.js");
-/* harmony import */ var _util__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(_util__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _util__WEBPACK_IMPORTED_MODULE_5__) if(__WEBPACK_IMPORT_KEY__ !== "default") __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _util__WEBPACK_IMPORTED_MODULE_5__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
-
-
-
-
-
-
-
-
-/***/ }),
-
-/***/ "./node_modules/@vue/devtools-api/lib/esm/api/util.js":
-/*!************************************************************!*\
-  !*** ./node_modules/@vue/devtools-api/lib/esm/api/util.js ***!
-  \************************************************************/
-/***/ (function() {
-
-
-
-/***/ }),
-
 /***/ "./node_modules/@vue/devtools-api/lib/esm/const.js":
 /*!*********************************************************!*\
   !*** ./node_modules/@vue/devtools-api/lib/esm/const.js ***!
@@ -117,9 +9,11 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "HOOK_SETUP": function() { return /* binding */ HOOK_SETUP; }
+/* harmony export */   "HOOK_SETUP": function() { return /* binding */ HOOK_SETUP; },
+/* harmony export */   "HOOK_PLUGIN_SETTINGS_SET": function() { return /* binding */ HOOK_PLUGIN_SETTINGS_SET; }
 /* harmony export */ });
 const HOOK_SETUP = 'devtools-plugin:setup';
+const HOOK_PLUGIN_SETTINGS_SET = 'plugin:settings:set';
 
 
 /***/ }),
@@ -134,19 +28,21 @@ const HOOK_SETUP = 'devtools-plugin:setup';
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "getDevtoolsGlobalHook": function() { return /* binding */ getDevtoolsGlobalHook; },
-/* harmony export */   "getTarget": function() { return /* binding */ getTarget; }
+/* harmony export */   "getTarget": function() { return /* binding */ getTarget; },
+/* harmony export */   "isProxyAvailable": function() { return /* binding */ isProxyAvailable; }
 /* harmony export */ });
 function getDevtoolsGlobalHook() {
     return getTarget().__VUE_DEVTOOLS_GLOBAL_HOOK__;
 }
 function getTarget() {
     // @ts-ignore
-    return typeof navigator !== 'undefined'
+    return (typeof navigator !== 'undefined' && typeof window !== 'undefined')
         ? window
         : typeof __webpack_require__.g !== 'undefined'
             ? __webpack_require__.g
             : {};
 }
+const isProxyAvailable = typeof Proxy === 'function';
 
 
 /***/ }),
@@ -162,27 +58,150 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "setupDevtoolsPlugin": function() { return /* binding */ setupDevtoolsPlugin; }
 /* harmony export */ });
-/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./env */ "./node_modules/@vue/devtools-api/lib/esm/env.js");
-/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
-/* harmony import */ var _api__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./api */ "./node_modules/@vue/devtools-api/lib/esm/api/index.js");
-/* harmony reexport (unknown) */ var __WEBPACK_REEXPORT_OBJECT__ = {};
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _api__WEBPACK_IMPORTED_MODULE_0__) if(["default","setupDevtoolsPlugin"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) __WEBPACK_REEXPORT_OBJECT__[__WEBPACK_IMPORT_KEY__] = function(key) { return _api__WEBPACK_IMPORTED_MODULE_0__[key]; }.bind(0, __WEBPACK_IMPORT_KEY__)
-/* harmony reexport (unknown) */ __webpack_require__.d(__webpack_exports__, __WEBPACK_REEXPORT_OBJECT__);
+/* harmony import */ var _env__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./env */ "./node_modules/@vue/devtools-api/lib/esm/env.js");
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
+/* harmony import */ var _proxy__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./proxy */ "./node_modules/@vue/devtools-api/lib/esm/proxy.js");
+
+
 
 
 
 function setupDevtoolsPlugin(pluginDescriptor, setupFn) {
-    const hook = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getDevtoolsGlobalHook)();
-    if (hook) {
-        hook.emit(_const__WEBPACK_IMPORTED_MODULE_2__.HOOK_SETUP, pluginDescriptor, setupFn);
+    const target = (0,_env__WEBPACK_IMPORTED_MODULE_0__.getTarget)();
+    const hook = (0,_env__WEBPACK_IMPORTED_MODULE_0__.getDevtoolsGlobalHook)();
+    const enableProxy = _env__WEBPACK_IMPORTED_MODULE_0__.isProxyAvailable && pluginDescriptor.enableEarlyProxy;
+    if (hook && (target.__VUE_DEVTOOLS_PLUGIN_API_AVAILABLE__ || !enableProxy)) {
+        hook.emit(_const__WEBPACK_IMPORTED_MODULE_1__.HOOK_SETUP, pluginDescriptor, setupFn);
     }
     else {
-        const target = (0,_env__WEBPACK_IMPORTED_MODULE_1__.getTarget)();
+        const proxy = enableProxy ? new _proxy__WEBPACK_IMPORTED_MODULE_2__.ApiProxy(pluginDescriptor, hook) : null;
         const list = target.__VUE_DEVTOOLS_PLUGINS__ = target.__VUE_DEVTOOLS_PLUGINS__ || [];
         list.push({
             pluginDescriptor,
-            setupFn
+            setupFn,
+            proxy,
         });
+        if (proxy)
+            setupFn(proxy.proxiedTarget);
+    }
+}
+
+
+/***/ }),
+
+/***/ "./node_modules/@vue/devtools-api/lib/esm/proxy.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@vue/devtools-api/lib/esm/proxy.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "ApiProxy": function() { return /* binding */ ApiProxy; }
+/* harmony export */ });
+/* harmony import */ var _const__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./const */ "./node_modules/@vue/devtools-api/lib/esm/const.js");
+
+class ApiProxy {
+    constructor(plugin, hook) {
+        this.target = null;
+        this.targetQueue = [];
+        this.onQueue = [];
+        this.plugin = plugin;
+        this.hook = hook;
+        const defaultSettings = {};
+        if (plugin.settings) {
+            for (const id in plugin.settings) {
+                const item = plugin.settings[id];
+                defaultSettings[id] = item.defaultValue;
+            }
+        }
+        const localSettingsSaveId = `__vue-devtools-plugin-settings__${plugin.id}`;
+        let currentSettings = Object.assign({}, defaultSettings);
+        try {
+            const raw = localStorage.getItem(localSettingsSaveId);
+            const data = JSON.parse(raw);
+            Object.assign(currentSettings, data);
+        }
+        catch (e) {
+            // noop
+        }
+        this.fallbacks = {
+            getSettings() {
+                return currentSettings;
+            },
+            setSettings(value) {
+                try {
+                    localStorage.setItem(localSettingsSaveId, JSON.stringify(value));
+                }
+                catch (e) {
+                    // noop
+                }
+                currentSettings = value;
+            },
+        };
+        if (hook) {
+            hook.on(_const__WEBPACK_IMPORTED_MODULE_0__.HOOK_PLUGIN_SETTINGS_SET, (pluginId, value) => {
+                if (pluginId === this.plugin.id) {
+                    this.fallbacks.setSettings(value);
+                }
+            });
+        }
+        this.proxiedOn = new Proxy({}, {
+            get: (_target, prop) => {
+                if (this.target) {
+                    return this.target.on[prop];
+                }
+                else {
+                    return (...args) => {
+                        this.onQueue.push({
+                            method: prop,
+                            args,
+                        });
+                    };
+                }
+            },
+        });
+        this.proxiedTarget = new Proxy({}, {
+            get: (_target, prop) => {
+                if (this.target) {
+                    return this.target[prop];
+                }
+                else if (prop === 'on') {
+                    return this.proxiedOn;
+                }
+                else if (Object.keys(this.fallbacks).includes(prop)) {
+                    return (...args) => {
+                        this.targetQueue.push({
+                            method: prop,
+                            args,
+                            resolve: () => { },
+                        });
+                        return this.fallbacks[prop](...args);
+                    };
+                }
+                else {
+                    return (...args) => {
+                        return new Promise(resolve => {
+                            this.targetQueue.push({
+                                method: prop,
+                                args,
+                                resolve,
+                            });
+                        });
+                    };
+                }
+            },
+        });
+    }
+    async setRealTarget(target) {
+        this.target = target;
+        for (const item of this.onQueue) {
+            this.target.on[item.method](...item.args);
+        }
+        for (const item of this.targetQueue) {
+            item.resolve(await this.target[item.method](...item.args));
+        }
     }
 }
 
@@ -216,12 +235,24 @@ var buildFullPath = __webpack_require__(/*! ../core/buildFullPath */ "./node_mod
 var parseHeaders = __webpack_require__(/*! ./../helpers/parseHeaders */ "./node_modules/axios/lib/helpers/parseHeaders.js");
 var isURLSameOrigin = __webpack_require__(/*! ./../helpers/isURLSameOrigin */ "./node_modules/axios/lib/helpers/isURLSameOrigin.js");
 var createError = __webpack_require__(/*! ../core/createError */ "./node_modules/axios/lib/core/createError.js");
+var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var Cancel = __webpack_require__(/*! ../cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
     var requestData = config.data;
     var requestHeaders = config.headers;
     var responseType = config.responseType;
+    var onCanceled;
+    function done() {
+      if (config.cancelToken) {
+        config.cancelToken.unsubscribe(onCanceled);
+      }
+
+      if (config.signal) {
+        config.signal.removeEventListener('abort', onCanceled);
+      }
+    }
 
     if (utils.isFormData(requestData)) {
       delete requestHeaders['Content-Type']; // Let the browser set it
@@ -259,7 +290,13 @@ module.exports = function xhrAdapter(config) {
         request: request
       };
 
-      settle(resolve, reject, response);
+      settle(function _resolve(value) {
+        resolve(value);
+        done();
+      }, function _reject(err) {
+        reject(err);
+        done();
+      }, response);
 
       // Clean up request
       request = null;
@@ -312,14 +349,15 @@ module.exports = function xhrAdapter(config) {
 
     // Handle timeout
     request.ontimeout = function handleTimeout() {
-      var timeoutErrorMessage = 'timeout of ' + config.timeout + 'ms exceeded';
+      var timeoutErrorMessage = config.timeout ? 'timeout of ' + config.timeout + 'ms exceeded' : 'timeout exceeded';
+      var transitional = config.transitional || defaults.transitional;
       if (config.timeoutErrorMessage) {
         timeoutErrorMessage = config.timeoutErrorMessage;
       }
       reject(createError(
         timeoutErrorMessage,
         config,
-        config.transitional && config.transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED',
+        transitional.clarifyTimeoutError ? 'ETIMEDOUT' : 'ECONNABORTED',
         request));
 
       // Clean up request
@@ -373,18 +411,22 @@ module.exports = function xhrAdapter(config) {
       request.upload.addEventListener('progress', config.onUploadProgress);
     }
 
-    if (config.cancelToken) {
+    if (config.cancelToken || config.signal) {
       // Handle cancellation
-      config.cancelToken.promise.then(function onCanceled(cancel) {
+      // eslint-disable-next-line func-names
+      onCanceled = function(cancel) {
         if (!request) {
           return;
         }
-
+        reject(!cancel || (cancel && cancel.type) ? new Cancel('canceled') : cancel);
         request.abort();
-        reject(cancel);
-        // Clean up request
         request = null;
-      });
+      };
+
+      config.cancelToken && config.cancelToken.subscribe(onCanceled);
+      if (config.signal) {
+        config.signal.aborted ? onCanceled() : config.signal.addEventListener('abort', onCanceled);
+      }
     }
 
     if (!requestData) {
@@ -430,6 +472,11 @@ function createInstance(defaultConfig) {
   // Copy context to instance
   utils.extend(instance, context);
 
+  // Factory for creating new instances
+  instance.create = function create(instanceConfig) {
+    return createInstance(mergeConfig(defaultConfig, instanceConfig));
+  };
+
   return instance;
 }
 
@@ -439,15 +486,11 @@ var axios = createInstance(defaults);
 // Expose Axios class to allow class inheritance
 axios.Axios = Axios;
 
-// Factory for creating new instances
-axios.create = function create(instanceConfig) {
-  return createInstance(mergeConfig(axios.defaults, instanceConfig));
-};
-
 // Expose Cancel & CancelToken
 axios.Cancel = __webpack_require__(/*! ./cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 axios.CancelToken = __webpack_require__(/*! ./cancel/CancelToken */ "./node_modules/axios/lib/cancel/CancelToken.js");
 axios.isCancel = __webpack_require__(/*! ./cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
+axios.VERSION = (__webpack_require__(/*! ./env/data */ "./node_modules/axios/lib/env/data.js").version);
 
 // Expose all/spread
 axios.all = function all(promises) {
@@ -519,11 +562,42 @@ function CancelToken(executor) {
   }
 
   var resolvePromise;
+
   this.promise = new Promise(function promiseExecutor(resolve) {
     resolvePromise = resolve;
   });
 
   var token = this;
+
+  // eslint-disable-next-line func-names
+  this.promise.then(function(cancel) {
+    if (!token._listeners) return;
+
+    var i;
+    var l = token._listeners.length;
+
+    for (i = 0; i < l; i++) {
+      token._listeners[i](cancel);
+    }
+    token._listeners = null;
+  });
+
+  // eslint-disable-next-line func-names
+  this.promise.then = function(onfulfilled) {
+    var _resolve;
+    // eslint-disable-next-line func-names
+    var promise = new Promise(function(resolve) {
+      token.subscribe(resolve);
+      _resolve = resolve;
+    }).then(onfulfilled);
+
+    promise.cancel = function reject() {
+      token.unsubscribe(_resolve);
+    };
+
+    return promise;
+  };
+
   executor(function cancel(message) {
     if (token.reason) {
       // Cancellation has already been requested
@@ -541,6 +615,37 @@ function CancelToken(executor) {
 CancelToken.prototype.throwIfRequested = function throwIfRequested() {
   if (this.reason) {
     throw this.reason;
+  }
+};
+
+/**
+ * Subscribe to the cancel signal
+ */
+
+CancelToken.prototype.subscribe = function subscribe(listener) {
+  if (this.reason) {
+    listener(this.reason);
+    return;
+  }
+
+  if (this._listeners) {
+    this._listeners.push(listener);
+  } else {
+    this._listeners = [listener];
+  }
+};
+
+/**
+ * Unsubscribe from the cancel signal
+ */
+
+CancelToken.prototype.unsubscribe = function unsubscribe(listener) {
+  if (!this._listeners) {
+    return;
+  }
+  var index = this._listeners.indexOf(listener);
+  if (index !== -1) {
+    this._listeners.splice(index, 1);
   }
 };
 
@@ -640,9 +745,9 @@ Axios.prototype.request = function request(config) {
 
   if (transitional !== undefined) {
     validator.assertOptions(transitional, {
-      silentJSONParsing: validators.transitional(validators.boolean, '1.0.0'),
-      forcedJSONParsing: validators.transitional(validators.boolean, '1.0.0'),
-      clarifyTimeoutError: validators.transitional(validators.boolean, '1.0.0')
+      silentJSONParsing: validators.transitional(validators.boolean),
+      forcedJSONParsing: validators.transitional(validators.boolean),
+      clarifyTimeoutError: validators.transitional(validators.boolean)
     }, false);
   }
 
@@ -877,6 +982,7 @@ var utils = __webpack_require__(/*! ./../utils */ "./node_modules/axios/lib/util
 var transformData = __webpack_require__(/*! ./transformData */ "./node_modules/axios/lib/core/transformData.js");
 var isCancel = __webpack_require__(/*! ../cancel/isCancel */ "./node_modules/axios/lib/cancel/isCancel.js");
 var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/defaults.js");
+var Cancel = __webpack_require__(/*! ../cancel/Cancel */ "./node_modules/axios/lib/cancel/Cancel.js");
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -884,6 +990,10 @@ var defaults = __webpack_require__(/*! ../defaults */ "./node_modules/axios/lib/
 function throwIfCancellationRequested(config) {
   if (config.cancelToken) {
     config.cancelToken.throwIfRequested();
+  }
+
+  if (config.signal && config.signal.aborted) {
+    throw new Cancel('canceled');
   }
 }
 
@@ -1001,7 +1111,8 @@ module.exports = function enhanceError(error, config, code, request, response) {
       stack: this.stack,
       // Axios
       config: this.config,
-      code: this.code
+      code: this.code,
+      status: this.response && this.response.status ? this.response.status : null
     };
   };
   return error;
@@ -1034,17 +1145,6 @@ module.exports = function mergeConfig(config1, config2) {
   config2 = config2 || {};
   var config = {};
 
-  var valueFromConfig2Keys = ['url', 'method', 'data'];
-  var mergeDeepPropertiesKeys = ['headers', 'auth', 'proxy', 'params'];
-  var defaultToConfig2Keys = [
-    'baseURL', 'transformRequest', 'transformResponse', 'paramsSerializer',
-    'timeout', 'timeoutMessage', 'withCredentials', 'adapter', 'responseType', 'xsrfCookieName',
-    'xsrfHeaderName', 'onUploadProgress', 'onDownloadProgress', 'decompress',
-    'maxContentLength', 'maxBodyLength', 'maxRedirects', 'transport', 'httpAgent',
-    'httpsAgent', 'cancelToken', 'socketPath', 'responseEncoding'
-  ];
-  var directMergeKeys = ['validateStatus'];
-
   function getMergedValue(target, source) {
     if (utils.isPlainObject(target) && utils.isPlainObject(source)) {
       return utils.merge(target, source);
@@ -1056,51 +1156,74 @@ module.exports = function mergeConfig(config1, config2) {
     return source;
   }
 
+  // eslint-disable-next-line consistent-return
   function mergeDeepProperties(prop) {
     if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(config1[prop], config2[prop]);
+      return getMergedValue(config1[prop], config2[prop]);
     } else if (!utils.isUndefined(config1[prop])) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
+      return getMergedValue(undefined, config1[prop]);
     }
   }
 
-  utils.forEach(valueFromConfig2Keys, function valueFromConfig2(prop) {
+  // eslint-disable-next-line consistent-return
+  function valueFromConfig2(prop) {
     if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(undefined, config2[prop]);
+      return getMergedValue(undefined, config2[prop]);
     }
-  });
+  }
 
-  utils.forEach(mergeDeepPropertiesKeys, mergeDeepProperties);
-
-  utils.forEach(defaultToConfig2Keys, function defaultToConfig2(prop) {
+  // eslint-disable-next-line consistent-return
+  function defaultToConfig2(prop) {
     if (!utils.isUndefined(config2[prop])) {
-      config[prop] = getMergedValue(undefined, config2[prop]);
+      return getMergedValue(undefined, config2[prop]);
     } else if (!utils.isUndefined(config1[prop])) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
+      return getMergedValue(undefined, config1[prop]);
     }
-  });
+  }
 
-  utils.forEach(directMergeKeys, function merge(prop) {
+  // eslint-disable-next-line consistent-return
+  function mergeDirectKeys(prop) {
     if (prop in config2) {
-      config[prop] = getMergedValue(config1[prop], config2[prop]);
+      return getMergedValue(config1[prop], config2[prop]);
     } else if (prop in config1) {
-      config[prop] = getMergedValue(undefined, config1[prop]);
+      return getMergedValue(undefined, config1[prop]);
     }
+  }
+
+  var mergeMap = {
+    'url': valueFromConfig2,
+    'method': valueFromConfig2,
+    'data': valueFromConfig2,
+    'baseURL': defaultToConfig2,
+    'transformRequest': defaultToConfig2,
+    'transformResponse': defaultToConfig2,
+    'paramsSerializer': defaultToConfig2,
+    'timeout': defaultToConfig2,
+    'timeoutMessage': defaultToConfig2,
+    'withCredentials': defaultToConfig2,
+    'adapter': defaultToConfig2,
+    'responseType': defaultToConfig2,
+    'xsrfCookieName': defaultToConfig2,
+    'xsrfHeaderName': defaultToConfig2,
+    'onUploadProgress': defaultToConfig2,
+    'onDownloadProgress': defaultToConfig2,
+    'decompress': defaultToConfig2,
+    'maxContentLength': defaultToConfig2,
+    'maxBodyLength': defaultToConfig2,
+    'transport': defaultToConfig2,
+    'httpAgent': defaultToConfig2,
+    'httpsAgent': defaultToConfig2,
+    'cancelToken': defaultToConfig2,
+    'socketPath': defaultToConfig2,
+    'responseEncoding': defaultToConfig2,
+    'validateStatus': mergeDirectKeys
+  };
+
+  utils.forEach(Object.keys(config1).concat(Object.keys(config2)), function computeConfigValue(prop) {
+    var merge = mergeMap[prop] || mergeDeepProperties;
+    var configValue = merge(prop);
+    (utils.isUndefined(configValue) && merge !== mergeDirectKeys) || (config[prop] = configValue);
   });
-
-  var axiosKeys = valueFromConfig2Keys
-    .concat(mergeDeepPropertiesKeys)
-    .concat(defaultToConfig2Keys)
-    .concat(directMergeKeys);
-
-  var otherKeys = Object
-    .keys(config1)
-    .concat(Object.keys(config2))
-    .filter(function filterAxiosKeys(key) {
-      return axiosKeys.indexOf(key) === -1;
-    });
-
-  utils.forEach(otherKeys, mergeDeepProperties);
 
   return config;
 };
@@ -1184,7 +1307,7 @@ module.exports = function transformData(data, headers, fns) {
 /***/ (function(module, __unused_webpack_exports, __webpack_require__) {
 
 "use strict";
-/* provided dependency */ var process = __webpack_require__(/*! process/browser */ "./node_modules/process/browser.js");
+/* provided dependency */ var process = __webpack_require__(/*! process/browser.js */ "./node_modules/process/browser.js");
 
 
 var utils = __webpack_require__(/*! ./utils */ "./node_modules/axios/lib/utils.js");
@@ -1266,7 +1389,7 @@ var defaults = {
   }],
 
   transformResponse: [function transformResponse(data) {
-    var transitional = this.transitional;
+    var transitional = this.transitional || defaults.transitional;
     var silentJSONParsing = transitional && transitional.silentJSONParsing;
     var forcedJSONParsing = transitional && transitional.forcedJSONParsing;
     var strictJSONParsing = !silentJSONParsing && this.responseType === 'json';
@@ -1301,12 +1424,12 @@ var defaults = {
 
   validateStatus: function validateStatus(status) {
     return status >= 200 && status < 300;
-  }
-};
+  },
 
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
+  headers: {
+    common: {
+      'Accept': 'application/json, text/plain, */*'
+    }
   }
 };
 
@@ -1320,6 +1443,18 @@ utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
 
 module.exports = defaults;
 
+
+/***/ }),
+
+/***/ "./node_modules/axios/lib/env/data.js":
+/*!********************************************!*\
+  !*** ./node_modules/axios/lib/env/data.js ***!
+  \********************************************/
+/***/ (function(module) {
+
+module.exports = {
+  "version": "0.24.0"
+};
 
 /***/ }),
 
@@ -1775,7 +1910,7 @@ module.exports = function spread(callback) {
 "use strict";
 
 
-var pkg = __webpack_require__(/*! ./../../package.json */ "./node_modules/axios/package.json");
+var VERSION = (__webpack_require__(/*! ../env/data */ "./node_modules/axios/lib/env/data.js").version);
 
 var validators = {};
 
@@ -1787,48 +1922,26 @@ var validators = {};
 });
 
 var deprecatedWarnings = {};
-var currentVerArr = pkg.version.split('.');
-
-/**
- * Compare package versions
- * @param {string} version
- * @param {string?} thanVersion
- * @returns {boolean}
- */
-function isOlderVersion(version, thanVersion) {
-  var pkgVersionArr = thanVersion ? thanVersion.split('.') : currentVerArr;
-  var destVer = version.split('.');
-  for (var i = 0; i < 3; i++) {
-    if (pkgVersionArr[i] > destVer[i]) {
-      return true;
-    } else if (pkgVersionArr[i] < destVer[i]) {
-      return false;
-    }
-  }
-  return false;
-}
 
 /**
  * Transitional option validator
- * @param {function|boolean?} validator
- * @param {string?} version
- * @param {string} message
+ * @param {function|boolean?} validator - set to false if the transitional option has been removed
+ * @param {string?} version - deprecated version / removed since version
+ * @param {string?} message - some message with additional info
  * @returns {function}
  */
 validators.transitional = function transitional(validator, version, message) {
-  var isDeprecated = version && isOlderVersion(version);
-
   function formatMessage(opt, desc) {
-    return '[Axios v' + pkg.version + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
+    return '[Axios v' + VERSION + '] Transitional option \'' + opt + '\'' + desc + (message ? '. ' + message : '');
   }
 
   // eslint-disable-next-line func-names
   return function(value, opt, opts) {
     if (validator === false) {
-      throw new Error(formatMessage(opt, ' has been removed in ' + version));
+      throw new Error(formatMessage(opt, ' has been removed' + (version ? ' in ' + version : '')));
     }
 
-    if (isDeprecated && !deprecatedWarnings[opt]) {
+    if (version && !deprecatedWarnings[opt]) {
       deprecatedWarnings[opt] = true;
       // eslint-disable-next-line no-console
       console.warn(
@@ -1874,7 +1987,6 @@ function assertOptions(options, schema, allowUnknown) {
 }
 
 module.exports = {
-  isOlderVersion: isOlderVersion,
   assertOptions: assertOptions,
   validators: validators
 };
@@ -2688,182 +2800,23 @@ process.umask = function() { return 0; };
 
 /***/ }),
 
-/***/ "./node_modules/smart-array-filter/src/getCheckNumber.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/smart-array-filter/src/getCheckNumber.js ***!
-  \***************************************************************/
+/***/ "./node_modules/smart-array-filter/lib-esm/index.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/index.js ***!
+  \**********************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ getCheckNumber; }
-/* harmony export */ });
-const operators = {
-  '<': (query) => {
-    return function (number) {
-      return number < query;
-    };
-  },
-  '<=': (query) => {
-    return function (number) {
-      return number <= query;
-    };
-  },
-  '=': (query) => {
-    return function (number) {
-      return number === query;
-    };
-  },
-  '>=': (query) => {
-    return function (number) {
-      return number >= query;
-    };
-  },
-  '>': (query) => {
-    return function (number) {
-      return number > query;
-    };
-  },
-};
-
-// we also deal with ..10 and 10..
-operators['..'] = operators['<='];
-
-function getCheckNumber(keyword) {
-  let match = /^\s*\(?\s*(<|<=|=|>=|>|\.\.)?(-?\d*\.?\d+)(?:(\.\.)(-?\d*\.?\d*))?\s*\)?\s*$/.exec(
-    keyword,
-  );
-  let checkNumber = () => false;
-  if (match) {
-    let operator = match[1];
-    let query = parseFloat(match[2]);
-    let dots = match[3];
-    let secondQuery = match[4];
-    if (operator) {
-      checkNumber = operators[operator](query);
-    } else if (dots) {
-      if (secondQuery !== '') {
-        secondQuery = parseFloat(secondQuery);
-        checkNumber = function (number) {
-          return query <= number && number <= secondQuery;
-        };
-      } else {
-        checkNumber = operators['>='](query);
-      }
-    } else {
-      checkNumber = operators['='](query);
-    }
-  }
-  return checkNumber;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/smart-array-filter/src/getCheckString.js":
-/*!***************************************************************!*\
-  !*** ./node_modules/smart-array-filter/src/getCheckString.js ***!
-  \***************************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "default": function() { return /* binding */ getCheckString; }
+/* harmony export */   "filter": function() { return /* binding */ filter; }
 /* harmony export */ });
 /* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.escaperegexp */ "./node_modules/lodash.escaperegexp/index.js");
 /* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__);
-
-
-const operators = {
-  '<': (query) => {
-    return function (string) {
-      return string < query;
-    };
-  },
-  '<=': (query) => {
-    return function (string) {
-      return string <= query;
-    };
-  },
-  '=': (query, insensitive) => {
-    query = `^${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(query)}$`;
-    const reg = new RegExp(query, insensitive);
-
-    return function (string) {
-      return reg.test(string);
-    };
-  },
-  '~': (query, insensitive) => {
-    query = lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(query);
-    const reg = new RegExp(query, insensitive);
-
-    return function (string) {
-      return reg.test(string);
-    };
-  },
-  '>=': (query) => {
-    return function (string) {
-      return string >= query;
-    };
-  },
-  '>': (query) => {
-    return function (string) {
-      return string > query;
-    };
-  },
-};
-
-operators['..'] = operators['<='];
-
-function getCheckString(keyword, insensitive) {
-  let parts = keyword.split('..');
-  let match = /^\s*\(?\s*(<|<=|=|>=|>)?(\S*)\s*\)?$/.exec(parts[0]);
-  let checkString = () => false;
-  if (match) {
-    let operator = match[1];
-    let query = match[2];
-    let dots = parts.length > 1 ? '..' : '';
-    let secondQuery = parts[1];
-    if (operator) {
-      checkString = operators[operator](query, insensitive);
-    } else if (dots) {
-      if (secondQuery !== '') {
-        checkString = function (string) {
-          return query <= string && string <= secondQuery;
-        };
-      } else {
-        checkString = operators['>='](query, insensitive);
-      }
-    } else {
-      checkString = operators['~'](query, insensitive);
-    }
-  }
-  return checkString;
-}
-
-
-/***/ }),
-
-/***/ "./node_modules/smart-array-filter/src/index.js":
-/*!******************************************************!*\
-  !*** ./node_modules/smart-array-filter/src/index.js ***!
-  \******************************************************/
-/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export */ __webpack_require__.d(__webpack_exports__, {
-/* harmony export */   "filter": function() { return /* binding */ filter; },
-/* harmony export */   "match": function() { return /* binding */ match; }
-/* harmony export */ });
-/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.escaperegexp */ "./node_modules/lodash.escaperegexp/index.js");
-/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__);
-/* harmony import */ var _getCheckNumber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getCheckNumber */ "./node_modules/smart-array-filter/src/getCheckNumber.js");
-/* harmony import */ var _getCheckString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getCheckString */ "./node_modules/smart-array-filter/src/getCheckString.js");
-/* harmony import */ var _parseKeywords__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./parseKeywords */ "./node_modules/smart-array-filter/src/parseKeywords.js");
-
+/* harmony import */ var _match_match__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./match/match */ "./node_modules/smart-array-filter/lib-esm/match/match.js");
+/* harmony import */ var _utils_convertKeywordsToCriteria__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./utils/convertKeywordsToCriteria */ "./node_modules/smart-array-filter/lib-esm/utils/convertKeywordsToCriteria.js");
+/* harmony import */ var _utils_ensureObjectOfRegExps__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils/ensureObjectOfRegExps */ "./node_modules/smart-array-filter/lib-esm/utils/ensureObjectOfRegExps.js");
+/* harmony import */ var _utils_parseKeywords__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./utils/parseKeywords */ "./node_modules/smart-array-filter/lib-esm/utils/parseKeywords.js");
 
 
 
@@ -2871,149 +2824,528 @@ __webpack_require__.r(__webpack_exports__);
 
 /**
  *
- * @param {Array} array
- * @param {object} [options={}]
- * @param {number} [options.limit=Infinity]
- * @param {boolean} [options.caseSensitive=false]
- * @param {string|Array} [options.keywords=[]]
- * @param {boolean} [options.index=false] Returns the indices in the array that match
- * @param {boolean} [options.predicate='AND'] Could be either AND or OR
+ * Filter.
+ *
+ * @param data - Array to filter.
+ * @param [options={}] - Object.
+ * @param [options.limit=Infinity] - Maximum number of results.
+ * @param [options.caseSensitive=false] - By default we ignore case.
+ * @param [options.ignorePaths=[]] - Array of jpath to ignore.
+ * @param [options.pathAlias={}] - Key (string), value (string of regexp).
+ * @param [options.keywords=[]] - List of keywords used to filter the array.
+ * @param [options.index=false] - Returns the indices in the array that match.
+ * @param [options.predicate='AND'] - Could be either AND or OR.
+ * @returns String[] | number[].
  */
-function filter(array, options = {}) {
-  let result = [];
-
-  let { index = false, predicate = 'AND' } = options;
-
-  let limit = options.limit ? options.limit : Infinity;
-
-  let keywords = options.keywords || [];
-
-  let insensitive = options.caseSensitive ? '' : 'i';
-  if (typeof keywords === 'string') {
-    keywords = (0,_parseKeywords__WEBPACK_IMPORTED_MODULE_3__["default"])(keywords);
-  }
-  keywords = keywords.map(function (keyword) {
-    let criterion = {
-      is: false,
-      key: false,
-      negate: false,
-      valueReg: undefined,
-    };
-
-    if (keyword.charAt(0) === '-') {
-      criterion.negate = true;
-      keyword = keyword.substring(1);
+function filter(data, options = {}) {
+    let { index = false, predicate = 'AND', ignorePaths: ignorePathsOption = [], pathAlias: pathAliasOption = {}, } = options;
+    const limit = options.limit ? options.limit : Infinity;
+    const insensitive = options.caseSensitive ? '' : 'i';
+    let keywords = options.keywords || [];
+    const pathAlias = (0,_utils_ensureObjectOfRegExps__WEBPACK_IMPORTED_MODULE_3__["default"])(pathAliasOption, { insensitive });
+    const ignorePaths = ignorePathsOption.map((path) => typeof path === 'string'
+        ? new RegExp(`(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(path)}(\\.|$)`, insensitive)
+        : path);
+    if (typeof keywords === 'string') {
+        keywords = (0,_utils_parseKeywords__WEBPACK_IMPORTED_MODULE_4__["default"])(keywords);
     }
-    let colon = keyword.indexOf(':');
-    if (colon > -1) {
-      let value = keyword.substring(colon + 1);
-      if (colon > 0) {
-        let key = keyword.substring(0, colon);
-        if (key === 'is') {
-          // a property path exists
-          criterion.is = new RegExp(
-            `(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(value)}(\\.|$)`,
-            insensitive,
-          );
+    const criteria = (0,_utils_convertKeywordsToCriteria__WEBPACK_IMPORTED_MODULE_2__["default"])(keywords, {
+        insensitive,
+        pathAlias,
+    });
+    let matched = 0;
+    if (index) {
+        const result = [];
+        for (let i = 0; i < data.length && matched < limit; i++) {
+            if ((0,_match_match__WEBPACK_IMPORTED_MODULE_1__["default"])(data[i], criteria, predicate, { ignorePaths, pathAlias })) {
+                matched = result.push(i);
+            }
         }
-        criterion.key = new RegExp(
-          `(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(key)}(\\.|$)`,
-          insensitive,
-        );
-      }
-      fillCriterion(criterion, value, insensitive);
-    } else {
-      fillCriterion(criterion, keyword, insensitive);
+        return result;
     }
-
-    return criterion;
-  });
-
-  let matched = 0;
-  for (let i = 0; i < array.length && matched < limit; i++) {
-    if (match(array[i], keywords, predicate)) {
-      matched = result.push(index ? i : array[i]);
-    }
-  }
-  return result;
-}
-
-function fillCriterion(criterion, keyword, insensitive) {
-  criterion.checkString = (0,_getCheckString__WEBPACK_IMPORTED_MODULE_2__["default"])(keyword, insensitive);
-  criterion.checkNumber = (0,_getCheckNumber__WEBPACK_IMPORTED_MODULE_1__["default"])(keyword);
-}
-
-function match(element, keywords, predicate) {
-  if (keywords.length) {
-    let found = false;
-    for (let i = 0; i < keywords.length; i++) {
-      // match XOR negate
-      if (
-        recursiveMatch(element, keywords[i], [])
-          ? !keywords[i].negate
-          : keywords[i].negate
-      ) {
-        if (predicate === 'OR') {
-          return true;
+    else {
+        const result = [];
+        for (let i = 0; i < data.length && matched < limit; i++) {
+            if ((0,_match_match__WEBPACK_IMPORTED_MODULE_1__["default"])(data[i], criteria, predicate, { ignorePaths, pathAlias })) {
+                matched = result.push(data[i]);
+            }
         }
-        found = true;
-      } else if (predicate === 'AND') {
-        return false;
-      }
+        return result;
     }
-    return found;
-  }
-  return true;
 }
-
-function recursiveMatch(element, keyword, keys) {
-  if (typeof element === 'object') {
-    if (Array.isArray(element)) {
-      for (let i = 0; i < element.length; i++) {
-        if (recursiveMatch(element[i], keyword, keys)) {
-          return true;
-        }
-      }
-    } else {
-      for (let i in element) {
-        keys.push(i);
-        let didMatch = recursiveMatch(element[i], keyword, keys);
-        keys.pop();
-        if (didMatch) return true;
-      }
-    }
-  } else if (keyword.is) {
-    // we check for the presence of a key (jpath)
-    if (keyword.is.test(keys.join('.'))) {
-      return !!element;
-    } else {
-      return false;
-    }
-  } else {
-    // need to check if keys match
-    if (keyword.key && !keyword.key.test(keys.join('.'))) return false;
-    //if (key && keyword.key && key !== keyword.key) return false;
-    return nativeMatch(element, keyword);
-  }
-}
-
-function nativeMatch(element, keyword) {
-  if (typeof element === 'string') {
-    return keyword.checkString(element);
-  } else if (typeof element === 'number') {
-    return keyword.checkNumber(element);
-  } else {
-    return false;
-  }
-}
-
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
-/***/ "./node_modules/smart-array-filter/src/parseKeywords.js":
-/*!**************************************************************!*\
-  !*** ./node_modules/smart-array-filter/src/parseKeywords.js ***!
-  \**************************************************************/
+/***/ "./node_modules/smart-array-filter/lib-esm/match/match.js":
+/*!****************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/match/match.js ***!
+  \****************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ match; }
+/* harmony export */ });
+/* harmony import */ var _recursiveMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./recursiveMatch */ "./node_modules/smart-array-filter/lib-esm/match/recursiveMatch.js");
+
+/**
+ * Match.
+ *
+ * @param element - String | number | Record<string, string>.
+ * @param criteria - Criterion[].
+ * @param predicate - String.
+ * @param options - Object.
+ * @param options.ignorePaths - RegExp[].
+ * @param options.pathAlias - Record<string, string|RegExp>s.
+ * @returns Boolean.
+ */
+function match(element, criteria, predicate, options) {
+    if (criteria.length) {
+        let found = false;
+        for (const criterion of criteria) {
+            // match XOR negate
+            if ((0,_recursiveMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(element, criterion, [], options)
+                ? !criterion.negate
+                : criterion.negate) {
+                if (predicate === 'OR') {
+                    return true;
+                }
+                found = true;
+            }
+            else if (predicate === 'AND') {
+                return false;
+            }
+        }
+        return found;
+    }
+    return true;
+}
+//# sourceMappingURL=match.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/match/nativeMatch.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/match/nativeMatch.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ nativeMatch; }
+/* harmony export */ });
+/**
+ * NativeMatch.
+ *
+ * @param element - String|number.
+ * @param keyword - Criterion.
+ * @returns Boolean.
+ */
+function nativeMatch(element, keyword) {
+    if (typeof element === 'string') {
+        return keyword.checkString(element);
+    }
+    else if (typeof element === 'number') {
+        return keyword.checkNumber(element);
+    }
+    else {
+        return false;
+    }
+}
+//# sourceMappingURL=nativeMatch.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/match/recursiveMatch.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/match/recursiveMatch.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ recursiveMatch; }
+/* harmony export */ });
+/* harmony import */ var _nativeMatch__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nativeMatch */ "./node_modules/smart-array-filter/lib-esm/match/nativeMatch.js");
+
+/**
+ * RecursiveMatch.
+ *
+ * @param element - String | number | Record<string, string>.
+ * @param criterium - Criterion.
+ * @param keys - String[].
+ * @param options - Object.
+ * @param options.ignorePaths - RegExp[].
+ * @returns Boolean.
+ */
+function recursiveMatch(element, criterium, keys, options) {
+    if (typeof element === 'object') {
+        if (Array.isArray(element)) {
+            for (const elm of element) {
+                if (recursiveMatch(elm, criterium, keys, options)) {
+                    return true;
+                }
+            }
+        }
+        else {
+            for (const i in element) {
+                keys.push(i);
+                const didMatch = recursiveMatch(element[i], criterium, keys, options);
+                keys.pop();
+                if (didMatch)
+                    return true;
+            }
+        }
+    }
+    else if (criterium.is) {
+        // we check for the presence of a key (jpath)
+        if (criterium.is.test(keys.join('.'))) {
+            return !!element;
+        }
+        else {
+            return false;
+        }
+    }
+    else {
+        // need to check if keys match
+        const joinedKeys = keys.join('.');
+        for (const ignorePath of options.ignorePaths) {
+            if (ignorePath.test(joinedKeys))
+                return false;
+        }
+        if (criterium.key) {
+            if (!criterium.key.test(joinedKeys))
+                return false;
+        }
+        return (0,_nativeMatch__WEBPACK_IMPORTED_MODULE_0__["default"])(element, criterium);
+    }
+    return false;
+}
+//# sourceMappingURL=recursiveMatch.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/utils/convertKeywordsToCriteria.js":
+/*!************************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/utils/convertKeywordsToCriteria.js ***!
+  \************************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ convertKeywordsToCriteria; }
+/* harmony export */ });
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.escaperegexp */ "./node_modules/lodash.escaperegexp/index.js");
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _getCheckNumber__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./getCheckNumber */ "./node_modules/smart-array-filter/lib-esm/utils/getCheckNumber.js");
+/* harmony import */ var _getCheckString__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./getCheckString */ "./node_modules/smart-array-filter/lib-esm/utils/getCheckString.js");
+
+
+
+/**
+ * @internal
+ */
+function convertKeywordsToCriteria(keywords, options) {
+    const { insensitive, pathAlias } = options;
+    return keywords.map((keyword) => {
+        const criterion = {};
+        if (keyword.startsWith('-')) {
+            criterion.negate = true;
+            keyword = keyword.substring(1);
+        }
+        const colon = keyword.indexOf(':');
+        if (colon > -1) {
+            const value = keyword.substring(colon + 1);
+            if (colon > 0) {
+                const key = keyword.substring(0, colon);
+                if (key === 'is') {
+                    // a property path exists
+                    criterion.is = new RegExp(`(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(value)}(\\.|$)`, insensitive);
+                }
+                if (pathAlias[key]) {
+                    criterion.key = pathAlias[key];
+                }
+                else {
+                    criterion.key = new RegExp(`(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(key)}(\\.|$)`, insensitive);
+                }
+            }
+            fillCriterion(criterion, value, insensitive);
+        }
+        else {
+            fillCriterion(criterion, keyword, insensitive);
+        }
+        return criterion;
+    });
+}
+/**
+ * FillCriterion.
+ *
+ * @param criterion - Criterion.
+ * @param keyword - String.
+ * @param insensitive - String.
+ */
+function fillCriterion(criterion, keyword, insensitive) {
+    criterion.checkString = (0,_getCheckString__WEBPACK_IMPORTED_MODULE_2__["default"])(keyword, insensitive);
+    criterion.checkNumber = (0,_getCheckNumber__WEBPACK_IMPORTED_MODULE_1__["default"])(keyword);
+}
+//# sourceMappingURL=convertKeywordsToCriteria.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/utils/ensureObjectOfRegExps.js":
+/*!********************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/utils/ensureObjectOfRegExps.js ***!
+  \********************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ensureObjectOfRegExps; }
+/* harmony export */ });
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.escaperegexp */ "./node_modules/lodash.escaperegexp/index.js");
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__);
+
+/**
+ * EnsureObjectOfRegExps.
+ *
+ * @param object  - { [index: string]: string|RegExp }.
+ * @param options - Object.
+ * @param options.insensitive - String.
+ * @returns - Record<string, string|RegExp>.
+ */
+function ensureObjectOfRegExps(object, options) {
+    const { insensitive } = options;
+    const toReturn = {};
+    for (const [key, value] of Object.entries(object)) {
+        if (value instanceof RegExp) {
+            toReturn[key] = value;
+        }
+        else {
+            toReturn[key] = new RegExp(`(^|\\.)${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(value)}(\\.|$)`, insensitive);
+        }
+    }
+    return toReturn;
+}
+//# sourceMappingURL=ensureObjectOfRegExps.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/utils/getCheckNumber.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/utils/getCheckNumber.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ getCheckNumber; },
+/* harmony export */   "splitNumberOperator": function() { return /* binding */ splitNumberOperator; }
+/* harmony export */ });
+const operators = {
+    '<': function lt(values) {
+        return (number) => {
+            return number < values[0];
+        };
+    },
+    '<=': function lte(values) {
+        return (number) => {
+            return number <= values[0];
+        };
+    },
+    '=': function equal(values) {
+        return (number) => {
+            return number === values[0];
+        };
+    },
+    '>=': function gte(values) {
+        return (number) => {
+            return number >= values[0];
+        };
+    },
+    '>': function gt(values) {
+        return (number) => {
+            return number > values[0];
+        };
+    },
+    '..': function range(values) {
+        return (number) => number >= values[0] && number <= values[1];
+    },
+};
+/**
+ * @internal
+ */
+function getCheckNumber(keyword) {
+    const { values, operator } = splitNumberOperator(keyword);
+    const checkOperator = operators[operator];
+    if (!checkOperator) {
+        throw new Error(`unknown operator ${operator}`);
+    }
+    return checkOperator(values);
+}
+/**
+ * @internal
+ */
+function splitNumberOperator(keyword) {
+    const match = /^\s*\(?\s*(?<startOperator><=|>=|<|=|>|\.\.)?(?<firstValue>-?\d*\.?\d+)(?:(?<afterDots>\.\.)(?<secondValue>-?\d*\.?\d*))?\s*\)?\s*$/.exec(keyword);
+    if (!match) {
+        return {
+            operator: '=',
+            values: [Number(keyword)],
+        };
+    }
+    if (!match.groups) {
+        throw new Error('unreachable');
+    }
+    const { startOperator, firstValue, afterDots, secondValue } = match.groups;
+    let operator = startOperator;
+    let values = firstValue ? [Number(firstValue)] : [];
+    // ..12
+    if (startOperator === '..') {
+        operator = '<=';
+    }
+    // 12..
+    else if (!startOperator && afterDots && !secondValue) {
+        operator = '>=';
+    }
+    // 12..14
+    else if (afterDots) {
+        operator = '..';
+    }
+    if (secondValue) {
+        values.push(Number(secondValue));
+    }
+    return {
+        values,
+        operator: operator || '=',
+    };
+}
+//# sourceMappingURL=getCheckNumber.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/utils/getCheckString.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/utils/getCheckString.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ getCheckString; },
+/* harmony export */   "splitStringOperator": function() { return /* binding */ splitStringOperator; }
+/* harmony export */ });
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! lodash.escaperegexp */ "./node_modules/lodash.escaperegexp/index.js");
+/* harmony import */ var lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0__);
+
+const operators = {
+    '<': function lt(query) {
+        return (string) => {
+            return string < query[0];
+        };
+    },
+    '<=': function lte(query) {
+        return (string) => {
+            return string <= query[0];
+        };
+    },
+    '=': function equal(query, insensitive) {
+        const regVal = `^${lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(query[0])}$`;
+        const reg = new RegExp(regVal, insensitive);
+        return (string) => {
+            return reg.test(string);
+        };
+    },
+    '~': function fuzzy(query, insensitive) {
+        const regVal = lodash_escaperegexp__WEBPACK_IMPORTED_MODULE_0___default()(query[0]);
+        const reg = new RegExp(regVal, insensitive);
+        return (string) => {
+            return reg.test(string);
+        };
+    },
+    '>=': function lge(query) {
+        return (string) => {
+            return string >= query[0];
+        };
+    },
+    '>': function lg(query) {
+        return (string) => {
+            return string > query[0];
+        };
+    },
+    '..': function range(query) {
+        return (string) => {
+            return string >= query[0] && string <= query[1];
+        };
+    },
+};
+/**
+ * GetCheckString.
+ *
+ * @param keyword - String.
+ * @param insensitive - String.
+ * @returns CheckString. (string)=>boolean.
+ */
+function getCheckString(keyword, insensitive) {
+    const { values, operator } = splitStringOperator(keyword);
+    const operatorCheck = operators[operator];
+    if (!operatorCheck) {
+        throw new Error(`unreachable unknown operator ${operator}`);
+    }
+    return operatorCheck(values, insensitive);
+}
+/**
+ * @internal
+ */
+function splitStringOperator(keyword) {
+    const parts = keyword.split('..');
+    const match = /^\s*\(?(?<operator><=|<|=|>=|>)?\s*(?<value>\S*)\s*\)?$/.exec(parts[0]);
+    if (!match) {
+        // Should never happen
+        return {
+            operator: '~',
+            values: [keyword],
+        };
+    }
+    if (!match.groups) {
+        throw new Error('unreachable');
+    }
+    let { operator, value } = match.groups;
+    let secondQuery = parts[1];
+    let values = [value];
+    if (parts.length > 1) {
+        operator = '..';
+        if (!secondQuery) {
+            operator = '>=';
+        }
+        else if (!value) {
+            values = [secondQuery];
+            operator = '<=';
+        }
+        else {
+            values.push(secondQuery);
+        }
+    }
+    return {
+        operator: operator || '~',
+        values,
+    };
+}
+//# sourceMappingURL=getCheckString.js.map
+
+/***/ }),
+
+/***/ "./node_modules/smart-array-filter/lib-esm/utils/parseKeywords.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/smart-array-filter/lib-esm/utils/parseKeywords.js ***!
+  \************************************************************************/
 /***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3022,63 +3354,69 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ parseKeywords; }
 /* harmony export */ });
 let separators = /[ ;,\t\r\n]/;
-
+/**
+ * Need to convert a string to an array of keywords taking into account single and boule quotes.
+ *
+ * @param keywords - String.
+ * @returns String[].
+ */
 function parseKeywords(keywords) {
-  let result = [];
-  let inQuotes = false;
-  let inSeparator = true;
-  let currentWord = [];
-  let previous = '';
-  for (let i = 0; i < keywords.length; i++) {
-    let current = keywords.charAt(i);
-    if (inQuotes) {
-      if (previous === '"') {
-        // escaped quote
-        if (current === '"') {
-          previous = '';
-          continue;
+    const result = [];
+    let inQuotes = false;
+    let inSeparator = true;
+    let currentWord = [];
+    let previous = '';
+    for (let i = 0; i < keywords.length; i++) {
+        const current = keywords.charAt(i);
+        if (inQuotes) {
+            if (previous === '"') {
+                // escaped quote
+                if (current === '"') {
+                    previous = '';
+                    continue;
+                }
+                // end of quoted part
+                currentWord.pop(); // remove last quote that was added
+                inQuotes = false;
+                i--;
+                continue;
+            }
+            currentWord.push(current);
+            previous = current;
+            continue;
         }
-        // end of quoted part
-        currentWord.pop(); // remove last quote that was added
-        inQuotes = false;
-        i--;
-        continue;
-      }
-      currentWord.push(current);
-      previous = current;
-      continue;
+        if (inSeparator) {
+            // still in separator ?
+            if (separators.test(current)) {
+                previous = current;
+                continue;
+            }
+            inSeparator = false;
+        }
+        // start of quoted part
+        if (current === '"') {
+            inQuotes = true;
+            previous = '';
+            continue;
+        }
+        // start of separator part
+        if (separators.test(current)) {
+            if (currentWord.length)
+                result.push(currentWord.join(''));
+            currentWord = [];
+            inSeparator = true;
+            continue;
+        }
+        currentWord.push(current);
+        previous = '';
     }
-    if (inSeparator) {
-      // still in separator ?
-      if (separators.test(current)) {
-        previous = current;
-        continue;
-      }
-      inSeparator = false;
-    }
-    // start of quoted part
-    if (current === '"') {
-      inQuotes = true;
-      previous = '';
-      continue;
-    }
-    // start of separator part
-    if (separators.test(current)) {
-      if (currentWord.length) result.push(currentWord.join(''));
-      currentWord = [];
-      inSeparator = true;
-      continue;
-    }
-    currentWord.push(current);
-    previous = '';
-  }
-
-  if (previous === '"') currentWord.pop();
-  if (currentWord.length) result.push(currentWord.join(''));
-
-  return result;
+    if (previous === '"')
+        currentWord.pop();
+    if (currentWord.length)
+        result.push(currentWord.join(''));
+    return result;
 }
-
+//# sourceMappingURL=parseKeywords.js.map
 
 /***/ }),
 
@@ -3373,7 +3711,29 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "default": function() { return /* binding */ plugin; }
 /* harmony export */ });
 /* module decorator */ module = __webpack_require__.hmd(module);
-function _typeof(o){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(o){return typeof o}:function(o){return o&&"function"==typeof Symbol&&o.constructor===Symbol&&o!==Symbol.prototype?"symbol":typeof o})(o)}function plugin(o,e){if(!plugin.installed)if(e){if(plugin.installed=!0,o.version&&o.version.split(".")[0]<3)Object.defineProperties(o.prototype,{axios:{get:function(){return e}},$http:{get:function(){return e}}});else{if(!(o.version&&o.version.split(".")[0]>=3))return void console.error("Unknown Vue version");o.config.globalProperties.axios=e,o.config.globalProperties.$http=e}o.axios=e,o.$http=e}else console.error("You have to install axios")}"object"==("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=plugin:"function"==typeof define&&__webpack_require__.amdO?define([],(function(){return plugin})):window.Vue&&window.axios&&window.Vue.use&&Vue.use(plugin,window.axios);
+function _typeof(e){return(_typeof="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(e){return typeof e}:function(e){return e&&"function"==typeof Symbol&&e.constructor===Symbol&&e!==Symbol.prototype?"symbol":typeof e})(e)}function plugin(e,n){if(!plugin.installed){var o=isAxiosLike(n)?migrateToMultipleInstances(n):n;if(isValidConfig(o)){plugin.installed=!0;var i=getVueVersion(e);if(i){var t=i<3?registerOnVue2:registerOnVue3;Object.keys(o).forEach((function(n){t(e,n,o[n])}))}else console.error("[vue-axios] unknown Vue version")}else console.error("[vue-axios] configuration is invalid, expected options are either <axios_instance> or { <registration_key>: <axios_instance> }")}}function registerOnVue2(e,n,o){Object.defineProperty(e.prototype,n,{get:function(){return o}}),e[n]=o}function registerOnVue3(e,n,o){e.config.globalProperties[n]=o,e[n]=o}function isAxiosLike(e){return e&&"function"==typeof e.get&&"function"==typeof e.post}function migrateToMultipleInstances(e){return{axios:e,$http:e}}function isValidConfig(e){return"object"===_typeof(e)&&Object.keys(e).every((function(n){return isAxiosLike(e[n])}))}function getVueVersion(e){return e&&e.version&&Number(e.version.split(".")[0])}"object"==("undefined"==typeof exports?"undefined":_typeof(exports))?module.exports=plugin:"function"==typeof define&&__webpack_require__.amdO?define([],(function(){return plugin})):window.Vue&&window.axios&&window.Vue.use&&Vue.use(plugin,window.axios);
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/dist/exportHelper.js":
+/*!******************************************************!*\
+  !*** ./node_modules/vue-loader/dist/exportHelper.js ***!
+  \******************************************************/
+/***/ (function(__unused_webpack_module, exports) {
+
+"use strict";
+
+Object.defineProperty(exports, "__esModule", ({ value: true }));
+// runtime helper for setting properties on components
+// in a tree-shakable way
+exports["default"] = (sfc, props) => {
+    const target = sfc.__vccOpts || sfc;
+    for (const [key, val] of props) {
+        target[key] = val;
+    }
+    return target;
+};
+
 
 /***/ }),
 
@@ -3413,7 +3773,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var _vue_devtools_api__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @vue/devtools-api */ "./node_modules/@vue/devtools-api/lib/esm/index.js");
 /*!
-  * vue-router v4.0.11
+  * vue-router v4.0.12
   * (c) 2021 Eduardo San Martin Morote
   * @license MIT
   */
@@ -4042,6 +4402,7 @@ function createMemoryHistory(base = '') {
     let listeners = [];
     let queue = [START];
     let position = 0;
+    base = normalizeBase(base);
     function setLocation(location) {
         position++;
         if (position === queue.length) {
@@ -5275,7 +5636,7 @@ function onBeforeRouteLeave(leaveGuard) {
     {}).value;
     if (!activeRecord) {
         ( true) &&
-            warn('No active route record was found. Are you missing a <router-view> component?');
+            warn('No active route record was found when calling `onBeforeRouteLeave()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?');
         return;
     }
     registerGuard(activeRecord, 'leaveGuards', leaveGuard);
@@ -5297,7 +5658,7 @@ function onBeforeRouteUpdate(updateGuard) {
     {}).value;
     if (!activeRecord) {
         ( true) &&
-            warn('No active route record was found. Are you missing a <router-view> component?');
+            warn('No active route record was found when calling `onBeforeRouteUpdate()`. Make sure you call this function inside of a component child of <router-view>. Maybe you called it inside of App.vue?');
         return;
     }
     registerGuard(activeRecord, 'updateGuards', updateGuard);
@@ -5720,6 +6081,24 @@ const RouterViewImpl = /*#__PURE__*/ (0,vue__WEBPACK_IMPORTED_MODULE_0__.defineC
                 onVnodeUnmounted,
                 ref: viewRef,
             }));
+            if (( true) &&
+                isBrowser &&
+                component.ref) {
+                // TODO: can display if it's an alias, its props
+                const info = {
+                    depth,
+                    name: matchedRoute.name,
+                    path: matchedRoute.path,
+                    meta: matchedRoute.meta,
+                };
+                const internalInstances = Array.isArray(component.ref)
+                    ? component.ref.map(r => r.i)
+                    : [component.ref.i];
+                internalInstances.forEach(instance => {
+                    // @ts-expect-error
+                    instance.__vrv_devtools = info;
+                });
+            }
             return (
             // pass the vnode to the slot as a prop.
             // h and <component :is="..."> both accept vnodes
@@ -5810,8 +6189,17 @@ function addDevtools(app, router, matcher) {
                 });
             }
         });
-        // mark router-link as active
+        // mark router-link as active and display tags on router views
         api.on.visitComponentTree(({ treeNode: node, componentInstance }) => {
+            if (componentInstance.__vrv_devtools) {
+                const info = componentInstance.__vrv_devtools;
+                node.tags.push({
+                    label: (info.name ? `${info.name.toString()}: ` : '') + info.path,
+                    textColor: 0,
+                    tooltip: 'This component is rendered by &lt;router-view&gt;',
+                    backgroundColor: PINK_500,
+                });
+            }
             // if multiple useLink are used
             if (Array.isArray(componentInstance.__vrl_devtools)) {
                 componentInstance.__devtoolsApi = api;
@@ -6258,8 +6646,11 @@ function createRouter(options) {
             if (( true) &&
                 'params' in rawLocation &&
                 !('name' in rawLocation) &&
+                // @ts-expect-error: the type is never
                 Object.keys(rawLocation.params).length) {
-                warn(`Path "${rawLocation.path}" was passed with params but they will be ignored. Use a named route alongside params instead.`);
+                warn(`Path "${
+                // @ts-expect-error: the type is never
+                rawLocation.path}" was passed with params but they will be ignored. Use a named route alongside params instead.`);
             }
             matcherLocation = assign({}, rawLocation, {
                 path: parseURL(parseQuery$1, rawLocation.path, currentLocation.path).path,
@@ -6828,17 +7219,6 @@ function useRoute() {
 
 
 
-
-/***/ }),
-
-/***/ "./node_modules/axios/package.json":
-/*!*****************************************!*\
-  !*** ./node_modules/axios/package.json ***!
-  \*****************************************/
-/***/ (function(module) {
-
-"use strict";
-module.exports = JSON.parse('{"name":"axios","version":"0.21.4","description":"Promise based HTTP client for the browser and node.js","main":"index.js","scripts":{"test":"grunt test","start":"node ./sandbox/server.js","build":"NODE_ENV=production grunt build","preversion":"npm test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json","postversion":"git push && git push --tags","examples":"node ./examples/server.js","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","fix":"eslint --fix lib/**/*.js"},"repository":{"type":"git","url":"https://github.com/axios/axios.git"},"keywords":["xhr","http","ajax","promise","node"],"author":"Matt Zabriskie","license":"MIT","bugs":{"url":"https://github.com/axios/axios/issues"},"homepage":"https://axios-http.com","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"jsdelivr":"dist/axios.min.js","unpkg":"dist/axios.min.js","typings":"./index.d.ts","dependencies":{"follow-redirects":"^1.14.0"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}]}');
 
 /***/ })
 

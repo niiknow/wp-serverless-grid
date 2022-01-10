@@ -26,7 +26,7 @@ class IndexerCommand {
         list( $name ) = $args;
 
         \WP_CLI::line('Starting index ' . $args[0]);
-        (new SearchIndexer(\Slsgrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0], true);
+        (new SearchIndexer(\Slsgrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0]);
         \WP_CLI::line('Index completed!');
     }
 }

@@ -58,8 +58,8 @@ final class SearchIndexer
     {
         $wpContentDir = rtrim(WP_CONTENT_DIR, '/') . '/';
 
-        $this->indexFile = $wpContentDir . 'search-index.json';
-        $this->indexFileUrl = content_url('search-index.json');
+        $this->indexFile = $wpContentDir . 'slsgrid-index.json';
+        $this->indexFileUrl = content_url('slsgrid-index.json');
         $this->taxonomies = $this->getTaxonomies();
 
 		$sc = new Api\SettingController();
@@ -296,13 +296,15 @@ final class SearchIndexer
 		$json = [
             'id' => $post->ID,
             'title' => $post->post_title,
-            'slug' => $post->post_name,
+            'name' => $post->post_name,
             'cnt' => strip_tags(apply_filters('the_content', $post->post_content)),
-            'excerpt' => strip_tags($post->post_excerpt),
-            'author_id' => $post->post_author,
-            'author' => $this->users[$post->post_author],
-            'url' => str_replace( $home_url, '', get_permalink($post->ID) ),
-            'image_url' => $image_url === false ? '' : str_replace( $home_url, '', $image_url ),
+            'exc' => strip_tags($post->post_excerpt),
+            'aid' => $post->post_author,
+            'auth' => $this->users[$post->post_author],
+            'src' => str_replace( $home_url, '', get_permalink($post->ID) ),
+            'img' => $image_url === false ? '' : str_replace( $home_url, '', $image_url ),
+            'type' => $post->post_type,
+            'stat' => $post->post_status
         ];
 
         $terms = [];
