@@ -216,6 +216,7 @@ final class SearchIndexer
 	    wp_reset_query();
 	    wp_reset_postdata();
 
+	    $index['tax'] = $this->taxonomies;
         file_put_contents($this->indexFile, json_encode($index));
 
 		if (! is_null($progress)) {
