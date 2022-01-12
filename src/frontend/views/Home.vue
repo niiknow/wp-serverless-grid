@@ -125,7 +125,9 @@ export default defineComponent({
   },
   methods: {
     filterByUrl() {
-
+      if (this.$route.query.category) {
+        this.filters.categories.push(this.$route.query.category)
+      }
     },
     filterCategories(value) {
       if (this.filters.categories.length <= 0) {
@@ -166,25 +168,23 @@ export default defineComponent({
   beforeMount() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
+        const tax = this.$win.vue_wp_plugin_config.taxonomies
+        const courses = tax['wprm_course']
+        const cuisines = tax['wprm_cuisine']
+        courses.forEach((item) => {
+          this.categories[item.value] = item.text
+        })
+        cuisines.forEach((item) => {
+          this.cuisines[item.value] = item.text
+        })
+
         fetch(this.$win.vue_wp_plugin_config.indexFileUrl)
           .then(response => response.json())
           .then(recipes => {
-            const items = []
-            Object.keys(recipes).forEach((key) => {
-              if (key !== 'tax')  {
-                items.push(recipes[key])
-              }
+            const items = Object.keys(recipes).map((key) => {
+              return recipes[key]
             })
 
-            const tax = this.$win.vue_wp_plugin_config.taxonomies
-            const courses = tax['wprm_course']
-            const cuisines = tax['wprm_cuisine']
-            courses.forEach((item) => {
-              this.categories[item.value] = item.text
-            })
-            cuisines.forEach((item) => {
-              this.cuisines[item.value] = item.text
-            })
             this.recipes = items
 
             // auto filter by url

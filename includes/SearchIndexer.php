@@ -58,8 +58,8 @@ final class SearchIndexer
     {
         $wpContentDir = rtrim(WP_CONTENT_DIR, '/') . '/';
 
-        $this->indexFile = $wpContentDir . 'upload/slsgrid-index.json';
-        $this->indexFileUrl = content_url('upload/slsgrid-index.json');
+        $this->indexFile = $wpContentDir . 'uploads/slsgrid-index.json';
+        $this->indexFileUrl = content_url('uploads/slsgrid-index.json');
         $this->taxonomies = $this->getTaxonomies();
 
 		$sc = new Api\SettingController();

@@ -112,7 +112,7 @@ class Assets
 			],
 			$this->prefix . '-admin' => [
 				'src'       => $assets_url . '/js/admin.js',
-				'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
+				'deps'      => [ $this->prefix . '-vendor' ],
 				'version'   => filemtime($plugin_dir . '/js/admin.js'),
 				'in_footer' => true
 			]

@@ -45,8 +45,9 @@ class FrontendLoader
 	    ), $atts );
 
 		$postfix = esc_attr($a['postfix']);
-        wp_enqueue_style( $this->prefix . '-' . $postfix);
-        wp_enqueue_script( $this->prefix . '-' . $postfix);
+        wp_enqueue_style( $this->prefix . '-' . $postfix );
+        wp_enqueue_style( $this->prefix . '-bootstrap' );
+        wp_enqueue_script( $this->prefix . '-' . $postfix );
 
         $indexer = new SearchIndexer( $this->prefix );
 
