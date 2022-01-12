@@ -59,14 +59,15 @@
       :ds-data="recipes"
       :ds-filter-fields="{ wprm_course: filterCategories, wprm_cuisine: filterCuisines, wprm_cook_time: filterCookTime, wprm_prep_time: filterPrepTime, wprm_total_time: filterTotalTime }"
       :ds-search-in="['title', 'cnt']"
+      ref="myds"
     >
       <div class="row" :data-page-count="ds.dsPagecount">
         <div class="col-md-6">
         </div>
         <div class="col-md-6">
           <div class="form-floating">
-            <dataset-search ds-search-placeholder="Type to search..." />
-            <label for="floatingInput">Type to search...</label>
+            <input name="searchInput" id="searchInput" type="text" placeholder="Type to search..." class="form-control" v-model="dsSearch">
+            <label for="searchInput">Type to search...</label>
           </div>
         </div>
       </div>
@@ -102,6 +103,7 @@
 import { defineComponent } from 'vue'
 import Multiselect from '@vueform/multiselect'
 
+
 export default defineComponent({
   components: {
     Multiselect
@@ -110,6 +112,7 @@ export default defineComponent({
   data () {
     // get menus from appSettings
     return {
+      dsSearch: '',
       recipes: [],
       filters: { categories: [], cuisines: [], cookm: 0, prepm: 0, totalm: 0 },
       categories: {},
@@ -123,10 +126,19 @@ export default defineComponent({
       ]
     }
   },
+  watch: {
+    dsSearch(value) {
+      this.handleSearch(value)
+    }
+  },
   methods: {
     filterByUrl() {
       if (this.$route.query.category) {
         this.filters.categories.push(this.$route.query.category)
+      }
+
+      if (this.$route.query.s) {
+        this.dsSearch = this.$route.query.s
       }
     },
     filterCategories(value) {
@@ -168,6 +180,10 @@ export default defineComponent({
   beforeMount() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
+        this.handleSearch = this.$win.$appConfig.debounce((value) => {
+          this.$refs.myds.search(value)
+        }, 300)
+
         const tax = this.$win.vue_wp_plugin_config.taxonomies
         const courses = tax['wprm_course']
         const cuisines = tax['wprm_cuisine']

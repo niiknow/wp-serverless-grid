@@ -25,6 +25,7 @@
   "devDependencies": {
     "@babel/eslint-parser": "^7.16.5",
     "@types/jest": "^27.4.0",
+    "@types/lodash": "^4.14.178",
     "@vue/cli-plugin-unit-jest": "^4.5.15",
     "@vue/compiler-sfc": "^3.2.26",
     "@vue/test-utils": "^2.0.0-0",
@@ -43,6 +44,7 @@
     "jest": "27.4.7",
     "jsdom": "^19.0.0",
     "laravel-mix": "^6.0.39",
+    "lodash": "^4.17.21",
     "postcss": "^8.4.5",
     "postcss-import": "^14.0.2",
     "postcss-loader": "^6.2.1",
