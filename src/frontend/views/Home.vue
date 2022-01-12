@@ -4,61 +4,78 @@
       <h3>Filters</h3>
       <div class="row">
         <div class="col-md-6 mb-3">
-            <label style="text-transform: uppercase;">Category</label>
-            <Multiselect
-              v-model="filters.categories"
-              mode="tags"
-              :searchable="true"
-              :close-on-select="false"
-              :create-option="true"
-              :options="categories"
-              ref="multiselect"
-            />
-          </div>
-          <div class="col-md-6 mb-3">
-            <label style="text-transform: uppercase;">Cuisines</label>
-            <Multiselect
-  v-model="filters.cuisines"
-  mode="multiple"
-  :close-on-select="false"
-  :options="cuisines"
-  ref="multiselect"
-/>
-          </div>
-          <div class="col-md-3 mb-3">
-            <label style="text-transform: uppercase;">Preparation Time (minutes)</label>
-          </div>
-                    <div class="col-md-3 mb-3">
-            <label style="text-transform: uppercase;">Cook Time (minutes)</label>
-          </div>
-                    <div class="col-md-3 mb-3">
-            <label style="text-transform: uppercase;">Total Time (minutes)</label>
-          </div>
-          <div class="col-md-3">Clear all filters</div>
+          <label style="text-transform: uppercase;">Category</label>
+          <Multiselect
+            v-model="filters.categories"
+            mode="tags"
+            :searchable="true"
+            :close-on-select="false"
+            :create-option="true"
+            :options="categories"
+          />
         </div>
+        <div class="col-md-6 mb-3">
+          <label style="text-transform: uppercase;">Cuisines</label>
+          <Multiselect
+            v-model="filters.cuisines"
+            mode="tags"
+            :searchable="true"
+            :close-on-select="false"
+            :create-option="true"
+            :options="cuisines"
+          />
+        </div>
+        <div class="col-md-3 mb-3">
+          <label style="text-transform: uppercase;">Preparation Time (minutes)</label>
+          <select class="form-select" v-model="filters.prepm">
+            <option v-for="option in recipeTimes" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label style="text-transform: uppercase;">Cook Time (minutes)</label>
+          <select class="form-select" v-model="filters.cookm">
+            <option v-for="option in recipeTimes" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <label style="text-transform: uppercase;">Total Time (minutes)</label>
+          <select class="form-select" v-model="filters.totalm">
+            <option v-for="option in recipeTimes" :value="option.value">
+              {{ option.text }}
+            </option>
+          </select>
+        </div>
+        <div class="col-md-3 mb-3">
+          <br /><button type="button" class="btn btn-outline-primary">Clear all filters</button>
+        </div>
+      </div>
     </div>
     <dataset
       v-slot="{ ds }"
       :ds-data="recipes"
+      :ds-filter-fields="{ wprm_course: filterCategories, wprm_cuisine: filterCuisines, wprm_cook_time: filterCookTime, wprm_prep_time: filterPrepTime, wprm_total_time: filterTotalTime }"
       :ds-search-in="['title', 'cnt']"
     >
       <div class="row" :data-page-count="ds.dsPagecount">
-        <div class="col-md-6 mb-3">
+        <div class="col-md-6">
         </div>
         <div class="col-md-6">
-          <div class="form-floating mb-3 ">
+          <div class="form-floating">
             <dataset-search ds-search-placeholder="Type to search..." />
             <label for="floatingInput">Type to search...</label>
           </div>
-
         </div>
       </div>
-
+      <hr />
       <dataset-item class="row" style="overflow-y: auto; max-height: 600px">
         <template #default="{ row, rowIndex }">
-          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.url">
+          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.src">
             <div class="card" style="">
-              <img :src="row.image_url ? 'https://www.ucook.com/' + row.image_url : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title" style="height: 250px; overflow-y: hidden">
+              <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title" style="height: 250px; overflow-y: hidden">
               <div class="card-body">
                 <h5 class="card-title">{{ row.title }}</h5>
                 <p class="card-text text-truncate">{{ row.cnt }}</p>
@@ -72,6 +89,7 @@
           </div>
         </template>
       </dataset-item>
+      <hr />
       <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
         <dataset-info class="mb-2 mb-md-0" />
         <dataset-pager />
@@ -93,74 +111,87 @@ export default defineComponent({
     // get menus from appSettings
     return {
       recipes: [],
-      dropdown: { height: 0 },
-      filters: { categories: [], cuisines: [], cooktimes: 0, preptimes: 0, totaltimes: 0 },
-      menus: { categories: false, cuisines: false, cooktimes: false, preptimes: false, totaltimes: false },
-      searchText: '',
-      onlineFilter: '',
-      categories: {
-        'appetizers': 'Appetizers',
-        'barbecue-and-grilling': 'Barbecue and Grilling'
-      },
-      cuisines: []
+      filters: { categories: [], cuisines: [], cookm: 0, prepm: 0, totalm: 0 },
+      categories: {},
+      cuisines: {},
+      recipeTimes: [
+        { text: 'Please select one', value: 0 },
+        { text: '< 15 minutes', value: 14 },
+        { text: '< 30 minutes', value: 29 },
+        { text: '< 60 minutes', value: 59 },
+        { text: '>= 60 minutes', value: 60 }
+      ]
     }
   },
+  methods: {
+    filterByUrl() {
 
-  computed: {
-    activeMenu() {
-      return Object.keys(this.menus).reduce(($$, set, i) => (this.menus[set]) ? i : $$, -1)
     },
+    filterCategories(value) {
+      if (this.filters.categories.length <= 0) {
+        return true
+      }
 
-    list() {
-      let { countries, categories } = this.activeFilters
-
-      return this.companies.filter(({ country, keywords, rating }) => {
-        if (rating < this.filters.rating) return false
-        if (countries.length && !~countries.indexOf(country)) return false
-        return !categories.length || categories.every(cat => ~keywords.indexOf(cat))
-      })
+      return this.filters.categories.some(r => value.includes(r))
     },
+    filterCuisines(value) {
+      if (this.filters.cuisines.length <= 0) {
+        return true
+      }
 
-    activeFilters() {
-      let { countries, categories } = this.filters
+      return this.filters.cuisines.some(r => value.includes(r))
+    },
+    filterPrepTime(value) {
+      return this.filterTime(value, this.filters.prepm)
+    },
+    filterCookTime(value) {
+      return this.filterTime(value, this.filters.cookm)
+    },
+    filterTotalTime(value) {
+      return this.filterTime(value, this.filters.totalm)
+    },
+    filterTime(value, selectedValue) {
+      if (selectedValue <= 0) {
+        return true
+      }
 
-      return {
-        countries: Object.keys(countries).filter(c => countries[c]),
-        categories: Object.keys(categories).filter(c => categories[c]),
-        rating: (this.filters.rating > this.rating.min) ? [this.filters.rating] : []
+      const intVal = parseInt(value)
+      if (selectedValue < 60) {
+        return intVal <= selectedValue
+      } else {
+        return intVal >= 60
       }
     }
   },
-
-  watch: {
-    activeMenu(index, from) {
-      if (index === from) return;
-
-      this.$nextTick(() => {
-        if (!this.$refs.menu || !this.$refs.menu[index]) {
-          this.dropdown.height = 0
-        } else {
-          this.dropdown.height = `${this.$refs.menu[index].clientHeight + 16}px`
-        }
-      })
-    }
-  },
-
-  methods: {
-  },
   beforeMount() {
-    fetch('http://ucook.com/wp-content/search-index.json')
-      .then(response => response.json())
-      .then(recipes => {
-        const items = Object.keys(recipes).map((key) => {
-          // collect categories
-          // collect cuisines
-          return recipes[key]
-        })
-        // debugger
-        // var first = items[0];
-        this.recipes = items
-      })
+    document.onreadystatechange = () => {
+      if (document.readyState == "complete") {
+        fetch(this.$win.vue_wp_plugin_config.indexFileUrl)
+          .then(response => response.json())
+          .then(recipes => {
+            const items = []
+            Object.keys(recipes).forEach((key) => {
+              if (key !== 'tax')  {
+                items.push(recipes[key])
+              }
+            })
+
+            const tax = this.$win.vue_wp_plugin_config.taxonomies
+            const courses = tax['wprm_course']
+            const cuisines = tax['wprm_cuisine']
+            courses.forEach((item) => {
+              this.categories[item.value] = item.text
+            })
+            cuisines.forEach((item) => {
+              this.cuisines[item.value] = item.text
+            })
+            this.recipes = items
+
+            // auto filter by url
+            this.filterByUrl()
+          })
+      }
+    }
   }
 })
 </script>

@@ -106,7 +106,7 @@ class Assets
 			],
 			$this->prefix . '-frontend' => [
 				'src'       => $assets_url . '/js/frontend.js',
-				'deps'      => [ $this->prefix . '-vendor' ],
+				'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
 				'version'   => filemtime($plugin_dir . '/js/frontend.js'),
 				'in_footer' => true
 			],

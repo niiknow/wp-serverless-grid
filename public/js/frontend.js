@@ -36,22 +36,16 @@ exports.render = void 0;
 
 var vue_1 = __webpack_require__(/*! vue */ "vue");
 
-var _hoisted_1 = /*#__PURE__*/(0, vue_1.createElementVNode)("h3", null, "Frontend App", -1
-/* HOISTED */
-);
-
-var _hoisted_2 = {
+var _hoisted_1 = {
   class: "main-wrapper"
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_router_view = (0, vue_1.resolveComponent)("router-view");
 
-  return (0, vue_1.openBlock)(), (0, vue_1.createElementBlock)(vue_1.Fragment, null, [_hoisted_1, (0, vue_1.createElementVNode)("div", _hoisted_2, [((0, vue_1.openBlock)(), (0, vue_1.createBlock)(_component_router_view, {
+  return (0, vue_1.openBlock)(), (0, vue_1.createElementBlock)("div", _hoisted_1, [((0, vue_1.openBlock)(), (0, vue_1.createBlock)(_component_router_view, {
     key: _ctx.$route.path
-  }))])], 64
-  /* STABLE_FRAGMENT */
-  );
+  }))]);
 }
 
 exports.render = render;
@@ -86,9 +80,16 @@ __webpack_require__(/*! @/shared/index */ "./src/shared/index.ts");
 
 var vueds_js_1 = __importDefault(__webpack_require__(/*! @/shared/vueds.js */ "./src/shared/vueds.js"));
 
+var vue_axios_1 = __importDefault(__webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js"));
+
+var config_1 = __importDefault(__webpack_require__(/*! @/shared/config */ "./src/shared/config.ts")); // @ts-ignore
+
+
+var win = (0, config_1.default)(window);
 var app = (0, vue_1.createApp)(App_vue_1.default);
+app.config.globalProperties.$win = win;
 (0, vueds_js_1.default)(app);
-app.use(index_1.default);
+app.use(index_1.default).use(vue_axios_1.default, win.$appConfig.axios);
 app.mount('#vue-frontend-app');
 
 /***/ }),
@@ -197,7 +198,7 @@ Object.defineProperty(exports, "__esModule", ({
 var axios_1 = __importDefault(__webpack_require__(/*! ./axios */ "./src/shared/axios.ts"));
 
 function default_1(win) {
-  win.$appConfig = win.vue_wp_plugin_config || {};
+  win.$appConfig = {};
   win.$appConfig.axios = axios_1.default;
   return win;
 }
@@ -241,17 +242,17 @@ exports["default"] = void 0;
 
 __webpack_require__(/*! core-js/modules/es.object.to-string.js */ "./node_modules/core-js/modules/es.object.to-string.js");
 
-__webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
+__webpack_require__(/*! core-js/modules/es.array.includes.js */ "./node_modules/core-js/modules/es.array.includes.js");
 
-__webpack_require__(/*! core-js/modules/es.array.filter.js */ "./node_modules/core-js/modules/es.array.filter.js");
+__webpack_require__(/*! core-js/modules/es.string.includes.js */ "./node_modules/core-js/modules/es.string.includes.js");
 
 __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
 
-__webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
+__webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./node_modules/core-js/modules/web.dom-collections.for-each.js");
+
+__webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
 
 var _vue = __webpack_require__(/*! vue */ "vue");
-
-var _smartArrayFilter = __webpack_require__(/*! smart-array-filter */ "./node_modules/smart-array-filter/lib-esm/index.js");
 
 var _multiselect = _interopRequireDefault(__webpack_require__(/*! @vueform/multiselect */ "./node_modules/@vueform/multiselect/dist/multiselect.js"));
 
@@ -264,100 +265,105 @@ var _default = (0, _vue.defineComponent)({
     // get menus from appSettings
     return {
       recipes: [],
-      dropdown: {
-        height: 0
-      },
       filters: {
         categories: [],
         cuisines: [],
-        cooktimes: 0,
-        preptimes: 0,
-        totaltimes: 0
+        cookm: 0,
+        prepm: 0,
+        totalm: 0
       },
-      menus: {
-        categories: false,
-        cuisines: false,
-        cooktimes: false,
-        preptimes: false,
-        totaltimes: false
-      },
-      searchText: '',
-      onlineFilter: '',
-      categories: {
-        'appetizers': 'Appetizers',
-        'barbecue-and-grilling': 'Barbecue and Grilling'
-      },
-      cuisines: []
+      categories: {},
+      cuisines: {},
+      recipeTimes: [{
+        text: 'Please select one',
+        value: 0
+      }, {
+        text: '< 15 minutes',
+        value: 14
+      }, {
+        text: '< 30 minutes',
+        value: 29
+      }, {
+        text: '< 60 minutes',
+        value: 59
+      }, {
+        text: '>= 60 minutes',
+        value: 60
+      }]
     };
   },
-  computed: {
-    activeMenu: function activeMenu() {
-      var _this = this;
+  methods: {
+    filterByUrl: function filterByUrl() {},
+    filterCategories: function filterCategories(value) {
+      if (this.filters.categories.length <= 0) {
+        return true;
+      }
 
-      return Object.keys(this.menus).reduce(function ($$, set, i) {
-        return _this.menus[set] ? i : $$;
-      }, -1);
-    },
-    list: function list() {
-      var _this2 = this;
-
-      var _this$activeFilters = this.activeFilters,
-          countries = _this$activeFilters.countries,
-          categories = _this$activeFilters.categories;
-      return this.companies.filter(function (_ref) {
-        var country = _ref.country,
-            keywords = _ref.keywords,
-            rating = _ref.rating;
-        if (rating < _this2.filters.rating) return false;
-        if (countries.length && !~countries.indexOf(country)) return false;
-        return !categories.length || categories.every(function (cat) {
-          return ~keywords.indexOf(cat);
-        });
+      return this.filters.categories.some(function (r) {
+        return value.includes(r);
       });
     },
-    activeFilters: function activeFilters() {
-      var _this$filters = this.filters,
-          countries = _this$filters.countries,
-          categories = _this$filters.categories;
-      return {
-        countries: Object.keys(countries).filter(function (c) {
-          return countries[c];
-        }),
-        categories: Object.keys(categories).filter(function (c) {
-          return categories[c];
-        }),
-        rating: this.filters.rating > this.rating.min ? [this.filters.rating] : []
-      };
-    }
-  },
-  watch: {
-    activeMenu: function activeMenu(index, from) {
-      var _this3 = this;
+    filterCuisines: function filterCuisines(value) {
+      if (this.filters.cuisines.length <= 0) {
+        return true;
+      }
 
-      if (index === from) return;
-      this.$nextTick(function () {
-        if (!_this3.$refs.menu || !_this3.$refs.menu[index]) {
-          _this3.dropdown.height = 0;
-        } else {
-          _this3.dropdown.height = "".concat(_this3.$refs.menu[index].clientHeight + 16, "px");
-        }
+      return this.filters.cuisines.some(function (r) {
+        return value.includes(r);
       });
+    },
+    filterPrepTime: function filterPrepTime(value) {
+      return this.filterTime(value, this.filters.prepm);
+    },
+    filterCookTime: function filterCookTime(value) {
+      return this.filterTime(value, this.filters.cookm);
+    },
+    filterTotalTime: function filterTotalTime(value) {
+      return this.filterTime(value, this.filters.totalm);
+    },
+    filterTime: function filterTime(value, selectedValue) {
+      if (selectedValue <= 0) {
+        return true;
+      }
+
+      var intVal = parseInt(value);
+
+      if (selectedValue < 60) {
+        return intVal <= selectedValue;
+      } else {
+        return intVal >= 60;
+      }
     }
   },
-  methods: {},
   beforeMount: function beforeMount() {
-    var _this4 = this;
+    var _this = this;
 
-    fetch('http://ucook.com/wp-content/search-index.json').then(function (response) {
-      return response.json();
-    }).then(function (recipes) {
-      var items = Object.keys(recipes).map(function (key) {
-        return recipes[key];
-      }); // debugger
-      // var first = items[0];
+    document.onreadystatechange = function () {
+      if (document.readyState == "complete") {
+        fetch(_this.$win.vue_wp_plugin_config.indexFileUrl).then(function (response) {
+          return response.json();
+        }).then(function (recipes) {
+          var items = [];
+          Object.keys(recipes).forEach(function (key) {
+            if (key !== 'tax') {
+              items.push(recipes[key]);
+            }
+          });
+          var tax = _this.$win.vue_wp_plugin_config.taxonomies;
+          var courses = tax['wprm_course'];
+          var cuisines = tax['wprm_cuisine'];
+          courses.forEach(function (item) {
+            _this.categories[item.value] = item.text;
+          });
+          cuisines.forEach(function (item) {
+            _this.cuisines[item.value] = item.text;
+          });
+          _this.recipes = items; // auto filter by url
 
-      _this4.recipes = items;
-    });
+          _this.filterByUrl();
+        });
+      }
+    };
   }
 });
 
@@ -428,26 +434,81 @@ var _hoisted_8 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_9 = /*#__PURE__*/(0, _vue.createStaticVNode)("<div class=\"col-md-3 mb-3\" data-v-e2eaa958><label style=\"text-transform:uppercase;\" data-v-e2eaa958>Preparation Time (minutes)</label></div><div class=\"col-md-3 mb-3\" data-v-e2eaa958><label style=\"text-transform:uppercase;\" data-v-e2eaa958>Cook Time (minutes)</label></div><div class=\"col-md-3 mb-3\" data-v-e2eaa958><label style=\"text-transform:uppercase;\" data-v-e2eaa958>Total Time (minutes)</label></div><div class=\"col-md-3\" data-v-e2eaa958>Clear all filters</div>", 4);
+var _hoisted_9 = {
+  class: "col-md-3 mb-3"
+};
 
-var _hoisted_13 = ["data-page-count"];
+var _hoisted_10 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
+    style: {
+      "text-transform": "uppercase"
+    }
+  }, "Preparation Time (minutes)", -1
+  /* HOISTED */
+  );
+});
 
-var _hoisted_14 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_11 = ["value"];
+var _hoisted_12 = {
+  class: "col-md-3 mb-3"
+};
+
+var _hoisted_13 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
+    style: {
+      "text-transform": "uppercase"
+    }
+  }, "Cook Time (minutes)", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_14 = ["value"];
+var _hoisted_15 = {
+  class: "col-md-3 mb-3"
+};
+
+var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
+    style: {
+      "text-transform": "uppercase"
+    }
+  }, "Total Time (minutes)", -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_17 = ["value"];
+
+var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
-    class: "col-md-6 mb-3"
+    class: "col-md-3 mb-3"
+  }, [/*#__PURE__*/(0, _vue.createElementVNode)("br"), /*#__PURE__*/(0, _vue.createElementVNode)("button", {
+    type: "button",
+    class: "btn btn-outline-primary"
+  }, "Clear all filters")], -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_19 = ["data-page-count"];
+
+var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
+    class: "col-md-6"
   }, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_15 = {
+var _hoisted_21 = {
   class: "col-md-6"
 };
-var _hoisted_16 = {
-  class: "form-floating mb-3"
+var _hoisted_22 = {
+  class: "form-floating"
 };
 
-var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
     for: "floatingInput"
   }, "Type to search...", -1
@@ -455,23 +516,29 @@ var _hoisted_17 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_18 = ["href"];
-var _hoisted_19 = {
+var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_25 = ["href"];
+var _hoisted_26 = {
   class: "card",
   style: {}
 };
-var _hoisted_20 = ["src", "alt"];
-var _hoisted_21 = {
+var _hoisted_27 = ["src", "alt"];
+var _hoisted_28 = {
   class: "card-body"
 };
-var _hoisted_22 = {
+var _hoisted_29 = {
   class: "card-title"
 };
-var _hoisted_23 = {
+var _hoisted_30 = {
   class: "card-text text-truncate"
 };
 
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
     class: "col-md-12"
   }, [/*#__PURE__*/(0, _vue.createElementVNode)("p", {
@@ -481,7 +548,13 @@ var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_25 = {
+var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_33 = {
   class: "d-flex flex-md-row flex-column justify-content-between align-items-center"
 };
 
@@ -507,8 +580,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     searchable: true,
     "close-on-select": false,
     "create-option": true,
-    options: _ctx.categories,
-    ref: "multiselect"
+    options: _ctx.categories
   }, null, 8
   /* PROPS */
   , ["modelValue", "options"])]), (0, _vue.createElementVNode)("div", _hoisted_7, [_hoisted_8, (0, _vue.createVNode)(_component_Multiselect, {
@@ -516,14 +588,67 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     "onUpdate:modelValue": _cache[1] || (_cache[1] = function ($event) {
       return _ctx.filters.cuisines = $event;
     }),
-    mode: "multiple",
+    mode: "tags",
+    searchable: true,
     "close-on-select": false,
-    options: _ctx.cuisines,
-    ref: "multiselect"
+    "create-option": true,
+    options: _ctx.cuisines
   }, null, 8
   /* PROPS */
-  , ["modelValue", "options"])]), _hoisted_9])]), (0, _vue.createVNode)(_component_dataset, {
+  , ["modelValue", "options"])]), (0, _vue.createElementVNode)("div", _hoisted_9, [_hoisted_10, (0, _vue.withDirectives)((0, _vue.createElementVNode)("select", {
+    class: "form-select",
+    "onUpdate:modelValue": _cache[2] || (_cache[2] = function ($event) {
+      return _ctx.filters.prepm = $event;
+    })
+  }, [((0, _vue.openBlock)(true), (0, _vue.createElementBlock)(_vue.Fragment, null, (0, _vue.renderList)(_ctx.recipeTimes, function (option) {
+    return (0, _vue.openBlock)(), (0, _vue.createElementBlock)("option", {
+      value: option.value
+    }, (0, _vue.toDisplayString)(option.text), 9
+    /* TEXT, PROPS */
+    , _hoisted_11);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[_vue.vModelSelect, _ctx.filters.prepm]])]), (0, _vue.createElementVNode)("div", _hoisted_12, [_hoisted_13, (0, _vue.withDirectives)((0, _vue.createElementVNode)("select", {
+    class: "form-select",
+    "onUpdate:modelValue": _cache[3] || (_cache[3] = function ($event) {
+      return _ctx.filters.cookm = $event;
+    })
+  }, [((0, _vue.openBlock)(true), (0, _vue.createElementBlock)(_vue.Fragment, null, (0, _vue.renderList)(_ctx.recipeTimes, function (option) {
+    return (0, _vue.openBlock)(), (0, _vue.createElementBlock)("option", {
+      value: option.value
+    }, (0, _vue.toDisplayString)(option.text), 9
+    /* TEXT, PROPS */
+    , _hoisted_14);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[_vue.vModelSelect, _ctx.filters.cookm]])]), (0, _vue.createElementVNode)("div", _hoisted_15, [_hoisted_16, (0, _vue.withDirectives)((0, _vue.createElementVNode)("select", {
+    class: "form-select",
+    "onUpdate:modelValue": _cache[4] || (_cache[4] = function ($event) {
+      return _ctx.filters.totalm = $event;
+    })
+  }, [((0, _vue.openBlock)(true), (0, _vue.createElementBlock)(_vue.Fragment, null, (0, _vue.renderList)(_ctx.recipeTimes, function (option) {
+    return (0, _vue.openBlock)(), (0, _vue.createElementBlock)("option", {
+      value: option.value
+    }, (0, _vue.toDisplayString)(option.text), 9
+    /* TEXT, PROPS */
+    , _hoisted_17);
+  }), 256
+  /* UNKEYED_FRAGMENT */
+  ))], 512
+  /* NEED_PATCH */
+  ), [[_vue.vModelSelect, _ctx.filters.totalm]])]), _hoisted_18])]), (0, _vue.createVNode)(_component_dataset, {
     "ds-data": _ctx.recipes,
+    "ds-filter-fields": {
+      wprm_course: _ctx.filterCategories,
+      wprm_cuisine: _ctx.filterCuisines,
+      wprm_cook_time: _ctx.filterCookTime,
+      wprm_prep_time: _ctx.filterPrepTime,
+      wprm_total_time: _ctx.filterTotalTime
+    },
     "ds-search-in": ['title', 'cnt']
   }, {
     default: (0, _vue.withCtx)(function (_ref) {
@@ -531,11 +656,11 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0, _vue.createElementVNode)("div", {
         class: "row",
         "data-page-count": ds.dsPagecount
-      }, [_hoisted_14, (0, _vue.createElementVNode)("div", _hoisted_15, [(0, _vue.createElementVNode)("div", _hoisted_16, [(0, _vue.createVNode)(_component_dataset_search, {
+      }, [_hoisted_20, (0, _vue.createElementVNode)("div", _hoisted_21, [(0, _vue.createElementVNode)("div", _hoisted_22, [(0, _vue.createVNode)(_component_dataset_search, {
         "ds-search-placeholder": "Type to search..."
-      }), _hoisted_17])])], 8
+      }), _hoisted_23])])], 8
       /* PROPS */
-      , _hoisted_13), (0, _vue.createVNode)(_component_dataset_item, {
+      , _hoisted_19), _hoisted_24, (0, _vue.createVNode)(_component_dataset_item, {
         class: "row",
         style: {
           "overflow-y": "auto",
@@ -547,9 +672,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
               rowIndex = _ref2.rowIndex;
           return [(0, _vue.createElementVNode)("a", {
             class: "recipe-item scale-down col-sm-12 col-md-6 col-lg-4",
-            href: row.url
-          }, [(0, _vue.createElementVNode)("div", _hoisted_19, [(0, _vue.createElementVNode)("img", {
-            src: row.image_url ? 'https://www.ucook.com/' + row.image_url : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png',
+            href: row.src
+          }, [(0, _vue.createElementVNode)("div", _hoisted_26, [(0, _vue.createElementVNode)("img", {
+            src: row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png',
             class: "card-img-top",
             alt: row.title,
             style: {
@@ -558,21 +683,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             }
           }, null, 8
           /* PROPS */
-          , _hoisted_20), (0, _vue.createElementVNode)("div", _hoisted_21, [(0, _vue.createElementVNode)("h5", _hoisted_22, (0, _vue.toDisplayString)(row.title), 1
+          , _hoisted_27), (0, _vue.createElementVNode)("div", _hoisted_28, [(0, _vue.createElementVNode)("h5", _hoisted_29, (0, _vue.toDisplayString)(row.title), 1
           /* TEXT */
-          ), (0, _vue.createElementVNode)("p", _hoisted_23, (0, _vue.toDisplayString)(row.cnt), 1
+          ), (0, _vue.createElementVNode)("p", _hoisted_30, (0, _vue.toDisplayString)(row.cnt), 1
           /* TEXT */
           )])])], 8
           /* PROPS */
-          , _hoisted_18)];
+          , _hoisted_25)];
         }),
         noDataFound: (0, _vue.withCtx)(function () {
-          return [_hoisted_24];
+          return [_hoisted_31];
         }),
         _: 1
         /* STABLE */
 
-      }), (0, _vue.createElementVNode)("div", _hoisted_25, [(0, _vue.createVNode)(_component_dataset_info, {
+      }), _hoisted_32, (0, _vue.createElementVNode)("div", _hoisted_33, [(0, _vue.createVNode)(_component_dataset_info, {
         class: "mb-2 mb-md-0"
       }), (0, _vue.createVNode)(_component_dataset_pager)])];
     }),
@@ -581,7 +706,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
 
   }, 8
   /* PROPS */
-  , ["ds-data"])]);
+  , ["ds-data", "ds-filter-fields"])]);
 }
 
 /***/ }),

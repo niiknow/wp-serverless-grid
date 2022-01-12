@@ -1,5 +1,4 @@
 <template>
-  <h3>Frontend App</h3>
   <div class="main-wrapper">
     <router-view :key="$route.path"></router-view>
   </div>

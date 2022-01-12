@@ -96,13 +96,12 @@ var index_1 = __importDefault(__webpack_require__(/*! ./router/index */ "./src/a
 var vue_axios_1 = __importDefault(__webpack_require__(/*! vue-axios */ "./node_modules/vue-axios/dist/vue-axios.esm.min.js"));
 
 var config_1 = __importDefault(__webpack_require__(/*! @/shared/config */ "./src/shared/config.ts")); // @ts-ignore
-// import masonry from 'vue-next-masonry'
 
 
 var win = (0, config_1.default)(window);
 var app = (0, vue_1.createApp)(App_vue_1.default);
+app.config.globalProperties.$win = win;
 app.use(index_1.default).use(vue_axios_1.default, win.$appConfig.axios);
-app.config.globalProperties.$axios = win.$appConfig.axios;
 app.mount('#vue-admin-app');
 
 /***/ }),
@@ -216,7 +215,7 @@ Object.defineProperty(exports, "__esModule", ({
 var axios_1 = __importDefault(__webpack_require__(/*! ./axios */ "./src/shared/axios.ts"));
 
 function default_1(win) {
-  win.$appConfig = win.vue_wp_plugin_config || {};
+  win.$appConfig = {};
   win.$appConfig.axios = axios_1.default;
   return win;
 }
