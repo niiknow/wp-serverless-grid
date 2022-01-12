@@ -63,6 +63,8 @@
     >
       <div class="row" :data-page-count="ds.dsPagecount">
         <div class="col-md-6">
+          <br /><br />
+          <dataset-info class="mb-2 mb-md-0" />
         </div>
         <div class="col-md-6">
           <div class="form-floating">

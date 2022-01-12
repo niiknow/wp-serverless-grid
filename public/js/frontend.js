@@ -515,23 +515,30 @@ var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_19 = ["data-page-count"];
+var _hoisted_20 = {
+  class: "col-md-6"
+};
 
-var _hoisted_20 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
-    class: "col-md-6"
-  }, null, -1
+var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_21 = {
+var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_23 = {
   class: "col-md-6"
 };
-var _hoisted_22 = {
+var _hoisted_24 = {
   class: "form-floating"
 };
 
-var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
     for: "searchInput"
   }, "Type to search...", -1
@@ -539,29 +546,29 @@ var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_24 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_25 = ["href"];
-var _hoisted_26 = {
+var _hoisted_27 = ["href"];
+var _hoisted_28 = {
   class: "card",
   style: {}
 };
-var _hoisted_27 = ["src", "alt"];
-var _hoisted_28 = {
+var _hoisted_29 = ["src", "alt"];
+var _hoisted_30 = {
   class: "card-body"
 };
-var _hoisted_29 = {
+var _hoisted_31 = {
   class: "card-title"
 };
-var _hoisted_30 = {
+var _hoisted_32 = {
   class: "card-text text-truncate"
 };
 
-var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
     class: "col-md-12"
   }, [/*#__PURE__*/(0, _vue.createElementVNode)("p", {
@@ -571,22 +578,22 @@ var _hoisted_31 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_32 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_33 = {
+var _hoisted_35 = {
   class: "d-flex flex-md-row flex-column justify-content-between align-items-center"
 };
 
 function render(_ctx, _cache, $props, $setup, $data, $options) {
   var _component_Multiselect = (0, _vue.resolveComponent)("Multiselect");
 
-  var _component_dataset_item = (0, _vue.resolveComponent)("dataset-item");
-
   var _component_dataset_info = (0, _vue.resolveComponent)("dataset-info");
+
+  var _component_dataset_item = (0, _vue.resolveComponent)("dataset-item");
 
   var _component_dataset_pager = (0, _vue.resolveComponent)("dataset-pager");
 
@@ -678,7 +685,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0, _vue.createElementVNode)("div", {
         class: "row",
         "data-page-count": ds.dsPagecount
-      }, [_hoisted_20, (0, _vue.createElementVNode)("div", _hoisted_21, [(0, _vue.createElementVNode)("div", _hoisted_22, [(0, _vue.withDirectives)((0, _vue.createElementVNode)("input", {
+      }, [(0, _vue.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, (0, _vue.createVNode)(_component_dataset_info, {
+        class: "mb-2 mb-md-0"
+      })]), (0, _vue.createElementVNode)("div", _hoisted_23, [(0, _vue.createElementVNode)("div", _hoisted_24, [(0, _vue.withDirectives)((0, _vue.createElementVNode)("input", {
         name: "searchInput",
         id: "searchInput",
         type: "text",
@@ -689,9 +698,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[_vue.vModelText, _ctx.dsSearch]]), _hoisted_23])])], 8
+      ), [[_vue.vModelText, _ctx.dsSearch]]), _hoisted_25])])], 8
       /* PROPS */
-      , _hoisted_19), _hoisted_24, (0, _vue.createVNode)(_component_dataset_item, {
+      , _hoisted_19), _hoisted_26, (0, _vue.createVNode)(_component_dataset_item, {
         class: "row",
         style: {
           "overflow-y": "auto",
@@ -704,7 +713,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return [(0, _vue.createElementVNode)("a", {
             class: "recipe-item scale-down col-sm-12 col-md-6 col-lg-4",
             href: row.src
-          }, [(0, _vue.createElementVNode)("div", _hoisted_26, [(0, _vue.createElementVNode)("img", {
+          }, [(0, _vue.createElementVNode)("div", _hoisted_28, [(0, _vue.createElementVNode)("img", {
             src: row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png',
             class: "card-img-top",
             alt: row.title,
@@ -714,21 +723,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             }
           }, null, 8
           /* PROPS */
-          , _hoisted_27), (0, _vue.createElementVNode)("div", _hoisted_28, [(0, _vue.createElementVNode)("h5", _hoisted_29, (0, _vue.toDisplayString)(row.title), 1
+          , _hoisted_29), (0, _vue.createElementVNode)("div", _hoisted_30, [(0, _vue.createElementVNode)("h5", _hoisted_31, (0, _vue.toDisplayString)(row.title), 1
           /* TEXT */
-          ), (0, _vue.createElementVNode)("p", _hoisted_30, (0, _vue.toDisplayString)(row.cnt), 1
+          ), (0, _vue.createElementVNode)("p", _hoisted_32, (0, _vue.toDisplayString)(row.cnt), 1
           /* TEXT */
           )])])], 8
           /* PROPS */
-          , _hoisted_25)];
+          , _hoisted_27)];
         }),
         noDataFound: (0, _vue.withCtx)(function () {
-          return [_hoisted_31];
+          return [_hoisted_33];
         }),
         _: 1
         /* STABLE */
 
-      }), _hoisted_32, (0, _vue.createElementVNode)("div", _hoisted_33, [(0, _vue.createVNode)(_component_dataset_info, {
+      }), _hoisted_34, (0, _vue.createElementVNode)("div", _hoisted_35, [(0, _vue.createVNode)(_component_dataset_info, {
         class: "mb-2 mb-md-0"
       }), (0, _vue.createVNode)(_component_dataset_pager)])];
     }),
