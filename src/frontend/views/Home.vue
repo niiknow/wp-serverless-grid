@@ -207,11 +207,30 @@ export default defineComponent({
         fetch(this.$win.vue_wp_plugin_config.indexFileUrl)
           .then(response => response.json())
           .then(recipes => {
-            const items = Object.keys(recipes).map((key) => {
-              return recipes[key]
+            const hasImage = []
+            const noImage = []
+            const items = Object.keys(recipes).forEach((key) => {
+              const item = recipes[key]
+              if (item.img) {
+                hasImage.push(item)
+              } else {
+                noImage.push(item)
+              }
             })
 
-            this.recipes = items
+            // sort by title asc
+            hasImage.sort(function(x, y) {
+              let a = x.title, b = y.title
+
+              return ((a > b) - (b > a))
+            });
+            noImage.sort(function(x, y) {
+              let a = x.title, b = y.title
+
+              return ((a > b) - (b > a))
+            });
+
+            this.recipes = hasImage.concat(noImage)
 
             // auto filter by url
             this.filterByUrl()

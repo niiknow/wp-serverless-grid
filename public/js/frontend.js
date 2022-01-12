@@ -257,9 +257,11 @@ __webpack_require__(/*! core-js/modules/web.dom-collections.for-each.js */ "./no
 
 __webpack_require__(/*! core-js/modules/es.promise.js */ "./node_modules/core-js/modules/es.promise.js");
 
-__webpack_require__(/*! core-js/modules/es.array.map.js */ "./node_modules/core-js/modules/es.array.map.js");
-
 __webpack_require__(/*! core-js/modules/es.object.keys.js */ "./node_modules/core-js/modules/es.object.keys.js");
+
+__webpack_require__(/*! core-js/modules/es.array.sort.js */ "./node_modules/core-js/modules/es.array.sort.js");
+
+__webpack_require__(/*! core-js/modules/es.array.concat.js */ "./node_modules/core-js/modules/es.array.concat.js");
 
 var _vue = __webpack_require__(/*! vue */ "vue");
 
@@ -384,10 +386,29 @@ var _default = (0, _vue.defineComponent)({
         fetch(_this.$win.vue_wp_plugin_config.indexFileUrl).then(function (response) {
           return response.json();
         }).then(function (recipes) {
-          var items = Object.keys(recipes).map(function (key) {
-            return recipes[key];
+          var hasImage = [];
+          var noImage = [];
+          var items = Object.keys(recipes).forEach(function (key) {
+            var item = recipes[key];
+
+            if (item.img) {
+              hasImage.push(item);
+            } else {
+              noImage.push(item);
+            }
+          }); // sort by title asc
+
+          hasImage.sort(function (x, y) {
+            var a = x.title,
+                b = y.title;
+            return (a > b) - (b > a);
           });
-          _this.recipes = items; // auto filter by url
+          noImage.sort(function (x, y) {
+            var a = x.title,
+                b = y.title;
+            return (a > b) - (b > a);
+          });
+          _this.recipes = hasImage.concat(noImage); // auto filter by url
 
           _this.filterByUrl();
         });
