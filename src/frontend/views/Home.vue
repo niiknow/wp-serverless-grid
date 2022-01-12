@@ -1,6 +1,6 @@
 <template>
   <div class="app-home">
-    <div class="row">
+    <div class="row filter-font">
       <h3>Filters</h3>
       <div class="row">
         <div class="col-md-6 mb-3">
@@ -62,7 +62,7 @@
       ref="myds"
     >
       <div class="row" :data-page-count="ds.dsPagecount">
-        <div class="col-md-6">
+        <div class="col-md-6 search-font">
           <br /><br />
           <dataset-info class="mb-2 mb-md-0" />
         </div>
@@ -74,11 +74,11 @@
         </div>
       </div>
       <hr />
-      <dataset-item class="row" style="overflow-y: auto; max-height: 600px">
+      <dataset-item class="row search-font" style="overflow-y: auto; max-height: 600px">
         <template #default="{ row, rowIndex }">
-          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.src">
+          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.src" :title="row.title">
             <div class="card" style="">
-              <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title" style="height: 250px; overflow-y: hidden">
+              <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title">
               <div class="card-body">
                 <h5 class="card-title">{{ row.title }}</h5>
                 <p class="card-text text-truncate">{{ row.cnt }}</p>
@@ -87,13 +87,13 @@
           </a>
         </template>
         <template #noDataFound>
-          <div class="col-md-12">
+          <div class="col-md-12 search-font">
             <p class="text-center">No results found</p>
           </div>
         </template>
       </dataset-item>
       <hr />
-      <div class="d-flex flex-md-row flex-column justify-content-between align-items-center">
+      <div class="d-flex flex-md-row flex-column justify-content-between align-items-center search-font" style="text-decoration: none !important">
         <dataset-info class="mb-2 mb-md-0" />
         <dataset-pager />
       </div>
@@ -242,7 +242,7 @@ export default defineComponent({
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
-<style scoped>
+<style>
 a.recipe-item {
   transition: .2s ease-in;
   -webkit-transition: .2s ease-in;
@@ -250,7 +250,7 @@ a.recipe-item {
 
 .card {
   box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
-  height: 350px;
+  height: 300px;
   overflow: hidden;
   margin-top: 10px
 }
@@ -260,6 +260,27 @@ a.recipe-item {
   -webkit-transform: scale(.95);
 }
 
+.app-home a {
+  text-decoration: none !important;
+}
+
+.search-font {
+  font-size: 16px;
+  font-weight: 400;
+  line-height: 1.5;
+}
+
+.filter-font label, .filter-font h3 {
+  font-weight: bold;
+}
+
+.card-img-top {
+  height: 220px;
+}
+
+.search-font .page-link {
+  text-decoration: none !important;
+}
 </style>
 
 <style src="@vueform/multiselect/themes/default.css"></style>
