@@ -269,21 +269,22 @@ var _default = (0, _vue.defineComponent)({
   components: {
     Multiselect: _multiselect.default
   },
-  name: 'Home',
-  data: function data() {
-    // get menus from appSettings
+  setup: function setup(props, context) {
+    var filters = (0, _vue.reactive)({
+      categories: [],
+      cuisines: [],
+      cookm: 0,
+      prepm: 0,
+      totalm: 0
+    });
+    var recipes = (0, _vue.ref)([]);
+    var dsSearch = (0, _vue.ref)('');
     return {
-      dsSearch: '',
-      recipes: [],
-      filters: {
-        categories: [],
-        cuisines: [],
-        cookm: 0,
-        prepm: 0,
-        totalm: 0
-      },
-      categories: {},
-      cuisines: {},
+      dsSearch: dsSearch,
+      recipes: recipes,
+      filters: filters,
+      categories: (0, _vue.ref)({}),
+      cuisines: (0, _vue.ref)({}),
       recipeTimes: [{
         text: 'Please select one',
         value: 0
@@ -302,11 +303,6 @@ var _default = (0, _vue.defineComponent)({
       }]
     };
   },
-  watch: {
-    dsSearch: function dsSearch(value) {
-      this.handleSearch(value);
-    }
-  },
   methods: {
     filterByUrl: function filterByUrl() {
       if (this.$route.query.category) {
@@ -314,7 +310,7 @@ var _default = (0, _vue.defineComponent)({
       }
 
       if (this.$route.query.s) {
-        this.dsSearch = this.$route.query.s;
+        this.dsSearch.value = this.$route.query.s;
       }
     },
     filterCategories: function filterCategories(value) {
@@ -356,9 +352,16 @@ var _default = (0, _vue.defineComponent)({
       } else {
         return intVal >= 60;
       }
+    },
+    clearFilters: function clearFilters() {
+      this.filters.categories.length = 0;
+      this.filters.cuisines.length = 0;
+      this.filters.cookm = 0;
+      this.filters.prepm = 0;
+      this.filters.totalm = 0;
     }
   },
-  beforeMount: function beforeMount() {
+  beforeCreate: function beforeCreate() {
     var _this = this;
 
     document.onreadystatechange = function () {
@@ -366,6 +369,9 @@ var _default = (0, _vue.defineComponent)({
         _this.handleSearch = _this.$win.$appConfig.debounce(function (value) {
           _this.$refs.myds.search(value);
         }, 300);
+        (0, _vue.watchEffect)(function () {
+          _this.handleSearch(_this.dsSearch);
+        });
         var tax = _this.$win.vue_wp_plugin_config.taxonomies;
         var courses = tax['wprm_course'];
         var cuisines = tax['wprm_cuisine'];
@@ -502,28 +508,20 @@ var _hoisted_16 = /*#__PURE__*/_withScopeId(function () {
 });
 
 var _hoisted_17 = ["value"];
-
-var _hoisted_18 = /*#__PURE__*/_withScopeId(function () {
-  return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
-    class: "col-md-3 mb-3"
-  }, [/*#__PURE__*/(0, _vue.createElementVNode)("br"), /*#__PURE__*/(0, _vue.createElementVNode)("button", {
-    type: "button",
-    class: "btn btn-outline-primary"
-  }, "Clear all filters")], -1
-  /* HOISTED */
-  );
-});
-
-var _hoisted_19 = ["data-page-count"];
-var _hoisted_20 = {
-  class: "col-md-6"
+var _hoisted_18 = {
+  class: "col-md-3 mb-3"
 };
 
-var _hoisted_21 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_19 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("br", null, null, -1
   /* HOISTED */
   );
 });
+
+var _hoisted_20 = ["data-page-count"];
+var _hoisted_21 = {
+  class: "col-md-6"
+};
 
 var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("br", null, null, -1
@@ -531,14 +529,20 @@ var _hoisted_22 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_23 = {
+var _hoisted_23 = /*#__PURE__*/_withScopeId(function () {
+  return /*#__PURE__*/(0, _vue.createElementVNode)("br", null, null, -1
+  /* HOISTED */
+  );
+});
+
+var _hoisted_24 = {
   class: "col-md-6"
 };
-var _hoisted_24 = {
+var _hoisted_25 = {
   class: "form-floating"
 };
 
-var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("label", {
     for: "searchInput"
   }, "Type to search...", -1
@@ -546,29 +550,29 @@ var _hoisted_25 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_26 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_27 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_27 = ["href"];
-var _hoisted_28 = {
+var _hoisted_28 = ["href"];
+var _hoisted_29 = {
   class: "card",
   style: {}
 };
-var _hoisted_29 = ["src", "alt"];
-var _hoisted_30 = {
+var _hoisted_30 = ["src", "alt"];
+var _hoisted_31 = {
   class: "card-body"
 };
-var _hoisted_31 = {
+var _hoisted_32 = {
   class: "card-title"
 };
-var _hoisted_32 = {
+var _hoisted_33 = {
   class: "card-text text-truncate"
 };
 
-var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("div", {
     class: "col-md-12"
   }, [/*#__PURE__*/(0, _vue.createElementVNode)("p", {
@@ -578,13 +582,13 @@ var _hoisted_33 = /*#__PURE__*/_withScopeId(function () {
   );
 });
 
-var _hoisted_34 = /*#__PURE__*/_withScopeId(function () {
+var _hoisted_35 = /*#__PURE__*/_withScopeId(function () {
   return /*#__PURE__*/(0, _vue.createElementVNode)("hr", null, null, -1
   /* HOISTED */
   );
 });
 
-var _hoisted_35 = {
+var _hoisted_36 = {
   class: "d-flex flex-md-row flex-column justify-content-between align-items-center"
 };
 
@@ -668,7 +672,13 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
   /* UNKEYED_FRAGMENT */
   ))], 512
   /* NEED_PATCH */
-  ), [[_vue.vModelSelect, _ctx.filters.totalm]])]), _hoisted_18])]), (0, _vue.createVNode)(_component_dataset, {
+  ), [[_vue.vModelSelect, _ctx.filters.totalm]])]), (0, _vue.createElementVNode)("div", _hoisted_18, [_hoisted_19, (0, _vue.createElementVNode)("button", {
+    type: "button",
+    class: "btn btn-outline-primary",
+    onClick: _cache[5] || (_cache[5] = function () {
+      return _ctx.clearFilters && _ctx.clearFilters.apply(_ctx, arguments);
+    })
+  }, "Clear all filters")])])]), (0, _vue.createVNode)(_component_dataset, {
     "ds-data": _ctx.recipes,
     "ds-filter-fields": {
       wprm_course: _ctx.filterCategories,
@@ -685,22 +695,22 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       return [(0, _vue.createElementVNode)("div", {
         class: "row",
         "data-page-count": ds.dsPagecount
-      }, [(0, _vue.createElementVNode)("div", _hoisted_20, [_hoisted_21, _hoisted_22, (0, _vue.createVNode)(_component_dataset_info, {
+      }, [(0, _vue.createElementVNode)("div", _hoisted_21, [_hoisted_22, _hoisted_23, (0, _vue.createVNode)(_component_dataset_info, {
         class: "mb-2 mb-md-0"
-      })]), (0, _vue.createElementVNode)("div", _hoisted_23, [(0, _vue.createElementVNode)("div", _hoisted_24, [(0, _vue.withDirectives)((0, _vue.createElementVNode)("input", {
+      })]), (0, _vue.createElementVNode)("div", _hoisted_24, [(0, _vue.createElementVNode)("div", _hoisted_25, [(0, _vue.withDirectives)((0, _vue.createElementVNode)("input", {
         name: "searchInput",
         id: "searchInput",
         type: "text",
         placeholder: "Type to search...",
         class: "form-control",
-        "onUpdate:modelValue": _cache[5] || (_cache[5] = function ($event) {
+        "onUpdate:modelValue": _cache[6] || (_cache[6] = function ($event) {
           return _ctx.dsSearch = $event;
         })
       }, null, 512
       /* NEED_PATCH */
-      ), [[_vue.vModelText, _ctx.dsSearch]]), _hoisted_25])])], 8
+      ), [[_vue.vModelText, _ctx.dsSearch]]), _hoisted_26])])], 8
       /* PROPS */
-      , _hoisted_19), _hoisted_26, (0, _vue.createVNode)(_component_dataset_item, {
+      , _hoisted_20), _hoisted_27, (0, _vue.createVNode)(_component_dataset_item, {
         class: "row",
         style: {
           "overflow-y": "auto",
@@ -713,7 +723,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
           return [(0, _vue.createElementVNode)("a", {
             class: "recipe-item scale-down col-sm-12 col-md-6 col-lg-4",
             href: row.src
-          }, [(0, _vue.createElementVNode)("div", _hoisted_28, [(0, _vue.createElementVNode)("img", {
+          }, [(0, _vue.createElementVNode)("div", _hoisted_29, [(0, _vue.createElementVNode)("img", {
             src: row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png',
             class: "card-img-top",
             alt: row.title,
@@ -723,21 +733,21 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
             }
           }, null, 8
           /* PROPS */
-          , _hoisted_29), (0, _vue.createElementVNode)("div", _hoisted_30, [(0, _vue.createElementVNode)("h5", _hoisted_31, (0, _vue.toDisplayString)(row.title), 1
+          , _hoisted_30), (0, _vue.createElementVNode)("div", _hoisted_31, [(0, _vue.createElementVNode)("h5", _hoisted_32, (0, _vue.toDisplayString)(row.title), 1
           /* TEXT */
-          ), (0, _vue.createElementVNode)("p", _hoisted_32, (0, _vue.toDisplayString)(row.cnt), 1
+          ), (0, _vue.createElementVNode)("p", _hoisted_33, (0, _vue.toDisplayString)(row.cnt), 1
           /* TEXT */
           )])])], 8
           /* PROPS */
-          , _hoisted_27)];
+          , _hoisted_28)];
         }),
         noDataFound: (0, _vue.withCtx)(function () {
-          return [_hoisted_33];
+          return [_hoisted_34];
         }),
         _: 1
         /* STABLE */
 
-      }), _hoisted_34, (0, _vue.createElementVNode)("div", _hoisted_35, [(0, _vue.createVNode)(_component_dataset_info, {
+      }), _hoisted_35, (0, _vue.createElementVNode)("div", _hoisted_36, [(0, _vue.createVNode)(_component_dataset_info, {
         class: "mb-2 mb-md-0"
       }), (0, _vue.createVNode)(_component_dataset_pager)])];
     }),

@@ -50,7 +50,7 @@
           </select>
         </div>
         <div class="col-md-3 mb-3">
-          <br /><button type="button" class="btn btn-outline-primary">Clear all filters</button>
+          <br /><button type="button" class="btn btn-outline-primary" @click="clearFilters">Clear all filters</button>
         </div>
       </div>
     </div>
@@ -102,7 +102,7 @@
 </template>
 
 <script>
-import { defineComponent } from 'vue'
+import { defineComponent, reactive, ref, watchEffect } from 'vue'
 import Multiselect from '@vueform/multiselect'
 
 
@@ -110,15 +110,17 @@ export default defineComponent({
   components: {
     Multiselect
   },
-  name: 'Home',
-  data () {
-    // get menus from appSettings
+  setup(props, context) {
+    const filters = reactive({ categories: [], cuisines: [], cookm: 0, prepm: 0, totalm: 0 })
+    const recipes = ref([])
+    const dsSearch = ref('')
+
     return {
-      dsSearch: '',
-      recipes: [],
-      filters: { categories: [], cuisines: [], cookm: 0, prepm: 0, totalm: 0 },
-      categories: {},
-      cuisines: {},
+      dsSearch,
+      recipes,
+      filters,
+      categories: ref({}),
+      cuisines: ref({}),
       recipeTimes: [
         { text: 'Please select one', value: 0 },
         { text: '< 15 minutes', value: 14 },
@@ -128,11 +130,6 @@ export default defineComponent({
       ]
     }
   },
-  watch: {
-    dsSearch(value) {
-      this.handleSearch(value)
-    }
-  },
   methods: {
     filterByUrl() {
       if (this.$route.query.category) {
@@ -140,7 +137,7 @@ export default defineComponent({
       }
 
       if (this.$route.query.s) {
-        this.dsSearch = this.$route.query.s
+        this.dsSearch.value = this.$route.query.s
       }
     },
     filterCategories(value) {
@@ -177,14 +174,25 @@ export default defineComponent({
       } else {
         return intVal >= 60
       }
+    },
+    clearFilters() {
+      this.filters.categories.length = 0
+      this.filters.cuisines.length = 0
+      this.filters.cookm = 0
+      this.filters.prepm = 0
+      this.filters.totalm = 0
     }
   },
-  beforeMount() {
+  beforeCreate() {
     document.onreadystatechange = () => {
       if (document.readyState == "complete") {
         this.handleSearch = this.$win.$appConfig.debounce((value) => {
           this.$refs.myds.search(value)
         }, 300)
+
+        watchEffect(() => {
+          this.handleSearch(this.dsSearch)
+        })
 
         const tax = this.$win.vue_wp_plugin_config.taxonomies
         const courses = tax['wprm_course']
