@@ -310,7 +310,7 @@ var _default = (0, _vue.defineComponent)({
       }
 
       if (this.$route.query.s) {
-        this.dsSearch.value = this.$route.query.s;
+        this.dsSearch = this.$route.query.s;
       }
     },
     filterCategories: function filterCategories(value) {

@@ -137,7 +137,7 @@ export default defineComponent({
       }
 
       if (this.$route.query.s) {
-        this.dsSearch.value = this.$route.query.s
+        this.dsSearch = this.$route.query.s
       }
     },
     filterCategories(value) {
