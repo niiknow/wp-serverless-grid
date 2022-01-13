@@ -48,9 +48,8 @@ class Assets
 		foreach ($scripts as $handle => $script) {
 			$deps      = isset($script['deps']) ? $script['deps'] : false;
 			$in_footer = isset($script['in_footer']) ? $script['in_footer'] : false;
-			$version   = isset($script['version']) ? $script['version'] : \Slsgrid\Main::VERSION;
 
-			wp_register_script($handle, $script['src'], $deps, $version, $in_footer);
+			wp_register_script($handle, $script['src'], $deps, null, $in_footer);
 		}
 	}
 
@@ -67,7 +66,7 @@ class Assets
 		{
 			$deps = isset( $style['deps'] ) ? $style['deps'] : false;
 
-			wp_register_style($handle, $style['src'], $deps, \Slsgrid\Main::VERSION);
+			wp_register_style($handle, $style['src'], $deps, null);
 		}
 	}
 
@@ -84,36 +83,30 @@ class Assets
 
 		$scripts = [
 			'vuejs' => [
-				'src'       => 'https://cdn.jsdelivr.net/npm/vue@3.2.11/dist/vue.global.prod.js',
-				'version'   => '3.2.11',
+				'src'       => 'https://cdn.jsdelivr.net/npm/vue@latest/dist/vue.global.prod.js',
 				'in_footer' => true
 			],
 			'bootstrap' => [
 				'src'       => 'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/js/bootstrap.min.js',
-				'version'   => 'latest',
 				'in_footer' => true
 			],
 			$this->prefix . '-manifest' => [
-				'src'       => $assets_url . '/js/manifest.js',
-				'version'   => filemtime($plugin_dir . '/js/manifest.js'),
+				'src'       => $assets_url . $this->mix('/js/manifest.js'),
 				'in_footer' => true
 			],
 			$this->prefix . '-vendor' => [
-				'src'       => $assets_url . '/js/vendor.js',
+				'src'       => $assets_url . $this->mix('/js/vendor.js'),
 				'deps'      => [ 'vuejs', $this->prefix . '-manifest' ],
-				'version'   => filemtime($plugin_dir . '/js/vendor.js'),
 				'in_footer' => true
 			],
 			$this->prefix . '-frontend' => [
-				'src'       => $assets_url . '/js/frontend.js',
+				'src'       => $assets_url . $this->mix('/js/frontend.js'),
 				'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
-				'version'   => filemtime($plugin_dir . '/js/frontend.js'),
 				'in_footer' => true
 			],
 			$this->prefix . '-admin' => [
-				'src'       => $assets_url . '/js/admin.js',
+				'src'       => $assets_url . $this->mix('/js/admin.js'),
 				'deps'      => [ $this->prefix . '-vendor' ],
-				'version'   => filemtime($plugin_dir . '/js/admin.js'),
 				'in_footer' => true
 			]
 		];
@@ -132,16 +125,50 @@ class Assets
 
 		$styles = [
 			$this->prefix . '-bootstrap' => [
-				'src' =>  'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css'
+				'src' => 'https://cdn.jsdelivr.net/npm/bootstrap@latest/dist/css/bootstrap.min.css'
 			],
 			$this->prefix . '-frontend' => [
-				'src' =>  $assets_url . '/css/frontend.css'
+				'src' => $assets_url . $this->mix('/css/frontend.css')
 			],
 			$this->prefix . '-admin' => [
-				'src' =>  $assets_url . '/css/admin.css'
+				'src' => $assets_url . $this->mix('/css/admin.css')
 			],
 		];
 
 		return $styles;
+	}
+
+	/**
+	 * Get the path to a versioned Mix file.
+	 *
+     * @param  string  $path
+     * @param  string  $manifestDirectory
+	 * @return string
+	 */
+	public function mix($path, $manifestDirectory = '')
+	{
+        static $manifests = [];
+
+		if (empty($manifestDirectory)) {
+			$manifestDirectory = \Slsgrid\Main::$PLUGINDIR . '/public';
+		}
+
+        $manifestPath = $manifestDirectory . '/mix-manifest.json';
+
+        if (! isset($manifests[$manifestPath])) {
+            if (! is_file($manifestPath)) {
+                throw new \Exception('The Mix manifest does not exist in: ' . $manifestPath);
+            }
+
+            $manifests[$manifestPath] = json_decode(file_get_contents($manifestPath), true);
+        }
+
+        $manifest = $manifests[$manifestPath];
+
+        if (! isset($manifest[$path])) {
+            throw new \Exception("Unable to locate Mix file: {$path}.");
+        }
+
+        return $manifest[$path];
 	}
 }
