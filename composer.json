@@ -1,5 +1,5 @@
 {
-    "name": "niiknow/wp-sls-grid",
+    "name": "niiknow/wp-slsgrid",
     "description": "A WordPress Plugin for static site searching",
     "type": "wordpress-plugin",
     "license": "GPL-3.0",

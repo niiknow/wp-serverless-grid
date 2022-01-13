@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: Serverless Grid
-Plugin URI: https://github.com/niiknow/wp-sls-grid
+Plugin URI: https://github.com/niiknow/wp-slsgrid
 Description: A WordPress Plugin for static site searching
-Version: 0.1
+Version: 0.2.0
 Author: Tom Noogen
-Author URI: https://github.com/niiknow/wp-sls-grid
+Author URI: https://github.com/niiknow/wp-slsgrid
 License: GPL3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 Text Domain: slsgrid
@@ -13,7 +13,7 @@ Domain Path: /languages
 */
 
 /**
- * Copyright (c) YEAR Tom Noogen (email: tommywhen@yahoo.com). All rights reserved.
+ * Copyright (c) 2022. All rights reserved.
  *
  * Released under the GPL license
  * http://www.opensource.org/licenses/gpl-license.php
