@@ -78,10 +78,16 @@
         <template #default="{ row, rowIndex }">
           <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.src" :title="row.title">
             <div class="card" style="">
-              <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title">
+              <div style="margin-bottom: 20px">
+                <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title">
+              </div>
               <div class="card-body">
-                <h5 class="card-title">{{ row.title }}</h5>
-                <p class="card-text text-truncate">{{ row.cnt }}</p>
+                <div class="cut-off-2" style="margin-bottom: 20px">
+                  <h5 class="card-title">{{ row.title }}</h5>
+                </div>
+                <div class="cut-off-2" style="margin-bottom: 20px">
+                  <p class="card-text text-truncate">{{ getCourses(row.wprm_course) }}</p>
+                </div>
               </div>
             </div>
           </a>
@@ -131,6 +137,18 @@ export default defineComponent({
     }
   },
   methods: {
+    getCourses(courses) {
+      if (courses.length <= 0) {
+        return ''
+      }
+
+      let myCourses = []
+      courses.forEach(c => {
+        myCourses.push(this.categories[c])
+      })
+
+      return 'Course ' + myCourses.join(', ')
+    },
     filterByUrl() {
       if (this.$route.query.category) {
         this.filters.categories.push(this.$route.query.category)
@@ -246,13 +264,34 @@ export default defineComponent({
 a.recipe-item {
   transition: .2s ease-in;
   -webkit-transition: .2s ease-in;
+  text-align: center;
+}
+
+.card-img-top {
+  height: 300px;
 }
 
 .card {
-  box-shadow: 0 0 10px 0 rgba(0,0,0,.5);
-  height: 300px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, .5);
+  height: 500px;
   overflow: hidden;
   margin-top: 10px
+}
+
+.card-title {
+  font-weight: 700 !important;
+  font-family: Raleway;
+  font-size: 2.5rem;
+}
+
+.cut-off-2 {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  text-overflow: ellipsis;
+  padding: 0 10px;
+  min-height: 70px;
 }
 
 .scale-down:hover {
@@ -274,9 +313,6 @@ a.recipe-item {
   font-weight: bold;
 }
 
-.card-img-top {
-  height: 220px;
-}
 
 .search-font .page-link {
   text-decoration: none !important;
