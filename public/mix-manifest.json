@@ -1,10 +1,10 @@
 {
-    "/js/admin.js": "/js/admin.js?id=b7c216782b79cbef3d47",
-    "/js/frontend.js": "/js/frontend.js?id=bb40bcad6d4be2fbf814",
-    "/js/frontview.js": "/js/frontview.js?id=72836ba7ec2b9097c588",
-    "/js/manifest.js": "/js/manifest.js?id=6a39d18503926eebe1d6",
+    "/js/admin.js": "/js/admin.js?id=4226e50d4eaab4a2ba6f",
+    "/js/frontend.js": "/js/frontend.js?id=5aaf238d205bc5dc3981",
+    "/js/frontview.js": "/js/frontview.js?id=bfa3460e9e98407c787c",
+    "/js/manifest.js": "/js/manifest.js?id=56bf45ffaffe7977da64",
     "/css/frontview.css": "/css/frontview.css?id=68b329da9893e34099c7",
+    "/css/admin.css": "/css/admin.css?id=daa8bbc5579ea3a19728",
     "/css/frontend.css": "/css/frontend.css?id=2f7395e60d848727c445",
-    "/css/admin.css": "/css/admin.css?id=f316344a1c1bc53ddd3e",
-    "/js/vendor.js": "/js/vendor.js?id=e0b640c1ec492d33b3bf"
+    "/js/vendor.js": "/js/vendor.js?id=21fdb9adf5405ed38ab7"
 }
