@@ -69,12 +69,16 @@ class FrontendLoader
 			    'taxonomies' => $indexer->taxonomies,
 			    'indexFileUrl' => $indexer->indexFileUrl
 			]);
+
+			$content .= '<div id="vue-frontend-app" ></div>';
 		} else if ($postfix === 'frontview') {
 		    // output data for use on client-side
 	    	// https://wordpress.stackexchange.com/questions/344537/authenticating-with-rest-api
 	    	wp_localize_script($this->prefix . '-'.$postfix, 'vue_wp_plugin_config_'.$postfix, [
 	    		'viewComponent' => esc_attr($a['view'])
 			]);
+
+			$content .= '<div id="vue-frontview-app" ></div>';
 		}
 
 		$content .= '<div id="' . $this->id . '" ></div>';

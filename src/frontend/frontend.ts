@@ -17,4 +17,4 @@ MyDs(app)
 
 app.use(router)
    .use(VueAxios, win.$appConfig.axios);
-app.mount('#serverless-grid-vue-app')
+app.mount('#vue-frontend-app')
