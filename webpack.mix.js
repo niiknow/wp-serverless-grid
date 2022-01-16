@@ -74,8 +74,8 @@ mix.options({
     'assets/admin.css',
     'css'
   )
-  .sass(
-    'assets/frontend.scss',
+  .postCss(
+    'assets/frontend.css',
     'css'
   )
   .postCss(
