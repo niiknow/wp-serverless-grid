@@ -79,7 +79,7 @@ mix.options({
     'css'
   )
   .postCss(
-    'assets/frontview.scss',
+    'assets/frontview.css',
     'css'
   )
 
