@@ -81,7 +81,6 @@ class FrontendLoader
 			$content .= '<div id="vue-frontview-app" ></div>';
 		}
 
-		$content .= '<div id="' . $this->id . '" ></div>';
         return $content;
     }
 }
