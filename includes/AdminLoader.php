@@ -1,5 +1,5 @@
 <?php
-namespace Slsgrid;
+namespace ServerlessGrid;
 
 /**
  * Admin pages loader
@@ -20,7 +20,7 @@ class AdminLoader
     public function __construct($prefix)
     {
     	$this->prefix = $prefix;
-        add_action('admin_menu', [ $this, 'admin_menu' ]);
+        add_action('admin_menu', [$this, 'admin_menu']);
     }
 
     /**
@@ -36,8 +36,8 @@ class AdminLoader
         $slug       = $this->prefix;
 
         $hook = add_menu_page(
-        	esc_html__('SLS Grid', $this->prefix),
-        	esc_html__('SLS Grid', $this->prefix),
+        	esc_html__('Serverless Grid', $this->prefix),
+        	esc_html__('Serverless Grid', $this->prefix),
         	$capability,
         	$slug,
         	[ $this, 'plugin_page' ],
@@ -86,14 +86,15 @@ class AdminLoader
 
     	// output data for use on client-side
     	// https://wordpress.stackexchange.com/questions/344537/authenticating-with-rest-api
-    	wp_localize_script( $this->prefix . '-admin', 'vue_wp_plugin_config', [
+    	wp_localize_script( $this->prefix . '-admin', 'vue_wp_plugin_config_admin', [
 		    'rest' => [
 		        'endpoints' => [
-		            'settings' => esc_url_raw( rest_url( $settingController->get_endpoint() ) ),
+		            'settings' => esc_url_raw(rest_url($settingController->get_endpoint())),
 		        ],
-		        'nonce'     => wp_create_nonce( 'wp_rest' ),  // add header X-WP-Nonce to authenticate
-		        // 'action_nonce'     => wp_create_nonce( 'action_nonce' ),
+		        'nonce' => wp_create_nonce('wp_rest')
 		    ],
+		    'settings' => $settingController->get_settings(null),
+		    'settingStructure' => $settingController->get_settings_structure(true)
 		] );
 
 		$content = '<div class="admin-app-wrapper"><div id="vue-admin-app"></div></div>';

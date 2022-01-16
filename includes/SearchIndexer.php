@@ -1,5 +1,5 @@
 <?php
-namespace Slsgrid;
+namespace ServerlessGrid;
 
 /**
  * To index for searching
@@ -58,8 +58,8 @@ final class SearchIndexer
     {
         $wpContentDir = rtrim(WP_CONTENT_DIR, '/') . '/';
 
-        $this->indexFile = $wpContentDir . 'uploads/slsgrid-index.json';
-        $this->indexFileUrl = content_url('uploads/slsgrid-index.json');
+        $this->indexFile = $wpContentDir . 'uploads/serverless-grid-index.json';
+        $this->indexFileUrl = content_url('uploads/serverless-grid-index.json');
         $this->taxonomies = $this->getTaxonomies();
 
 		$sc = new Api\SettingController();

@@ -1,5 +1,5 @@
 <?php
-namespace Slsgrid\Api;
+namespace ServerlessGrid\Api;
 
 /**
  * Backend settings controller
@@ -14,189 +14,232 @@ class SettingController extends \WP_REST_Controller
 	 */
 	private $prefix;
 
-    /**
-     * Initialize this class.
-     *
-     */
-    public function __construct()
-    {
-        $this->prefix = \Slsgrid\Main::PREFIX;
-        $this->namespace = $this->prefix . '/v1';
-        $this->rest_base = 'settings';
-    }
+	/**
+	 * Initialize this class.
+	 *
+	 */
+	public function __construct()
+	{
+		$this->prefix    = \ServerlessGrid\Main::PREFIX;
+		$this->namespace = $this->prefix . '/v1';
+		$this->rest_base = 'settings';
+	}
 
-    /**
-     * get the endpoint
-     *
-     * @return string the full endpoint
-     */
-    public function get_endpoint()
-    {
-        // example: myplugin/v1/settings
-        return  $this->namespace . '/' . $this->rest_base;
-    }
+	/**
+	 * get the endpoint
+	 *
+	 * @return string the full endpoint
+	 */
+	public function get_endpoint()
+	{
+		// example: myplugin/v1/settings
+		return $this->namespace . '/' . $this->rest_base;
+	}
 
-    /**
-     * Register the routes
-     *
-     * @return void
-     */
-    public function register_routes()
-    {
-    	// Register the /wp-json/ + get_endpoint() route
-        register_rest_route(
-            $this->namespace,
-            '/' . $this->rest_base,
-            array(
-                array(
-                    'methods'             => 'GET',
-                    'callback'            => array( $this, 'get_settings' ),
-                    'permission_callback' => array( $this, 'get_items_permissions_check' ),
-                    'args'                => $this->get_collection_params(),
-                ),
-                array(
-                    'methods'             => 'POST',
-                    'callback'            => array( $this, 'update_settings' ),
-                    'permission_callback' => array( $this, 'get_items_permissions_check' ),
-                    'args'                => $this->get_collection_params(),
-                )
-            )
-        );
-    }
+	/**
+	 * Register the routes
+	 *
+	 * @return void
+	 */
+	public function register_routes()
+	{
+		// Register the /wp-json/ + get_endpoint() route
+		register_rest_route(
+			$this->namespace,
+			'/' . $this->rest_base,
+			array(
+				array(
+					'methods'             => 'GET',
+					'callback'            => array($this, 'get_settings'),
+					'permission_callback' => array($this, 'get_items_permissions_check'),
+					'args'                => $this->get_collection_params(),
+				),
+				array(
+					'methods'             => 'POST',
+					'callback'            => array($this, 'update_settings'),
+					'permission_callback' => array($this, 'get_items_permissions_check'),
+					'args'                => $this->get_collection_params(),
+				)
+			)
+		);
+	}
 
-    /**
-     * Retrieves settings
-     *
-     * @param WP_REST_Request $request Full details about the request.
-     *
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
-     */
-    public function get_settings($request)
-    {
-        $data = get_option(  $this->prefix . '_settings', false );
+	/**
+	 * Retrieves settings
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 */
+	public function get_settings($request)
+	{
+		$data  = get_option($this->prefix . '_settings', $this->get_setting_defaults());
+		$nonce = wp_create_nonce('wp_rest');
 
 		$response = array(
-			'data'  => array('settings' => $data ),
-			'nonce' => wp_create_nonce('wp_rest')
+			'data'    => $data,
+			'success' => true,
+			'nonce'   => $nonce
 		);
 
-	    return rest_ensure_response($response);
-    }
+		return rest_ensure_response($response);
+	}
 
-    /**
-     * Update settings
-     *
-     * @param WP_REST_Request $request Full details about the request.
-     *
-     * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
-     */
-    public function update_settings(\WP_REST_Request $request)
-    {
-    	// attempt to parse the json parameter
-    	$response = $request->parse_json_params();
+	/**
+	 * Update settings
+	 *
+	 * @param WP_REST_Request $request Full details about the request.
+	 *
+	 * @return WP_REST_Response|WP_Error Response object on success, or WP_Error object on failure.
+	 */
+	public function update_settings(\WP_REST_Request $request)
+	{
+		// attempt to parse the json parameter
+		$rsp   = $request->parse_json_params();
+		$nonce = wp_create_nonce('wp_rest');
 
-    	if (true === $rsp) {
-    		$params       = $request->params['JSON'];
-    		$settings     = isset( $params['settings'] ) ? $params['settings'] : array();
-    		$setting_key  = $this->prefix . '_settings';
-    		$new_settings = $this->sanitized_settings($settings);
-    		$old_settings = get_option($setting_key);
+		if (true === $rsp) {
+			$params       = $request->params['JSON'];
+			$settings     = isset($params['settings'] ) ? $params['settings'] : array();
+			$setting_key  = $this->prefix . '_settings';
+			$new_settings = $this->sanitized_settings($settings);
+			$old_settings = get_option($setting_key);
 
-    		$data = apply_filters( $this->prefix . '_settings_update', $new_settings, $old_settings );
-    		update_option( $setting_key, $data );
+			$data = apply_filters($this->prefix . '_settings_update', $new_settings, $old_settings);
+			update_option($setting_key, $data);
 
+			// update correct response
 			$response = array(
-				'data'  => array('settings' => $data ),
-				'nonce' => wp_create_nonce('wp_rest')  // another nonce to use later
+				'data'    => $data,
+				'success' => $rsp,
+				'nonce'   => $nonce
 			);
+		}
 
-	        return rest_ensure_response($response);
-    	}
+		$response = array(
+			'success' => $rsp,
+			'nonce'   => $nonce
+		);
 
-		return $response;
-    }
+		return rest_ensure_response($response);
+	}
 
-    /**
-     * Checks if a given request has access to read the items.
-     *
-     * @param  WP_REST_Request $request Full details about the request.
-     *
-     * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
-     */
-    public function get_items_permissions_check($request)
-    {
-    	// optional: check nonce
-    	// https://via.studio/journal/wordpress-rest-api-secure-ajax-calls-custom-endpoints
-    	// example: /wp-json/me/v1/endpoint/?_wpnonce=${nonce}
-    	// check_ajax_referer('wp_rest', '_wpnonce', true)
-    	// 3rd parameter (die=true) to kill rest of execution
+	/**
+	 * Checks if a given request has access to read the items.
+	 *
+	 * @param  WP_REST_Request $request Full details about the request.
+	 *
+	 * @return true|WP_Error True if the request has read access, WP_Error object otherwise.
+	 */
+	public function get_items_permissions_check($request)
+	{
+		// optional: check nonce
+		// https://via.studio/journal/wordpress-rest-api-secure-ajax-calls-custom-endpoints
+		// example: /wp-json/me/v1/endpoint/?_wpnonce=${nonce}
+		// check_ajax_referer('wp_rest', '_wpnonce', true)
+		// 3rd parameter (die=true) to kill rest of execution
 
-        if (! current_user_can('manage_options'))
-        {
-        	return new WP_Error( 'rest_forbidden', __( 'Sorry, you cannot update settings.' ), array( 'status' => 403 ) );
-        }
+		if (! current_user_can('manage_options'))
+		{
+			return new WP_Error('rest_forbidden', __('Sorry, you cannot update settings.'), array( 'status' => 403 ));
+		}
 
-        return true;
-    }
+		// since success, we response with next noonce
+		header('X-WP-Nonce: ' . wp_create_nonce('wp_rest'));
+		return true;
+	}
 
-    /**
-     * Retrieves the query params for the items collection.
-     *
-     * @return array Collection parameters.
-     */
-    public function get_collection_params()
-    {
-    	// for settings, we don't need any parameters
-        return [];
-    }
+	/**
+	 * Retrieves the query params for the items collection.
+	 *
+	 * @return array Collection parameters.
+	 */
+	public function get_collection_params()
+	{
+		// for settings, we don't need any parameters
+		return [];
+	}
 
-    /**
-     * Settings structure goes here
-     *
-     * @return array settings structure definition
-     */
-    public function get_settings_structure()
-    {
-    	return include( \Slsgrid\Main::$PLUGINDIR . '/config/settings.php' );
-    }
+	/**
+	 * Settings structure goes here
+	 *
+	 * @param  boolean $runOptionsCallback
+	 * @return array settings structure definition
+	 */
+	public function get_settings_structure($runOptionsCallback = false)
+	{
+		$options = include(\ServerlessGrid\Main::$PLUGINDIR . '/config/settings.php');
 
-    /**
-     * Sanitize specific setting value
-     * @param  Array $details
-     * @param  Array $sanitized_settings
-     * @param  string $id
-     * @param  object $value
-     * @return void
-     */
-    private function sanitize_value($details, &$sanitized_settings, $id, $value) {
-    	$sanitized_value = NULL;
+		if ($runOptionsCallback) {
+
+			$settings_details = $options['options'];
+
+			foreach ($settings_details as $id => $details) {
+				//var_dump($details);
+				if (isset($details['optionsCallback'])) {
+					$options['options'][$id]['options'] = call_user_func($details['optionsCallback'], $details);
+				}
+			}
+		}
+
+		return $options;
+	}
+
+	 /**
+	 * Get setting defaults
+	 *
+	 * @return array setting defaults
+	 */
+	public function get_setting_defaults()
+	{
+		$options = include(\ServerlessGrid\Main::$PLUGINDIR . '/config/settings.php');
+		$result = [];
+
+		$settings_details = $options['options'];
+		foreach ($settings_details as $id => $details) {
+			$result[$id] = $details['default'];
+		}
+
+		return $result;
+	}
+
+	/**
+	 * Sanitize specific setting value
+	 * @param  Array $details
+	 * @param  Array $sanitized_settings
+	 * @param  string $id
+	 * @param  object $value
+	 * @return void
+	 */
+	private function sanitize_value($details, &$sanitized_settings, $id, $value) {
+		$sanitized_value = NULL;
 
 		// Check for custom sanitization function.
-		if (isset( $details['sanitize'] ) && is_callable( $details['sanitize'] )) {
-			$sanitized_value = call_user_func( $details['sanitize'], $value );
+		if (isset($details['sanitize']) && is_callable($details['sanitize'])) {
+			$sanitized_value = call_user_func($details['sanitize'], $value);
 		}
 
 		// Options callback.
-		if (isset( $details['optionsCallback'] )) {
-			$details['options'] = call_user_func( $details['optionsCallback'], $details );
+		if (isset($details['optionsCallback'])) {
+			$details['options'] = call_user_func($details['optionsCallback'], $details);
 		}
 
 		// Default sanitization based on type.
-		if (is_null( $sanitized_value ) && isset( $details['type'] )) {
+		if (is_null($sanitized_value) && isset($details['type'])) {
 			switch ($details['type']) {
 				case 'email':
-					$sanitized_value = trim( sanitize_email( $value ) );
+					$sanitized_value = trim(sanitize_email($value));
 					break;
 				case 'code':
-					$sanitized_value = trim( wp_kses_post( $value ) );
+					$sanitized_value = trim(wp_kses_post($value));
 
 					// Fix for CSS code.
-					$sanitized_value = str_replace( '&gt;', '>', $sanitized_value );
+					$sanitized_value = str_replace('&gt;', '>', $sanitized_value);
 					break;
 				case 'text':
 				case 'number':
 				case 'color':
-					$sanitized_value = trim( sanitize_text_field( $value ) );
+					$sanitized_value = trim(sanitize_text_field($value));
 					break;
 				case 'dropdown':
 				case 'dropdownMultiselect':
@@ -207,32 +250,36 @@ class SettingController extends \WP_REST_Controller
 					}
 
 					foreach ($value as $option) {
-						if (array_key_exists( $option, $details['options'] )) {
+						if (array_key_exists($option, $details['options'])) {
 							$sanitized_value[] = $option;
 						}
 					}
 
+					// only one option for single dropdown
+					if ($details['type'] === 'drodown') {
+						$sanitized_value = $sanitized_value[0];
+					}
+
 					break;
-				case 'richTextarea':
 				case 'textarea':
-					$sanitized_value = trim( stripslashes( wp_kses_post( $value ) ) );
+					$sanitized_value = trim(stripslashes(wp_kses_post($value)));
 					break;
-				case 'file':
-					$sanitized_value = trim( esc_url( $value ) );
+				case 'url':
+					$sanitized_value = trim(esc_url($value));
 				case 'toggle':
 					$sanitized_value = $value ? true : false;
 					break;
 			}
 		}
 
-		$sanitized_value = apply_filters( $this->prefix . '_settings_sanitized', $sanitized_value, $value, $id, $details );
+		$sanitized_value = apply_filters($this->prefix . '_settings_sanitized', $sanitized_value, $value, $id, $details);
 
 		if (is_null( $sanitized_value )) {
 			$sanitized_settings[ $id ] = $details[ $id ][ 'default' ];
 		} else {
 			$sanitized_settings[ $id ] = $sanitized_value;
 		}
-    }
+	}
 
 	/**
 	 * Sanitize the settings.
@@ -241,7 +288,7 @@ class SettingController extends \WP_REST_Controller
 	 */
 	public function sanitize_settings( $settings ) {
 		$sanitized_settings = array();
-		$settings_details = $this->get_settings_structure();
+		$settings_details   = $this->get_settings_structure()['options'];
 
 		foreach ($settings_details as $id => $details) {
 			$value = isset($settings[$id]) ? $settings[$id] : $details['default'];

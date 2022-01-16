@@ -10,11 +10,11 @@ class ApiTests extends PluginTestCase {
 
     public function test_construct() {
         //echo PLUGIN_DIR;
-        //$plug = new \Slsgrid\MyPlugin();
+        //$plug = new \ServerlessGrid\MyPlugin();
 
         //$this->assertTrue(true);
 
-        //$isthere = has_action( 'admin_menu', ['Slsgrid\MyPlugin', 'createMenuItem'] );
+        //$isthere = has_action( 'admin_menu', ['ServerlessGrid\MyPlugin', 'createMenuItem'] );
         //echo $isthere;
 
         $this->assertTrue(true);

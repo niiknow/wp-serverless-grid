@@ -111,7 +111,6 @@
 import { defineComponent, reactive, ref, watchEffect } from 'vue'
 import Multiselect from '@vueform/multiselect'
 
-
 export default defineComponent({
   components: {
     Multiselect
@@ -199,60 +198,74 @@ export default defineComponent({
       this.filters.cookm = 0
       this.filters.prepm = 0
       this.filters.totalm = 0
+    },
+    doLoad() {
+
+      // @ts-ignore
+      this.handleSearch = this.$win.$appConfig.debounce((value) => {
+        this.$refs.myds.search(value)
+      }, 300)
+
+      watchEffect(() => {
+        this.handleSearch(this.dsSearch)
+      })
+
+      // @ts-ignore
+      const tax = this.$win.vue_wp_plugin_config_frontend.taxonomies
+      const courses = tax['wprm_course']
+      const cuisines = tax['wprm_cuisine']
+      courses.forEach((item) => {
+        this.categories[item.value] = item.text
+      })
+      cuisines.forEach((item) => {
+        this.cuisines[item.value] = item.text
+      })
+
+      fetch(this.$win.vue_wp_plugin_config_frontend.indexFileUrl)
+        .then(response => response.json())
+        .then(recipes => {
+          const hasImage = []
+          const noImage = []
+          const items = Object.keys(recipes).forEach((key) => {
+            const item = recipes[key]
+            if (item.img) {
+              hasImage.push(item)
+            } else {
+              noImage.push(item)
+            }
+          })
+
+          // sort by title asc
+          hasImage.sort(function(x, y) {
+            let a = x.title, b = y.title
+
+            return ((a > b) - (b > a))
+          });
+          noImage.sort(function(x, y) {
+            let a = x.title, b = y.title
+
+            return ((a > b) - (b > a))
+          });
+
+          this.recipes = hasImage.concat(noImage)
+
+          // auto filter by url
+          this.filterByUrl()
+        })
     }
   },
-  beforeCreate() {
-    document.onreadystatechange = () => {
+  beforeMount() {
+    const that = this
+
+    // @ts-ignore
+    if (that.$win && that.$win.vue_wp_plugin_config_admin) {
+      that.doLoad()
+      return
+    }
+
+    document.onreadystatechange = async () => {
       if (document.readyState == "complete") {
-        this.handleSearch = this.$win.$appConfig.debounce((value) => {
-          this.$refs.myds.search(value)
-        }, 300)
-
-        watchEffect(() => {
-          this.handleSearch(this.dsSearch)
-        })
-
-        const tax = this.$win.vue_wp_plugin_config.taxonomies
-        const courses = tax['wprm_course']
-        const cuisines = tax['wprm_cuisine']
-        courses.forEach((item) => {
-          this.categories[item.value] = item.text
-        })
-        cuisines.forEach((item) => {
-          this.cuisines[item.value] = item.text
-        })
-
-        fetch(this.$win.vue_wp_plugin_config.indexFileUrl)
-          .then(response => response.json())
-          .then(recipes => {
-            const hasImage = []
-            const noImage = []
-            const items = Object.keys(recipes).forEach((key) => {
-              const item = recipes[key]
-              if (item.img) {
-                hasImage.push(item)
-              } else {
-                noImage.push(item)
-              }
-            })
-
-            // sort by title asc
-            hasImage.sort(function(x, y) {
-              let a = x.title, b = y.title
-
-              return ((a > b) - (b > a))
-            });
-            noImage.sort(function(x, y) {
-              let a = x.title, b = y.title
-
-              return ((a > b) - (b > a))
-            });
-
-            this.recipes = hasImage.concat(noImage)
-
-            // auto filter by url
-            this.filterByUrl()
-          })
+        that.doLoad()
       }
     }
   }
@@ -319,4 +332,4 @@ a.recipe-item {
 }
 </style>
 
-<style src="@vueform/multiselect/themes/default.css"></style>
+<style src=""></style>

@@ -1,5 +1,5 @@
 <?php
-namespace Slsgrid;
+namespace ServerlessGrid;
 
 /**
  * Scripts and styles helper.
@@ -22,7 +22,7 @@ class Assets
 	function __construct($prefix)
 	{
 		$this->prefix = $prefix;
-		add_action( is_admin() ? 'admin_enqueue_scripts' : 'wp_enqueue_scripts', [ $this, 'register' ] );
+		add_action(is_admin() ? 'admin_enqueue_scripts' : 'wp_enqueue_scripts', [$this, 'register']);
 	}
 
 	/**
@@ -64,7 +64,7 @@ class Assets
 	{
 		foreach ($styles as $handle => $style)
 		{
-			$deps = isset( $style['deps'] ) ? $style['deps'] : false;
+			$deps = isset($style['deps']) ? $style['deps'] : false;
 
 			wp_register_style($handle, $style['src'], $deps, null);
 		}
@@ -77,8 +77,8 @@ class Assets
 	 */
 	public function get_scripts()
 	{
-		$assets_url = \Slsgrid\Main::$BASEURL . '/public';
-		$plugin_dir = \Slsgrid\Main::$PLUGINDIR .  '/public';
+		$assets_url = \ServerlessGrid\Main::$BASEURL . '/public';
+		$plugin_dir = \ServerlessGrid\Main::$PLUGINDIR .  '/public';
 		$prefix     = ''; // defined('SCRIPT_DEBUG') && SCRIPT_DEBUG ? '.min' : '';
 
 		$scripts = [
@@ -104,6 +104,11 @@ class Assets
 				'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
 				'in_footer' => true
 			],
+			$this->prefix . '-frontview' => [
+				'src'       => $assets_url . $this->mix('/js/frontview.js'),
+				'deps'      => [ 'bootstrap', $this->prefix . '-vendor' ],
+				'in_footer' => true
+			],
 			$this->prefix . '-admin' => [
 				'src'       => $assets_url . $this->mix('/js/admin.js'),
 				'deps'      => [ $this->prefix . '-vendor' ],
@@ -121,7 +126,7 @@ class Assets
 	 */
 	public function get_styles()
 	{
-		$assets_url = \Slsgrid\Main::$BASEURL . '/public';
+		$assets_url = \ServerlessGrid\Main::$BASEURL . '/public';
 
 		$styles = [
 			$this->prefix . '-bootstrap' => [
@@ -129,6 +134,9 @@ class Assets
 			],
 			$this->prefix . '-frontend' => [
 				'src' => $assets_url . $this->mix('/css/frontend.css')
+			],
+			$this->prefix . '-frontview' => [
+				'src' => $assets_url . $this->mix('/css/frontview.css')
 			],
 			$this->prefix . '-admin' => [
 				'src' => $assets_url . $this->mix('/css/admin.css')
@@ -150,7 +158,7 @@ class Assets
         static $manifests = [];
 
 		if (empty($manifestDirectory)) {
-			$manifestDirectory = \Slsgrid\Main::$PLUGINDIR . '/public';
+			$manifestDirectory = \ServerlessGrid\Main::$PLUGINDIR . '/public';
 		}
 
         $manifestPath = $manifestDirectory . '/mix-manifest.json';

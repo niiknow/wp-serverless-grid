@@ -1,6 +1,5 @@
 <template>
-  <h3>Backend App</h3>
-  <div class="main-wrapper">
+  <div class="main-wrapper container">
     <router-view :key="$route.path"></router-view>
   </div>
 </template>

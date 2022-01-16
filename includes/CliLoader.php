@@ -1,8 +1,9 @@
 <?php
-namespace Slsgrid;
+namespace ServerlessGrid;
 
 /**
- * Cli commands loader
+ * Cli commands loader.
+ *
  */
 class CliLoader
 {
@@ -12,7 +13,9 @@ class CliLoader
     public function __construct($prefix)
     {
     	// this is where you can load Cli
-    	\WP_CLI::add_command( $prefix, \Slsgrid\ExampleCommand::class );
-    	\WP_CLI::add_command( $prefix, \Slsgrid\IndexerCommand::class );
+    	\WP_CLI::add_command( $prefix, \ServerlessGrid\ExampleCommand::class );
+
+    	// additional command can be registered here
+    	// \WP_CLI::add_command( $prefix, \ServerlessGrid\IndexerCommand::class );
     }
 }

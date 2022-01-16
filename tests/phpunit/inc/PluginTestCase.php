@@ -10,7 +10,7 @@ class PluginTestCase extends TestCase {
     protected function setUp():void {
         parent::setUp();
         Monkey\setUp();
-        \Slsgrid\Main::get_instance( __FILE__ );
+        \ServerlessGrid\Main::get_instance( __FILE__ );
     }
 
     protected function tearDown():void {

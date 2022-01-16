@@ -1,5 +1,5 @@
 <?php
-namespace Slsgrid;
+namespace ServerlessGrid;
 
 /**
  * For CLI indexing
@@ -18,7 +18,7 @@ class IndexerCommand {
      *
      * ## EXAMPLES
      *
-     *     wp slsgrid index size
+     *     wp serverless-grid index size
      *
      * @when after_wp_load
      */
@@ -26,7 +26,7 @@ class IndexerCommand {
         list( $name ) = $args;
 
         \WP_CLI::line('Starting index ' . $args[0]);
-        (new SearchIndexer(\Slsgrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0]);
+        (new SearchIndexer(\ServerlessGrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0]);
         \WP_CLI::line('Index completed!');
     }
 }
