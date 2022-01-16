@@ -1,10 +1,10 @@
 {
-    "/js/admin.js": "/js/admin.js?id=d586e06b5dbfcbc1dceb",
-    "/js/frontend.js": "/js/frontend.js?id=731207c8931b237943f4",
-    "/js/frontview.js": "/js/frontview.js?id=421c279c45b430ce4f5b",
-    "/js/manifest.js": "/js/manifest.js?id=ef44dab896abd3bf313e",
-    "/css/admin.css": "/css/admin.css?id=422981cae362e6f7d3d7",
-    "/css/frontview.css": "/css/frontview.css?id=aa1864fa7cb1ef2ca607",
-    "/css/frontend.css": "/css/frontend.css?id=def104ab90972e329bad",
-    "/js/vendor.js": "/js/vendor.js?id=21fdb9adf5405ed38ab7"
+    "/js/admin.js": "/js/admin.js?id=7184cbe36eae9403e7fb",
+    "/js/frontend.js": "/js/frontend.js?id=2154f5df72643301d3d2",
+    "/js/frontview.js": "/js/frontview.js?id=5d8c86fa3247c44eb1e9",
+    "/js/manifest.js": "/js/manifest.js?id=45fa22987b6eca3865ca",
+    "/css/frontend.css": "/css/frontend.css?id=468e15d5ed6a4418af72",
+    "/css/admin.css": "/css/admin.css?id=9381201b8d679b4f7e9f",
+    "/css/frontview.css": "/css/frontview.css?id=68b329da9893e34099c7",
+    "/js/vendor.js": "/js/vendor.js?id=e9519fa713fea1af25bc"
 }

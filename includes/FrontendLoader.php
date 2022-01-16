@@ -55,16 +55,19 @@ class FrontendLoader
 
 		$postfix = esc_attr($a['postfix']);
         wp_enqueue_style($this->prefix . '-' . $postfix);
+        wp_enqueue_style($this->prefix . '-bootstrap');
         wp_enqueue_script($this->prefix . '-' . $postfix);
 
 	    // 1. frontend app is demo of utilizing full vue-router
 	    // 2. while frontview app demonstrate passing in view attribute
 	    //    to select dynamic view
 	    if ($postfix === 'frontend'){
+	    	$indexer = new SearchIndexer( $this->prefix );
 			// output data for use on client-side
 	    	// https://wordpress.stackexchange.com/questions/344537/authenticating-with-rest-api
 	    	wp_localize_script($this->prefix . '-'.$postfix, 'vue_wp_plugin_config_'.$postfix, [
-	    		// todo: add config output here
+			    'taxonomies' => $indexer->taxonomies,
+			    'indexFileUrl' => $indexer->indexFileUrl
 			]);
 		} else if ($postfix === 'frontview') {
 		    // output data for use on client-side
