@@ -4,7 +4,8 @@ namespace ServerlessGrid;
 /**
  * For CLI indexing
  */
-class IndexerCommand {
+class IndexerCommand
+{
 
     /**
      * Create index
@@ -22,8 +23,9 @@ class IndexerCommand {
      *
      * @when after_wp_load
      */
-    function index( $args, $assoc_args ) {
-        list( $name ) = $args;
+    public function index($args, $assoc_args)
+    {
+        list($name) = $args;
 
         \WP_CLI::line('Starting index ' . $args[0]);
         (new SearchIndexer(\ServerlessGrid\Main::PREFIX))->createIndex(empty($args[0]) ? -1 : $args[0]);
