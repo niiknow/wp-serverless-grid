@@ -29,5 +29,10 @@ if (!defined('ABSPATH')) {
 
 require __DIR__ . '/vendor/autoload.php';
 
-// instantiate and run the plugin
-\ServerlessGrid\Main::get_instance(__FILE__)->run();
+/**
+ * Returns the main instance to prevent the need to use globals.
+ */
+$instance = \ServerlessGrid\Main::get_instance(__FILE__, '1.0.0');
+$instance->run();
+
+return $instance;
