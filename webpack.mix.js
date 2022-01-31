@@ -135,9 +135,9 @@ mix.webpackConfig(webpackConfig)
 mix.override((config) => {
   config.watchOptions = {
     ignored: [
-      "**/node_modules/**",
+      '**/node_modules/**',
       '**/public/**',
       '**/vendor/**'
     ]
-  };
-});
+  }
+})

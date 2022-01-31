@@ -41,7 +41,7 @@ final class Main
      * @access  public
      * @since   1.0.0
      */
-    public $_version; //phpcs:ignore
+    public $VERSION;
 
     /**
      * The plugin filename.
@@ -76,7 +76,7 @@ final class Main
     {
         self::$PLUGINFILE = $filepath;
         self::$PLUGINDIR  = dirname($filepath);
-        $this->_version   = $version;
+        $this->VERSION    = $version;
     }
 
     /**
@@ -131,6 +131,7 @@ final class Main
             $this->container['cli'] = new \ServerlessGrid\CliLoader(self::PREFIX);
         }
 
+        // this is to register an action link from the Plugin manager page to our settings page
         $plugin = plugin_basename(self::$PLUGINFILE);
         add_filter("plugin_action_links_$plugin", array($this, 'register_settings_link'));
 
@@ -182,10 +183,10 @@ final class Main
      */
     public function activate_plugin()
     {
-        (new \ServerlessGrid\Migrations())->run(self::PREFIX, $this->_version);
+        (new \ServerlessGrid\Migrations())->run(self::PREFIX, $this->VERSION);
 
         // set the current version to activate plugin
-        update_option(self::PREFIX . '_version', $this->_version);
+        update_option(self::PREFIX . '_version', $this->VERSION);
     }
 
     /**
@@ -199,7 +200,7 @@ final class Main
         // do stuff such as: shut off cron tasks, etc...
 
         // remove version number to deactivate plugin
-        delete_option($this->$_prefix . '_version');
+        delete_option(self::PREFIX . '_version');
     }
 
     /**
@@ -210,7 +211,8 @@ final class Main
      */
     public function register_settings_link($links)
     {
-        $settings_link = '<a href="admin.php?page=' . $this->prefix . '#/settings">Settings</a>';
+        $settings_link = '<a href="admin.php?page=' . self::PREFIX . '#/settings">';
+        $settings_link .= esc_html(__('Settings', self::PREFIX)) . '</a>';
         array_unshift($links, $settings_link);
 
         return $links;
@@ -289,7 +291,7 @@ final class Main
      */
     public function __clone()
     {
-        _doing_it_wrong(__FUNCTION__, esc_html(__('Cloning of Main is forbidden')), esc_attr($this->_version));
+        _doing_it_wrong(__FUNCTION__, esc_html(__('Cloning of Main is forbidden')), esc_attr($this->VERSION));
 
     } // End __clone ()
 
@@ -300,6 +302,6 @@ final class Main
      */
     public function __wakeup()
     {
-        _doing_it_wrong(__FUNCTION__, esc_html(__('Unserializing instances of Main is forbidden')), esc_attr($this->_version));
+        _doing_it_wrong(__FUNCTION__, esc_html(__('Unserializing instances of Main is forbidden')), esc_attr($this->VERSION));
     } // End __wakeup ()
 }

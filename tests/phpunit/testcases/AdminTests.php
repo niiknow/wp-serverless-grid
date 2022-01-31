@@ -2,13 +2,12 @@
 
 namespace Tests;
 
-use \Brain\Monkey\Functions;
-
 defined('ABSPATH') or die();
 
-class AdminTests extends PluginTestCase {
-
-    public function test_construct() {
+class AdminTests extends PluginTestCase
+{
+    public function test_construct()
+    {
         //echo PLUGIN_DIR;
         //$plug = new \ServerlessGrid\MyPlugin();
 

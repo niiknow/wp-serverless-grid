@@ -32,9 +32,7 @@
       "npm run production",
       "composer update",
       "composer install --no-dev --optimize-autoloader",
-      "rm -f dist.zip",
-      "deployStash=`git stash create`; git archive --worktree-attributes --format=zip -o dist.zip ${deployStash:-HEAD}",
-      "zip -ur dist.zip ./vendor",
+      "npm run make-archive",
       "composer update"
     ],
     "test": [
