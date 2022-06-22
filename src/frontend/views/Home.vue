@@ -76,7 +76,7 @@
       <hr />
       <dataset-item class="row search-font" style="overflow-y: auto; max-height: 600px">
         <template #default="{ row, rowIndex }">
-          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="row.src" :title="row.title">
+          <a class="recipe-item scale-down col-sm-12 col-md-6 col-lg-4" :href="'/' + row.src" :title="row.title">
             <div class="card" style="">
               <div style="margin-bottom: 20px">
                 <img :src="row.img ? 'https://www.ucook.com/' + row.img : 'https://www.ucook.com/wp-content/uploads/2021/05/UCook-official-logo.png'" class="card-img-top" :alt="row.title">
